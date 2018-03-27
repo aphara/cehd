@@ -1,5 +1,3 @@
 # cehd
-CeHD website and database....
-
-BOUUUM
+CeHD website and database.
 
