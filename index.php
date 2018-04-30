@@ -1,5 +1,5 @@
 <?php
-require_once('controller/controller.php');
+require_once('controller/frontend/controller.php');
 try
 {
     if (!isset($_GET['action']))
@@ -13,7 +13,7 @@ try
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
-                require 'view/login_view.php';
+                require 'view/frontend/login_view.php';
             }
             break;
         /*case 'home':
@@ -21,7 +21,7 @@ try
             break;*/
 
         default:
-            require 'view/login_view.php';
+            require 'view/frontend/login_view.php';
 
     }
 }catch (Exception $e){}

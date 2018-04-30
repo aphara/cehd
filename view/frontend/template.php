@@ -19,7 +19,8 @@
     <div id='setting_wheel'>
         <h2> <?= $_SESSION['name'] ?> </h2>
         <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
-</header>
+    </div>
+    </header>
 
 <?= $content ?>
 
