@@ -9,7 +9,7 @@ try
             $isPasswordCorrect=login($_POST['_mail'],$_POST['_password']);
             if ($isPasswordCorrect) {
                 $a=session($_POST['_mail']);
-                require_once 'view/home_view.php';
+
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';

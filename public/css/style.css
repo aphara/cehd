@@ -1,0 +1,84 @@
+/*css du login*/
+
+body
+{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f5ef ;
+}
+
+.all
+{
+    margin: auto;
+    text-align: center;
+}
+
+h1
+{
+    font-weight: bold;
+    font-size: 2em;
+}
+
+/*css du template*/
+
+header
+{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo
+{
+    align-self: flex-start;
+}
+
+h1
+{
+    font-size: 2.5em;
+}
+
+#setting_wheel
+{
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+#img_wheel
+{
+    margin: 3px;
+    padding: 5px;
+}
+
+footer
+{
+    display: flex;
+    position: fixed;
+    bottom:1%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(200,200,200);
+    padding: 5px;
+}
+
+#footer
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+footer a
+{
+    text-decoration: none;
+    color: black;
+}
+
+footer div div
+{
+    color: black;
+}

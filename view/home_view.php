@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>CeHD - Accueil</title>
-    <link rel="stylesheet" href="" />
-</head>
+<?php $title = 'CeHD - Accueil'; ?>
+<?php ob_start(); ?>
+
 
 <body>
 <h1>Bienvenue <?= htmlspecialchars($_SESSION['name']) ?></h1>
 </body>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>CeHD - Connexion</title>
-    <link rel="stylesheet" href="public/css/login_style.css" />
+    <link rel="stylesheet" href="public/css/style.css" />
 </head>
 
 <body>
