@@ -4,20 +4,12 @@
 function getPassword($mail)
 {
     $db=dbConnect();
-    $req=$db->prepare('SELECT password FROM `user` WHERE mail= ?');
+    $req=$db->prepare('SELECT password,status,id_user,first_name FROM `user` WHERE mail= ?');
     $req->execute(array($mail));
     $post=$req->fetch();
     return $post;
 }
 
-function getUserSession($mail)
-{
-    $db=dbConnect();
-    $req=$db->prepare('SELECT id_user,first_name FROM `user` WHERE mail= ?');
-    $req->execute(array($mail));
-    $post=$req->fetch();
-    return $post;
-}
 
 
 function dbConnect()

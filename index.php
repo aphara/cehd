@@ -1,5 +1,6 @@
 <?php
-require_once('controller/frontend/controller.php');
+require_once('controller/frontend.php');
+
 try
 {
     if (!isset($_GET['action']))
@@ -7,14 +8,7 @@ try
     switch($_GET['action']){
         case 'login':
             $isPasswordCorrect=login($_POST['_mail'],$_POST['_password']);
-            if ($isPasswordCorrect) {
-                $a=session($_POST['_mail']);
 
-            }
-            else {
-                echo 'Mauvais identifiant ou mot de passe !';
-                require 'view/frontend/login_view.php';
-            }
             break;
         /*case 'home':
             require 'view/home_view.php';
