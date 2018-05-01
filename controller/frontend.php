@@ -8,16 +8,19 @@ function login($_mail,$_password)
     $result=getPassword($_mail);
     $isPasswordCorrect = password_verify($_password,$result['password']);
     if ($isPasswordCorrect && $result['status']=='ADMIN') {
-        session_start();
+        @session_start();
         $_SESSION['id'] = $result['id_user'];
         $_SESSION['name'] = $result['first_name'];
-        require_once ROOT . '/view/backend/home_view.php';
+        $_SESSION['status'] = $result['status'];
+//        header("Location:index.php?action=homeb");
+
     }
     elseif ($isPasswordCorrect) {
-        session_start();
+        @session_start();
         $_SESSION['id'] = $result['id_user'];
         $_SESSION['name'] = $result['first_name'];
-        require_once ROOT . '/view/frontend/home_view.php';
+        $_SESSION['status'] = $result['status'];
+//        header("Location:index.php?action=home");
     }
     else {
         echo 'Mauvais identifiant ou mot de passe !';
@@ -25,6 +28,10 @@ function login($_mail,$_password)
     }
 }
 
-
+function AuthErr(){
+    session_destroy();
+    echo 'Vous n\'avez pas l\'autorisation d\'accéder à cette page';
+    require 'view/frontend/login_view.php';
+}
 
 

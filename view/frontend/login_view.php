@@ -20,10 +20,10 @@
         <form action="index.php?action=login" method="post">
 
             <div>
-                <input type="text" placeholder="Adresse email" id="mail" name="_mail" value="" autofocus>
+                <input type="text" placeholder="Adresse email" id="mail" name="_mail" value="" autofocus required>
             </div>
             <div>
-                <input type="password" placeholder="Mot de passe" id="password" name="_password">
+                <input type="password" placeholder="Mot de passe" id="password" name="_password" required>
             </div>
 
 
