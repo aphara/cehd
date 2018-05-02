@@ -19,3 +19,108 @@ h1
     font-weight: bold;
     font-size: 2em;
 }
+
+/*css du template */
+/*css du template*/
+header
+{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav_content
+{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+#logo
+{
+    align-self: flex-start;
+}
+
+#sidebar ul
+{
+    list-style-type: none;
+
+}
+
+#sidebar a
+{
+    background-color: rgb(200,200,200);
+    color: black;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: block;
+    line-height: 50px;
+    padding: 0 24px;
+    border: 3px groove black;
+    border-radius: 10px;
+
+
+
+}
+
+#sidebar a:hover
+{
+    color: white;
+    border-color: black;
+    background-color: #ff6c06;
+
+}
+
+#content
+{
+    border: 3px solid;
+
+}
+h1
+{
+    font-size: 2.5em;
+}
+
+#setting_wheel
+{
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+#img_wheel
+{
+    margin: 3px;
+    padding: 5px;
+}
+
+footer
+{
+    display: flex;
+    position: fixed;
+    bottom:1%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(200,200,200);
+    padding: 5px;
+}
+
+#footer
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+footer a
+{
+    text-decoration: none;
+    color: black;
+}
+
+footer div div
+{
+    color: black;
+}
