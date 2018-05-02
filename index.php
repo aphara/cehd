@@ -11,23 +11,17 @@ try
 //login
         case 'login':
             $isPasswordCorrect=login($_POST['_mail'],$_POST['_password']);
+            $result=getUserSession($_POST['_mail']);
+            session_start();
+            $_SESSION['id'] = $result['id_user'];
+            $_SESSION['name'] = $result['first_name'];
             if ($_SESSION['status']=='ADMIN'){
                 header("Location:index.php?action=homeb");
             }
             elseif ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-                header("Location:index.php?action=home");
+                header('Location: ./view/frontend/home_view.php');
             }else{
                 AuthErr();
-            }
-            break;
-//frontend
-        case 'home':
-            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-                require 'view/frontend/home_view.php';
-
-            }else{
-                AuthErr();
-
             }
             break;
 
