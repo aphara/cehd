@@ -20,8 +20,10 @@ h1
     font-size: 2em;
 }
 
-/*css du template */
-/*css du template*/
+/*------css du template--------*/
+
+/*HEADER*/
+
 header
 {
     display: flex;
@@ -30,16 +32,36 @@ header
     align-items: center;
 }
 
+#logo
+{
+    align-self: flex-start;
+}
+
+h1
+{
+    font-size: 2.5em;
+}
+
+#setting_wheel
+{
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+#img_wheel
+{
+    margin: 3px;
+    padding: 5px;
+}
+
+/*NAV*/
+
 #nav_content
 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-}
-
-#logo
-{
-    align-self: flex-start;
 }
 
 #sidebar ul
@@ -59,9 +81,6 @@ header
     padding: 0 24px;
     border: 3px groove black;
     border-radius: 10px;
-
-
-
 }
 
 #sidebar a:hover
@@ -77,23 +96,8 @@ header
     border: 3px solid;
 
 }
-h1
-{
-    font-size: 2.5em;
-}
 
-#setting_wheel
-{
-    display: flex;
-    align-items: center;
-    font-size: 1em;
-}
-
-#img_wheel
-{
-    margin: 3px;
-    padding: 5px;
-}
+/*FOOTER*/
 
 footer
 {

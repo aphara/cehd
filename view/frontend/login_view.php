@@ -35,6 +35,8 @@
         </form>
 
     </div>
+    <br/><br/>
+    <a href="index.php?action=firstlog">Première connexion ?</a>
 
 </div>
 
