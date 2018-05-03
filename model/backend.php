@@ -26,7 +26,7 @@ VALUES (:home_type,:address,:city,:postcode)');
 
 function linkUserHome($id_user,$id_home){
     $db=dbConnect1();
-    $req=$db->prepare('INSERT INTO residence VALUES(:id_user,:id_home)');
+    $req=$db->prepare('INSERT INTO user_home VALUES(:id_user,:id_home)');
     $req->execute(array('id_user'=>$id_user,'id_home'=>$id_home));
 }
 

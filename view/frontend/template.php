@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
-    <link href="../../public/css/style.css" rel="stylesheet" />
+    <link href="public/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
     <header>
         <div id='logo'>
-            <img src='../../public/img/LOGO_small.png' alt='logo'/>
+            <img src='public/img/LOGO_small.png' alt='logo'/>
         </div>
 
         <div id='domicile'>
@@ -18,17 +18,17 @@
 
         <div id='setting_wheel'>
             <h2> <?= $_SESSION['name'] ?> </h2>
-            <a href="#"><img src='../../public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
+            <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
         </div>
     </header>
 
     <div id='nav_content'>
         <nav id='sidebar'>
             <ul>
-                <li><a href="../../view/frontend/statsgenerales_view.php">Stats Générales</a></li>
-                <li><a href="../../view/frontend/gestionmaison_view.php">Gestion Maison</a></li>
-                <li><a href="../../view/frontend/gestion_utilisateurs_view.php">Gestion Utilisateurs</a></li>
-                <li><a href="../../view/frontend/contact_view.php">Contact</a></li>
+                <li><a href="index.php?action=statsgenerales">Stats Générales</a></li>
+                <li><a href="view/frontend/gestionmaison_view.php">Gestion Maison</a></li>
+                <li><a href="view/frontend/gestion_utilisateurs_view.php">Gestion Utilisateurs</a></li>
+                <li><a href="view/frontend/contact_view.php">Contact</a></li>
             </ul>
         </nav>
         <div id='content'>

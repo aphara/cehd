@@ -7,20 +7,11 @@ function login($_mail,$_password)
     //password hash check
     $result=getPassword($_mail);
     $isPasswordCorrect = password_verify($_password,$result['password']);
-    if ($isPasswordCorrect && $result['status']=='ADMIN') {
+    if ($isPasswordCorrect) {
         @session_start();
         $_SESSION['id'] = $result['id_user'];
         $_SESSION['name'] = $result['first_name'];
         $_SESSION['status'] = $result['status'];
-//        header("Location:index.php?action=homeb");
-
-    }
-    elseif ($isPasswordCorrect) {
-        @session_start();
-        $_SESSION['id'] = $result['id_user'];
-        $_SESSION['name'] = $result['first_name'];
-        $_SESSION['status'] = $result['status'];
-//        header("Location:index.php?action=home");
     }
     else {
         echo 'Mauvais identifiant ou mot de passe !';

@@ -25,11 +25,21 @@ try
                 AuthErr();
             }
             break;
-        case 'firstlog':
-            /*demander email, checker attribution
+
+        /*demander email, checker attribution
             si oui : demander un mdp puis hash
             si non : retour accueil*/
+
+        case 'firstlog':
+            require('view/frontend/firstlog.php');
             break;
+        case 'firstlog_mail':
+            //check regex mail
+            //req sql présence adresse mail
+            break;
+        case 'firstlog_password':
+            //test password match
+            //password hash
 
 //frontend
         case 'home':
@@ -39,6 +49,8 @@ try
                 AuthErr();
             }
             break;
+
+
 
 //backend
         case 'homeb':
