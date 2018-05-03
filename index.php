@@ -3,25 +3,23 @@ require_once('controller/frontend.php');
 require_once('controller/backend.php');
 @session_start();
 
-try
-{
+try {
     if (!isset($_GET['action']))
-        $_GET['action']='';
-    switch($_GET['action']){
+        $_GET['action'] = '';
+    switch ($_GET['action']) {
 //login
         case 'login':
-            $isPasswordCorrect=login($_POST['_mail'],$_POST['_password']);
+            $isPasswordCorrect = login($_POST['_mail'], $_POST['_password']);
             /*$result=getUserSession($_POST['_mail']);
             session_start();
             $_SESSION['id'] = $result['id_user'];
             $_SESSION['name'] = $result['first_name'];*/
-            if ($_SESSION['status']=='ADMIN'){
+            if ($_SESSION['status'] == 'ADMIN') {
                 header("Location:index.php?action=homeb");
-            }
-            elseif ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+            } elseif ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 header("Location:index.php?action=home");
 //                header('Location: ./view/frontend/home_view.php');
-            }else{
+            } else {
                 AuthErr();
             }
             break;
@@ -43,33 +41,40 @@ try
 
 //frontend
         case 'home':
-            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/home_view.php';
-            }else{
+            } else {
                 AuthErr();
             }
             break;
-
+        case 'contact':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require'view/frontend/contact.php';
+            }
+            else {
+                AuthErr();
+            }
+            break;
 
 
 //backend
         case 'homeb':
-            if ($_SESSION['status']=='ADMIN'){
+            if ($_SESSION['status'] == 'ADMIN') {
                 require 'view/backend/home_view.php';
-            }else{
+            } else {
                 AuthErr();
             }
             break;
         case 'add_user_form':
-            if ($_SESSION['status']=='ADMIN'){
+            if ($_SESSION['status'] == 'ADMIN') {
                 require 'view/backend/add_user_view.php';
             }
             break;
         case 'add_client':
-            if ($_SESSION['status']=='ADMIN'){
-                addClient($_POST['_mail'],$_POST['_firstname'],$_POST['_lastname'],
-                    $_POST['_date_of_birth'],$_POST['_phone'],$_POST['_home_type'],
-                    $_POST['_address'],$_POST['_city'],$_POST['_postcode']);
+            if ($_SESSION['status'] == 'ADMIN') {
+                addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                    $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
+                    $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
                 require 'view/backend/add_user_view.php';
             }
             break;
@@ -83,6 +88,7 @@ try
             require 'view/frontend/login_view.php';
 
     }
-}catch (Exception $e){}
+} catch (Exception $e) {
+}
 
 

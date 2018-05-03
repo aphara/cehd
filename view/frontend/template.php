@@ -43,7 +43,7 @@
 
             <div id='cgu'><a href="#">CGU</a></div>
             <div>|</div>
-            <div id='contact'><a href="#">Contact</a></div>
+            <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
             <div id='aide'><a href="#">Aide</a></div>
         </div>
