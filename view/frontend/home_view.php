@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php @session_start(); ?>
 <?php $title = 'CeHD - Accueil'; ?>
 <?php ob_start(); ?>
 
