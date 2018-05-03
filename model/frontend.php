@@ -20,6 +20,7 @@ function getUserSession($mail)
 }
 
 
+
 function dbConnect()
 {
     try
@@ -33,3 +34,32 @@ function dbConnect()
     }
 }
 
+
+function UserUpdate($update, $user_new, $id_session)
+{
+  $db=dbConnect();
+  $req1="SELECT $update from user where id_user= $id_session";
+  $test=$db->query($req1);
+  if($test===$user_new){
+    return "you can't put the same ". phrase($update) ;
+  }
+  $req2="Update user set first_name where id_user=$id_session ";
+  //if($db->query($req2)===TRUE){
+   return ("your ". phrase($update) . " has been changed with success!")
+
+}
+
+function getUserinfo($categorie, $id_session)
+{
+  $db=dbConnect();
+  $req="SELECT $categorie FROM user where id_user =$id_session";
+  $post=$db->query($req);
+  return $post;
+}
+
+ function phrase($str)
+ {
+   $string=(string)$str
+   $newstring= str_replace("_"," ",$string);
+   return $newstring;
+ }
