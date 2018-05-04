@@ -20,11 +20,13 @@
         <form action="index.php?action=firstlog_password" method="post">
 
             <div>
-                <input type="text" placeholder="Nouveau mot de passe" id="password" name="_password" value="" autofocus required>
+                <input type="password" placeholder="Nouveau mot de passe" id="password" name="_password" value=""
+                       minlength="6" autofocus required>
             </div>
 
             <div>
-                <input type="text" placeholder="Confirmer le mot de passe" id="password_check" name="_password_check" value="" required>
+                <input type="password" placeholder="Confirmer le mot de passe" id="password_check"
+                       name="_password_check" value="" minlength="6" required>
             </div>
             <hr>
 

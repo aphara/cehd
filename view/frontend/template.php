@@ -9,26 +9,32 @@
 <body>
     <header>
         <div id='logo'>
-            <img src='public/img/LOGO_small.png' alt='logo'/>
+            <a href="index.php?action=home"><img src='public/img/LOGO_small.png' alt='logo'/></a>
         </div>
 
         <div id='domicile'>
             <h1> Maison de <?= $_SESSION['name'] ?></h1>
         </div>
 
-        <div id='setting_wheel'>
-            <h2> <?= $_SESSION['name'] ?> </h2>
-            <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
+        <div id='right_header'>
+            <div id='setting_wheel'>
+                <h2> <?= $_SESSION['name'] ?> </h2>
+                <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
+            </div>
+
+            <div>
+                <a href="index.php?action=logout">Déconnexion</a>
+            </div>
         </div>
     </header>
 
     <div id='nav_content'>
         <nav id='sidebar'>
             <ul>
-                <li><a href="index.php?action=statsgenerales">Stats Générales</a></li>
-                <li><a href="view/frontend/gestionmaison_view.php">Gestion Maison</a></li>
-                <li><a href="view/frontend/gestion_utilisateurs_view.php">Gestion Utilisateurs</a></li>
-                <li><a href="view/frontend/contact_view.php">Contact</a></li>
+                <li><a href="index.php?action=global_stats">Stats Générales</a></li>
+                <li><a href="index.php?action=home_control">Gestion Maison</a></li>
+                <li><a href="index.php?action=user_manage.">Gestion Utilisateurs</a></li>
+                <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>
         <div id='content'>
@@ -43,7 +49,7 @@
 
             <div id='cgu'><a href="#">CGU</a></div>
             <div>|</div>
-            <div id='contact'><a href="#">Contact</a></div>
+            <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
             <div id='aide'><a href="#">Aide</a></div>
         </div>
