@@ -28,7 +28,7 @@
                 <li><a href="index.php?action=statsgenerales">Stats Générales</a></li>
                 <li><a href="view/frontend/gestionmaison_view.php">Gestion Maison</a></li>
                 <li><a href="view/frontend/gestion_utilisateurs_view.php">Gestion Utilisateurs</a></li>
-                <li><a href="view/frontend/contact_view.php">Contact</a></li>
+                <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>
         <div id='content'>
@@ -43,7 +43,7 @@
 
             <div id='cgu'><a href="#">CGU</a></div>
             <div>|</div>
-            <div id='contact'><a href="#">Contact</a></div>
+            <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
             <div id='aide'><a href="#">Aide</a></div>
         </div>
