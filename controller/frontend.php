@@ -19,10 +19,31 @@ function login($_mail,$_password)
     }
 }
 
-function AuthErr(){
+function authErr(){
     session_destroy();
     echo 'Vous n\'avez pas l\'autorisation d\'accéder à cette page';
     require 'view/frontend/login_view.php';
 }
 
+function checkMail($mail){
+    $isMailOk=mailCheck($mail);
+    if ($isMailOk==1){
+        return $test=true;
+    }else{
+        return $test=false;
+    }
+}
 
+function isPasswordSet($mail){
+    $passwordSet=is_PasswordSet($mail);
+    if ($passwordSet['password']==''){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function passwordHash($password,$mail){
+    $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
+    insertPassword($hashedPassword,$mail);
+}

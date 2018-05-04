@@ -7,46 +7,66 @@ try
 {
     if (!isset($_GET['action']))
         $_GET['action']='';
-    switch($_GET['action']){
+    switch($_GET['action']) {
 //login
         case 'login':
-            $isPasswordCorrect=login($_POST['_mail'],$_POST['_password']);
-            /*$result=getUserSession($_POST['_mail']);
-            session_start();
-            $_SESSION['id'] = $result['id_user'];
-            $_SESSION['name'] = $result['first_name'];*/
-            if ($_SESSION['status']=='ADMIN'){
-                header("Location:index.php?action=homeb");
-            }
-            elseif ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-                header("Location:index.php?action=home");
-//                header('Location: ./view/frontend/home_view.php');
+            $isPasswordCorrect = login($_POST['_mail'], $_POST['_password']);
+            if (isset($_SESSION['status'])){
+                if ($_SESSION['status']=='ADMIN'){
+                    header("Location:index.php?action=homeb");
+                }elseif ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+                    header("Location:index.php?action=home");
+                }else{
+                    authErr();
+                }
             }else{
-                AuthErr();
+                break;
             }
+
             break;
 
-        /*demander email, checker attribution
-            si oui : demander un mdp puis hash
-            si non : retour accueil*/
-
+//Premiere connexion
         case 'firstlog':
             require('view/frontend/firstlog.php');
             break;
+        //test l'existence du compte utilisateur
         case 'firstlog_mail':
             //check regex mail
-            //req sql présence adresse mail
+            $test=checkMail($_POST['_mail']);
+            if ($test==true){
+                $_SESSION['mail']=$_POST['_mail'];
+                require 'view/frontend/firstlog_password.php';
+            }else{
+                echo 'Ce compte utilisateur est déjà existant ou n\'existe pas';
+                require 'view/frontend/firstlog.php';
+            }
             break;
+        /*test l'existence du password et si non encrypte le password défini par l'utilisateur
+        et l'ajoute à la db*/
         case 'firstlog_password':
-            //test password match
-            //password hash
+            if ($_POST['_password']==$_POST['_password_check']){
+                if (isPasswordSet($_SESSION['mail'])==false){
+                    passwordHash($_POST['_password'],$_SESSION['mail']);
+                    unset($_SESSION['mail']);
+                    echo 'Le mot de passe a bien été défini, vous pouvez maintenant vous connecter';
+                    require 'view/frontend/login_view.php';
+                }else{
+                    unset($_SESSION['mail']);
+                    echo 'ce compte a déjà été configuré.';
+                    require 'view/frontend/login_view.php';
+                }
+            }else{
+                echo 'Les mots de passe ne correspondent pas';
+                require 'view/frontend/firstlog_password.php';
+            }
+            break;
 
 //frontend
         case 'home':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
                 require 'view/frontend/home_view.php';
             }else{
-                AuthErr();
+                authErr();
             }
             break;
 
@@ -57,7 +77,7 @@ try
             if ($_SESSION['status']=='ADMIN'){
                 require 'view/backend/home_view.php';
             }else{
-                AuthErr();
+                authErr();
             }
             break;
         case 'add_user_form':
