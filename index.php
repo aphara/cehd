@@ -70,6 +70,7 @@ try {
             }
             break;
 
+
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
                 require'view/frontend/contact.php';
@@ -99,6 +100,8 @@ try {
                     $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
                 require 'view/backend/add_user_view.php';
+            }else{
+                authErr();
             }
             break;
 

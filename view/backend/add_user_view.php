@@ -14,10 +14,10 @@
                 <input type="text" placeholder="Nom" id="add_lastname" name="_lastname" value="" required/>
             </p>
             <p>
-                <input type="text" placeholder="Adresse email" id="add_mail" name="_mail" value="" required/>
+                <input type="email" placeholder="Adresse email" id="add_mail" name="_mail" value="" required/>
             </p>
             <p>
-                <input type="text" placeholder="Téléphone" id="add_phone" name="_phone" value="" required/>
+                <input type="tel" placeholder="Téléphone" id="add_phone" name="_phone" value="" required/>
             </p>
             <p>
                 <input type="date" placeholder="jj/mm/aaaa" id="add_date_of_birth" name="_date_of_birth" value="" required/>

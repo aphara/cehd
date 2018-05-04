@@ -42,6 +42,12 @@ h1
     font-size: 2.5em;
 }
 
+#right_header
+{
+    display: flex;
+    flex-direction: column;
+}
+
 #setting_wheel
 {
     display: flex;

@@ -10,7 +10,7 @@
 <body>
 <header>
     <div id='logo'>
-        <img src='public/img/LOGO_small.png' alt='logo'/>
+        <a href="index.php?action=homeb"><img src='public/img/LOGO_small.png' alt='logo'/></a>
     </div>
 
     <div id='setting_wheel'>
