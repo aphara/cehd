@@ -16,3 +16,9 @@ function addClient($mail, $first_name, $last_name, $date_of_birth, $phone,
     linkUserHome($id_user,$id_home);
     echo 'Utilisateur ajouté';
 }
+
+function getUserHome(){
+    $req=get_user_home();
+    return $req;
+//    require ROOT.'/view/backend/home_view.php';
+}
