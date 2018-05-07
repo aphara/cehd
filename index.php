@@ -84,6 +84,7 @@ try {
 //backend
         case 'homeb':
             if ($_SESSION['status'] == 'ADMIN') {
+                $req=getUserHome();
                 require 'view/backend/home_view.php';
             }else{
                 authErr();
