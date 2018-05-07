@@ -216,3 +216,20 @@ footer div div {
     display: flex;
     flex-direction: column;
 }
+
+/*CGU*/
+
+.CGU{
+  font-family: courier;
+  text-align: justify;
+  height: 100%;
+  overflow: scroll;
+}
+
+.CGU ul, .CGU p{
+  font-size: 15px;
+  max-width: auto;
+}
+.CGU h1,.CGU h2,.CGU ul, .CGU p {
+  margin:10px;
+}
