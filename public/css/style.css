@@ -118,6 +118,9 @@ h1 {
 {
 
     border: 3px solid;
+    max-height:500px;
+    min-height: 500px;
+    min-width: 80%;
 
 }
 
@@ -195,7 +198,7 @@ footer div div {
 #coordonnees_contact {
     border: 3px solid;
     width: 110%;
-    height: 52%;
+    min-height: 60%;
     display: flex;
     margin: 15%;
     justify-content: center;
