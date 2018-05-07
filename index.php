@@ -80,6 +80,14 @@ try {
             }
             break;
 
+        case 'setting':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require'view/frontend/setting.php';
+            }
+            else {
+                authErr();
+            }
+            break;
 
 //backend
         case 'homeb':
@@ -117,5 +125,3 @@ try {
     }
 } catch (Exception $e) {
 }
-
-

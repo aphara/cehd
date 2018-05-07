@@ -19,7 +19,7 @@
         <div id='right_header'>
             <div id='setting_wheel'>
                 <h2> <?= $_SESSION['name'] ?> </h2>
-                <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
+                <a href="index.php?action=setting"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
             </div>
 
             <div>
