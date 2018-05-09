@@ -5,7 +5,7 @@
 
     <div class="home_searchbar_add">
         <div class="searchbar">
-            <form>
+            <form action="index.php?action=search" method="post">
                 <h3>Recherche :</h3>
                 <select name="_searchbar_mode" id="searchbar_mode">
                     <option value="id" selected>par Référence</option>
@@ -13,6 +13,7 @@
                     <option value="phone">par Téléphone</option>
                     <option value="name">par Nom</option>
                 </select>
+                <input type="search" name="_searchbar_field">
 
                 <input type="submit" value="Rechercher">
             </form>

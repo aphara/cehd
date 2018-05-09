@@ -22,3 +22,21 @@ function getUserHome(){
     return $req;
 //    require ROOT.'/view/backend/home_view.php';
 }
+
+function searchUser($search,$mode){
+    if ($mode=='id'){
+        //$type='id_home';
+        $req=search_by_id($search/*,$type*/);
+        return $req;
+    }elseif ($mode=='mail'){
+        $req=search_by_mail($search);
+        return $req;
+    }elseif ($mode=='phone'){
+        $req=search_by_phone($search);
+        return $req;
+    }elseif ($mode=='name'){
+
+        $req=search_by_name($search);
+        return $req;
+    }else return $req='error';
+}

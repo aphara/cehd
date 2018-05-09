@@ -71,6 +71,7 @@ try {
             break;
 
 
+    //Liens footer
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
                 require'view/frontend/contact.php';
@@ -82,9 +83,9 @@ try {
             
         case 'cgu':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-                require 'view/frontend/cgu_view.php';
+                require 'view/frontend/cgu.php';
             }else{
-                AuthErr();
+                authErr();
             }
             break;
 
@@ -111,6 +112,10 @@ try {
             }else{
                 authErr();
             }
+            break;
+        case 'search':
+            $req=searchUser($_POST['_searchbar_field'],$_POST['_searchbar_mode']);
+            require 'view/backend/home_view.php';
             break;
 
 //logout
