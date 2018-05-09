@@ -62,17 +62,16 @@ h1 {
 
 #sidebar ul {
     list-style-type: none;
-
 }
 
 #sidebar a {
     background-color: rgb(200, 200, 200);
     color: black;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.3em;
     display: block;
-    line-height: 50px;
-    padding: 0 24px;
+    line-height: 40px;
+    padding: 0 15px;
     border: 3px groove black;
     border-radius: 10px;
 }
@@ -81,47 +80,41 @@ h1 {
     color: white;
     border-color: black;
     background-color: #ff6c06;
-
 }
-
-
-
 
 #dropdown-content
 {
     display: none;
     position: absolute;
+}
 
-
-
+#sidebar
+{
+    margin-right: -10px;
 }
 
 #dropdown:hover #dropdown-content
 {
     display: block;
-
 }
 
 #dropdown-content a
 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 40px;
     position: relative;
-    left: 245px;
-
-
-
+    left: 192px;
+    top: -45px;
+    text-align: right;
 }
-
 
 #content
 {
-
     border: 3px solid;
+    background-color: #f0f5ef ;
     max-height:500px;
     min-height: 500px;
     min-width: 80%;
-
 }
 
 /*FOOTER*/
@@ -223,16 +216,15 @@ footer div div {
 /*CGU*/
 
 .CGU{
-  font-family: courier;
-  text-align: justify;
-  height: 100%;
-  overflow: scroll;
+    font-family: courier, serif;
+    text-align: justify;
+    height: 100%;
+    overflow: scroll;
 }
 
 .CGU ul, .CGU p{
-  font-size: 15px;
-  max-width: auto;
+    font-size: 15px;
 }
 .CGU h1,.CGU h2,.CGU ul, .CGU p {
-  margin:10px;
+    margin:10px;
 }
