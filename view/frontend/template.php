@@ -34,9 +34,9 @@
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
                 <li id='dropdown'><a href="index.php?action=gestionmaison">Gestion Maison</a>
                     <div id="dropdown-content">
-                        <a href="index.php?action=">Link 1</a>
-                        <a href="index.php?action=">Link 2</a>
-                        <a href="index.php?action=">Link 3</a>
+                        <a href="index.php?action=gestion_mod">gestion modules</a>
+                        <a href="index.php?action=associer_mod">associer modules</a>
+                        <a href="index.php?action=programmes">programmes</a>
                     </div>
                 </li>
                 <li><a href="index.php?action=user_manage.">Gestion Utilisateurs</a></li>

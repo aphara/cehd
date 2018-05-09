@@ -80,6 +80,32 @@ try {
             }
             break;
 
+        case 'gestion_mod':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require'view/frontend/gestion_maison.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'associer_mod':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require'view/frontend/associer_mod.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'programmes':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require'view/frontend/programmes.php';
+            }
+            else {
+                authErr();
+            }
+            break;
 
 //backend
         case 'homeb':
