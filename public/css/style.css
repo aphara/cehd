@@ -1,21 +1,18 @@
 /*css du login*/
 
-body
-{
-    height: 300px;
+body {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #f0f5ef ;
+    background-color: #f0f5ef;
 }
 
-.all
-{
+.all {
     margin: auto;
     text-align: center;
 }
 
-h1
-{
+h1 {
     font-weight: bold;
     font-size: 2em;
 }
@@ -24,60 +21,51 @@ h1
 
 /*HEADER*/
 
-header
-{
+header {
     display: flex;
 
     justify-content: space-between;
     align-items: center;
 }
 
-#logo
-{
+#logo {
     align-self: flex-start;
 }
 
-h1
-{
+h1 {
     font-size: 2.5em;
 }
 
-#right_header
-{
+#right_header {
     display: flex;
     flex-direction: column;
 }
 
-#setting_wheel
-{
+#setting_wheel {
     display: flex;
     align-items: center;
     font-size: 1em;
 }
 
-#img_wheel
-{
+#img_wheel {
     margin: 3px;
     padding: 5px;
 }
 
 /*NAV*/
 
-#nav_content
-{
+#nav_content {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
 }
 
-#sidebar ul
-{
+#sidebar ul {
     list-style-type: none;
 }
 
-#sidebar a
-{
-    background-color: rgb(200,200,200);
+#sidebar a {
+    background-color: rgb(200, 200, 200);
     color: black;
     text-decoration: none;
     font-size: 1.3em;
@@ -88,8 +76,7 @@ h1
     border-radius: 10px;
 }
 
-#sidebar a:hover
-{
+#sidebar a:hover {
     color: white;
     border-color: black;
     background-color: #ff6c06;
@@ -109,7 +96,6 @@ h1
 #dropdown:hover #dropdown-content
 {
     display: block;
-
 }
 
 #dropdown-content a
@@ -126,38 +112,119 @@ h1
 {
     border: 3px solid;
     background-color: #f0f5ef ;
-    height: 200%;
-    width: 70%;
+    max-height:500px;
+    min-height: 500px;
+    min-width: 80%;
 }
 
 /*FOOTER*/
 
-footer
-{
+footer {
     display: flex;
     position: fixed;
-    bottom:1%;
+    bottom: 1%;
     left: 0;
     width: 100%;
-    background-color: rgb(200,200,200);
+    background-color: rgb(200, 200, 200);
     padding: 5px;
 }
 
-#footer
-{
+#footer {
     width: 100%;
     display: flex;
     justify-content: space-around;
     margin: auto;
 }
 
-footer a
-{
+footer a {
     text-decoration: none;
     color: black;
 }
 
-footer div div
-{
+footer div div {
     color: black;
+}
+
+/*CSS CONTACT   RESPONSIVE SAUF BLOC COORDONNEES*/
+
+#page_contact {
+    display: flex;
+    flex-direction: column;
+
+    /* justify-content: center;
+     align-items: center; */
+
+}
+
+#contact {
+    display: flex;
+    justify-content: center;
+}
+
+#form_contact {
+
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    width: 40%;
+}
+
+#corps_contact {
+    display: flex;
+    flex-direction: row;
+    width: 140%;
+    height: 140%;
+
+}
+
+#object_contact {
+    border: 3px solid;
+}
+
+#message_contact {
+    margin-top: 2%;
+    border: 3px solid;
+    overflow: scroll;
+
+}
+
+#coordonnees_contact {
+    border: 3px solid;
+    width: 110%;
+    min-height: 60%;
+    display: flex;
+    margin: 15%;
+    justify-content: center;
+    align-content: center;
+
+}
+
+#envoyer_contact {
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 6px 6px 6px black;
+    margin-left: 15%;
+    width: 43%;
+
+}
+
+#findepage_contact{
+    display: flex;
+    flex-direction: column;
+}
+
+/*CGU*/
+
+.CGU{
+    font-family: courier, serif;
+    text-align: justify;
+    height: 100%;
+    overflow: scroll;
+}
+
+.CGU ul, .CGU p{
+    font-size: 15px;
+}
+.CGU h1,.CGU h2,.CGU ul, .CGU p {
+    margin:10px;
 }

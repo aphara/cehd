@@ -29,7 +29,7 @@ VALUES (:home_type,:address,:city,:postcode)');
     $req->execute();
 
     $req=$db->prepare('SELECT id_home FROM `home` WHERE address=?');
-    $req->bindValue('address',$address, PDO::PARAM_STR);
+    $req->bindValue(1,$address, PDO::PARAM_STR);
     $req->execute();
     $post=$req->fetch();
     return $post;
@@ -37,10 +37,10 @@ VALUES (:home_type,:address,:city,:postcode)');
 
 function linkUserHome($id_user,$id_home){
     $db=dbConnect1();
-    $req=$db->prepare('INSERT INTO user_home VALUES(:id_user,:id_home)');
-    $req->bindValue('id_user',$id_user, PDO::PARAM_INT);
+    $req=$db->prepare('INSERT INTO user_home VALUES(:id_home,:id_user)');
     $req->bindValue('id_home',$id_home, PDO::PARAM_INT);
-    $req->execute(array('id_user'=>$id_user,'id_home'=>$id_home));
+    $req->bindValue('id_user',$id_user, PDO::PARAM_INT);
+    $req->execute();
 }
 
 function get_user_home(){

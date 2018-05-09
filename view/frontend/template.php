@@ -53,7 +53,7 @@
     <footer>
         <div id='footer'>
 
-            <div id='cgu'><a href="#">CGU</a></div>
+            <div id='cgu'><a href="index.php?action=cgu">CGU</a></div>
             <div>|</div>
             <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>

@@ -107,6 +107,15 @@ try {
             }
             break;
 
+            
+        case 'cgu':
+            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+                require 'view/frontend/cgu_view.php';
+            }else{
+                AuthErr();
+            }
+            break;
+
 //backend
         case 'homeb':
             if ($_SESSION['status'] == 'ADMIN') {
@@ -143,5 +152,3 @@ try {
     }
 } catch (Exception $e) {
 }
-
-
