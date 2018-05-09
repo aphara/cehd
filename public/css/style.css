@@ -73,7 +73,6 @@ h1
 #sidebar ul
 {
     list-style-type: none;
-
 }
 
 #sidebar a
@@ -94,10 +93,7 @@ h1
     color: white;
     border-color: black;
     background-color: #ff6c06;
-
 }
-
-
 
 #dropdown-content
 {
@@ -124,10 +120,7 @@ h1
     left: 192px;
     top: -45px;
     text-align: right;
-
-
 }
-
 
 #content
 {
@@ -135,9 +128,6 @@ h1
     background-color: #f0f5ef ;
     height: 200%;
     width: 70%;
-
-
-
 }
 
 /*FOOTER*/
