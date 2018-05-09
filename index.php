@@ -151,6 +151,7 @@ try {
             session_destroy();
             require 'view/frontend/login_view.php';
             break;
+
         default:
             require 'view/frontend/login_view.php';
 
