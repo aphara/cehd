@@ -142,10 +142,25 @@ try {
             }
             break;
         case 'search':
-            $req=searchUser($_POST['_searchbar_field'],$_POST['_searchbar_mode']);
-            require 'view/backend/home_view.php';
+            if ($_SESSION['status'] == 'ADMIN'){
+                $req=searchUser($_POST['_searchbar_field'],$_POST['_searchbar_mode']);
+                require 'view/backend/home_view.php';
+            }else{
+                authErr();
+            }
             break;
 
+        case 'user_management':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $req=getSuperUserAndChild(htmlspecialchars($_GET['id']));
+                    $user=$req->fetchAll();
+                }
+                require 'view/backend/user_management.php';
+            }else{
+                authErr();
+            }
+            break;
 //logout
         case 'logout':
             session_destroy();

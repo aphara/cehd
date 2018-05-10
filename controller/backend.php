@@ -40,3 +40,8 @@ function searchUser($search,$mode){
         return $req;
     }else return $req='error';
 }
+
+function getSuperUserAndChild($id){
+    $req=get_superuser_and_child($id);
+    return $req;
+}
