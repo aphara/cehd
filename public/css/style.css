@@ -62,6 +62,9 @@ h1 {
 
 #sidebar ul {
     list-style-type: none;
+    padding: 0;
+    width: 209px;
+
 }
 
 #sidebar a {
@@ -70,8 +73,8 @@ h1 {
     text-decoration: none;
     font-size: 1.3em;
     display: block;
-    line-height: 40px;
-    padding: 0 15px;
+    line-height: 189%;
+    padding: 0 9%;
     border: 3px groove black;
     border-radius: 10px;
 }
@@ -90,7 +93,7 @@ h1 {
 
 #sidebar
 {
-    margin-right: -10px;
+    margin-right: -1%;
 }
 
 #dropdown:hover #dropdown-content
@@ -101,20 +104,20 @@ h1 {
 #dropdown-content a
 {
     font-size: 1.1em;
-    line-height: 40px;
+    line-height: 230%;
     position: relative;
-    left: 192px;
+    left: 128%;
     top: -45px;
     text-align: right;
+
 }
 
 #content
 {
     border: 3px solid;
     background-color: #f0f5ef ;
-    max-height:500px;
-    min-height: 500px;
-    min-width: 80%;
+    height: 180%;
+    width: 80%;
 }
 
 /*FOOTER*/
