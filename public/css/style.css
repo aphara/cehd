@@ -121,6 +121,7 @@ h1 {
     min-width: 80%;
 }
 
+
 /*FOOTER*/
 
 footer {
@@ -231,4 +232,16 @@ footer div div {
 }
 .CGU h1,.CGU h2,.CGU ul, .CGU p {
     margin:10px;
+}
+
+
+.ref_table table
+{
+    border-collapse: collapse;
+}
+
+.ref_table td,th
+{
+    border: 1px solid black;
+    padding: 10px;
 }

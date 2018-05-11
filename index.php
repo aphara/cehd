@@ -70,6 +70,61 @@ try {
             }
             break;
 
+        case 'home_manage':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require 'view/frontend/home_manage.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'link_module':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require 'view/frontend/link_module.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'programs':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require 'view/frontend/programs.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'user_manage':
+            if ($_SESSION['status'] == 'SUPER_USER' ){
+                $req=getUsers($_SESSION['id']);
+                $user=$req->fetchAll();
+                require 'view/frontend/user_management.php';
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_user_front':
+            if ($_SESSION['status'] == 'SUPER_USER' ){
+                require 'view/frontend/add_user';
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_user':
+            if ($_SESSION['status'] == 'SUPER_USER' ){
+                addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                    $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['id']);
+                require 'view/frontend/user_management.php';
+            }else{
+                authErr();
+            }
+            break;
+
 
     //Liens footer
         case 'contact':
@@ -80,34 +135,6 @@ try {
                 authErr();
             }
             break;
-
-        case 'gestion_mod':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require'view/frontend/gestion_maison.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'associer_mod':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require'view/frontend/associer_mod.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'programmes':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require'view/frontend/programmes.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
             
         case 'cgu':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
@@ -191,6 +218,14 @@ try {
                     }else{
                         header("Location:index.php?action=homeb");
                     }
+                }else{
+                    header("Location:index.php?action=homeb");
+                }
+            }elseif ($_SESSION['status']== 'SUPER_USER') {
+                if (isset($_GET['id'])) {
+                    deleteUser(htmlspecialchars($_GET['id']));
+                    echo 'utilisateur supprimé';
+                    header("Location:index.php?action=home");
                 }
             }
             break;

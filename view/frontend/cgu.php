@@ -1,6 +1,6 @@
-<?php @session_start(); ?>
-<?php $title = 'CeHD - CGU'; ?>
-<?php ob_start(); ?>
+<?php @session_start();
+$title = 'CeHD - CGU';
+ob_start(); ?>
 <!DOCTYPE html>
 <html>
   <head>

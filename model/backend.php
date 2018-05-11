@@ -1,6 +1,6 @@
 <?php
 
-function addUser($mail,$first_name,$last_name,$date_of_birth,$phone){
+function add_superuser($mail,$first_name,$last_name,$date_of_birth,$phone){
     $db=dbConnect1();
     $req=$db->prepare('INSERT INTO user(status,mail,first_name,last_name,date_of_birth,phone)
  VALUES(\'SUPER_USER\',:mail,:first_name,:last_name,:date_of_birth,:phone)');
@@ -18,7 +18,7 @@ function addUser($mail,$first_name,$last_name,$date_of_birth,$phone){
     return $post;
 }
 
-function addHome($home_type,$address,$city,$postcode){
+function add_home($home_type,$address,$city,$postcode){
     $db=dbConnect1();
     $req=$db->prepare('INSERT INTO home(type,address,city,postcode)
 VALUES (:home_type,:address,:city,:postcode)');
@@ -35,7 +35,7 @@ VALUES (:home_type,:address,:city,:postcode)');
     return $post;
 }
 
-function linkUserHome($id_user,$id_home){
+function link_user_home($id_user,$id_home){
     $db=dbConnect1();
     $req=$db->prepare('INSERT INTO user_home VALUES(:id_home,:id_user)');
     $req->bindValue('id_home',$id_home, PDO::PARAM_INT);

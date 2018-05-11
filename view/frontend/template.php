@@ -32,14 +32,14 @@
         <nav id='sidebar'>
             <ul>
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
-                <li id='dropdown'><a href="index.php?action=gestionmaison">Gestion Maison</a>
+                <li id='dropdown'><a href="index.php?action=home_manage">Gestion Maison</a>
                     <div id="dropdown-content">
-                        <a href="index.php?action=gestion_mod">gestion modules</a>
-                        <a href="index.php?action=associer_mod">associer modules</a>
-                        <a href="index.php?action=programmes">programmes</a>
+                        <a href="index.php?action=module_management">gestion modules</a>
+                        <a href="index.php?action=link_module">associer modules</a>
+                        <a href="index.php?action=programs">programmes</a>
                     </div>
                 </li>
-                <li><a href="index.php?action=user_manage.">Gestion Utilisateurs</a></li>
+                <li><a href="index.php?action=user_manage">Gestion Utilisateurs</a></li>
                 <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>

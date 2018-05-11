@@ -1,6 +1,6 @@
-<?php $title = 'CeHD - Gestion utilisateur'; ?>
-<?php @session_start(); ?>
-<?php ob_start(); ?>
+<?php $title = 'CeHD - Gestion maison';
+@session_start();
+ob_start(); ?>
 
 
 <div id='nav_content'>

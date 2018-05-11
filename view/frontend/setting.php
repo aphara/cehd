@@ -1,6 +1,6 @@
-<?php @session_start(); ?>
-<?php $title = 'CeHD - setting'; ?>
-<?php ob_start(); ?>
+<?php @session_start();
+$title = 'CeHD - setting';
+ob_start(); ?>
 
 <DOCTYPE html>
   <html>
