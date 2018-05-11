@@ -1,13 +1,13 @@
-<?php $title = 'CeHD - Gestion utilisateur'; ?>
-<?php @session_start(); ?>
-<?php ob_start(); ?>
+<?php $title = 'CeHD - Gestion utilisateur';
+@session_start();
+ob_start(); ?>
 
 
 <div id='nav_content'>
 <nav id='sidebar'>
     <ul>
-        <li><a href="index.php?action=user_management.">Gestion Utilisateurs</a></li>
-        <li><a href="index.php?action=home_management">Gestion Maison</a></li>
+        <li><a href="index.php?action=user_management&id=<?= $_SESSION['target_id']?>">Gestion Utilisateurs</a></li>
+        <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Maison</a></li>
     </ul>
 </nav>
 </div>
@@ -37,8 +37,8 @@
                         <td> <?= $userList['status'];?> </td>
                         <td> <?= $userList['last_name'];?> <?= $userList['first_name'];?></td>
                         <td> <?= $userList['phone'];?> </td>
-                        <td> <a href="#"><img src="public/img/user_img.png" name="user"/></a>
-                            <a href="#"><img src="public/img/home_img.png" name="home"/></a> </td>
+                        <td> <a href="#"><button>Modifier</button></a>
+                            <a href="index.php?action=delete&id=<?= $userList['id_user'];?>"><img src="public/img/bin.png" name="home"/></a> </td>
                     </tr>
                 <?php
                 }

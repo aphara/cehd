@@ -153,12 +153,45 @@ try {
         case 'user_management':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
+                    $_SESSION['target_id']=htmlspecialchars($_GET['id']);
                     $req=getSuperUserAndChild(htmlspecialchars($_GET['id']));
                     $user=$req->fetchAll();
                 }
                 require 'view/backend/user_management.php';
             }else{
                 authErr();
+            }
+            break;
+
+        case 'home_management':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $_SESSION['target_userId']=htmlspecialchars($_GET['id']);
+                    /*$req=getHome(htmlspecialchars($_GET['id']));
+                    $user=$req->fetchAll();*/
+                }
+                require 'view/backend/home_management.php';
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'delete':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $req=getStatus(htmlspecialchars($_GET['id']));
+                    if ($req['status']== 'USER'){
+                        deleteUser(htmlspecialchars($_GET['id']));
+                        echo 'utilisateur supprimé';
+                        header("Location:index.php?action=homeb");
+                    }elseif ($req['status']=='SUPER_USER'){
+                        deleteHome(htmlspecialchars($_GET['id']));
+                        echo 'utilisateur supprimé';
+                        header("Location:index.php?action=homeb");
+                    }else{
+                        header("Location:index.php?action=homeb");
+                    }
+                }
             }
             break;
 //logout

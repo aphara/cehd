@@ -96,7 +96,54 @@ function get_superuser_and_child($id){
     return $req;
 }
 
+/*function get_home
+requete avec maison et pièces puis capteurs*/
 
+function get_status($id){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT status FROM `user` WHERE id_user=?');
+    $req->bindValue(1,$id,PDO::PARAM_INT);
+    $req->execute();
+    $post=$req->fetch();
+    return $post;
+}
+
+function delete_user($id){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM user WHERE id_user=?');
+    $req->bindValue(1,$id,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function get_id_home($id_user){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT id_home FROM user_home WHERE id_user=?');
+    $req->bindValue(1,$id_user,PDO::PARAM_INT);
+    $req->execute();
+    $id_home=$req->fetch();
+    return $id_home;
+}
+
+function delete_link($id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM `user_home` WHERE id_home=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_home($id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM `home` WHERE id_home=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_user_and_child($id_user){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM `user` WHERE id_user=:id OR id_superuser=:id');
+    $req->bindValue('id',$id_user,PDO::PARAM_INT);
+    $req->execute();
+}
 
 function dbConnect1()
 {

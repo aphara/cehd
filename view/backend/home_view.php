@@ -1,6 +1,6 @@
-<?php $title = 'CeHD - Administateur'; ?>
-<?php @session_start(); ?>
-<?php ob_start(); ?>
+<?php $title = 'CeHD - Administateur';
+@session_start();
+ob_start(); ?>
 
 
     <div class="home_searchbar_add">
@@ -52,7 +52,7 @@
                         <td> <?= $ref_home['last_name'];?> <?= $ref_home['first_name'];?></td>
                         <td> <?= $ref_home['address'];?>, <?= $ref_home['postcode'];?>, <?= $ref_home['city'];?> </td>
                         <td> <a href="index.php?action=user_management&id=<?= $ref_home['id_user'];?>"><img src="public/img/user_img.png" name="user"/></a>
-                            <a href="#id=<?= $ref_home['id_home'];?>"><img src="public/img/home_img.png" name="home"/></a> </td>
+                            <a href="#id=<?= $ref_home['id_user'];?>"><img src="public/img/home_img.png" name="home"/></a> </td>
                     </tr>
                 <?php } ?>
             </tbody>

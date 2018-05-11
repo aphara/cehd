@@ -45,3 +45,20 @@ function getSuperUserAndChild($id){
     $req=get_superuser_and_child($id);
     return $req;
 }
+
+function getStatus($id){
+    $req=get_status($id);
+    return $req;
+}
+
+function deleteUser($id){
+    delete_user($id);
+
+}
+
+function deleteHome($id_user){
+    $id_home=get_id_home($id_user);
+    delete_link($id_home['id_home']);
+    delete_home($id_home['id_home']);
+    delete_user_and_child($id_user);
+}
