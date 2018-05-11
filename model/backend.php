@@ -48,9 +48,55 @@ function get_user_home(){
     $req=$db->prepare('SELECT * FROM `user_home` NATURAL JOIN  home NATURAL JOIN user');
     $req->execute();
     return $req;
+    /*ORDER BY id_home;*/
 }
-/*
-ORDER BY id_home;*/
+
+
+
+/*voir si passage nom de table en paramètre possible ?*/
+function search_by_id($search/*,$type*/){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user_home` NATURAL JOIN  home NATURAL JOIN user
+WHERE id_home=?');
+    /*$req->bindValue(1,$type,PDO::PARAM_STR);*/
+    $req->bindValue(1,$search,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+function search_by_mail($search){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user_home` NATURAL JOIN  home NATURAL JOIN user
+WHERE mail=?');
+    $req->bindValue(1,$search,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+function search_by_phone($search){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user_home` NATURAL JOIN  home NATURAL JOIN user
+WHERE phone=?');
+    $req->bindValue(1,$search,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+function search_by_name($search){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user_home` NATURAL JOIN  home NATURAL JOIN user
+WHERE last_name=?');
+    $req->bindValue(1,$search,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+function get_superuser_and_child($id){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user` WHERE id_user=:id OR id_superuser=:id ORDER BY status');
+    $req->bindValue('id',$id,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+
 
 function dbConnect1()
 {

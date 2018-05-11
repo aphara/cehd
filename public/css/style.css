@@ -117,7 +117,8 @@ h1 {
     border: 3px solid;
     background-color: #f0f5ef ;
     height: 180%;
-    width: 80%;
+
+    min-width: 80%;
 }
 
 /*FOOTER*/

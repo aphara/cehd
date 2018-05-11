@@ -71,6 +71,7 @@ try {
             break;
 
 
+    //Liens footer
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
                 require'view/frontend/contact.php';
@@ -110,9 +111,9 @@ try {
             
         case 'cgu':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-                require 'view/frontend/cgu_view.php';
+                require 'view/frontend/cgu.php';
             }else{
-                AuthErr();
+                authErr();
             }
             break;
 
@@ -140,12 +141,32 @@ try {
                 authErr();
             }
             break;
+        case 'search':
+            if ($_SESSION['status'] == 'ADMIN'){
+                $req=searchUser($_POST['_searchbar_field'],$_POST['_searchbar_mode']);
+                require 'view/backend/home_view.php';
+            }else{
+                authErr();
+            }
+            break;
 
+        case 'user_management':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $req=getSuperUserAndChild(htmlspecialchars($_GET['id']));
+                    $user=$req->fetchAll();
+                }
+                require 'view/backend/user_management.php';
+            }else{
+                authErr();
+            }
+            break;
 //logout
         case 'logout':
             session_destroy();
             require 'view/frontend/login_view.php';
             break;
+
         default:
             require 'view/frontend/login_view.php';
 
