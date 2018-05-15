@@ -98,6 +98,32 @@ function get_superuser_and_child($id){
 
 /*function get_home
 requete avec maison et pièces puis capteurs*/
+function get_room($id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `room` WHERE id_home=? ORDER BY floor_name');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function add_room($name, $floor, $size, $type, $id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('INSERT INTO room(name, floor_name, size, type, id_home) 
+VALUES (:name,:floor,:size,:type,:id_home)');
+    $req->bindValue('name',$name,PDO::PARAM_STR);
+    $req->bindValue('floor',$floor,PDO::PARAM_STR);
+    $req->bindValue('size',$size,PDO::PARAM_INT);
+    $req->bindValue('type',$type,PDO::PARAM_STR);
+    $req->bindValue('id_home',$id_home,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_room($id_room){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM `room` WHERE id_room=?');
+    $req->bindValue(1,$id_room,PDO::PARAM_INT);
+    $req->execute();
+}
 
 function get_status($id){
     $db=dbConnect1();
@@ -144,6 +170,9 @@ function delete_user_and_child($id_user){
     $req->bindValue('id',$id_user,PDO::PARAM_INT);
     $req->execute();
 }
+
+
+
 
 function dbConnect1()
 {

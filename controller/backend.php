@@ -62,3 +62,19 @@ function deleteHome($id_user){
     delete_home($id_home['id_home']);
     delete_user_and_child($id_user);
 }
+
+
+function getRoom($id_user){
+    $_SESSION['target_home']=get_id_home($id_user);
+    $req=get_room($_SESSION['target_home']);
+    $post=$req->fetchAll();
+    return $post;
+}
+
+function addRoom($name, $floor, $size, $type, $id_home){
+    add_room($name, $floor, $size, $type, $id_home);
+}
+
+function deleteRoom($id_room){
+    delete_room($id_room);
+}
