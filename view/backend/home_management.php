@@ -37,8 +37,9 @@ ob_start(); ?>
                         <td> <?= $roomList['name'];?> </td>
                         <td> <?= $roomList['floor_name'];?> </td>
                         <td> <?= $roomList['size'];?> </td>
-                        <td> <a href="index.php?action=homeb"><button>Modifier</button></a>
-                            <a href="index.php?action=delete_room&id_room=<?= $roomList['id_room'];?>"><img src="public/img/bin.png" name="home"/></a> </td>
+                        <?php $target_room=$roomList['id_room'];?>
+                        <td> <a href="index.php?action=modify_room_form&id=<?= $target_room?>"><button>Modifier</button></a>
+                            <a href="index.php?action=delete_room&id_room=<?= $target_room;?>"><img src="public/img/bin.png" name="home"/></a> </td>
                     </tr>
                     <?php
                 }

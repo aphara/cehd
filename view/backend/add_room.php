@@ -13,13 +13,13 @@ ob_start(); ?>
             <input type="text" placeholder="Etage" id="add_floor" name="_floor" value="" required/>
         </p>
         <p>
-            <input type="number" placeholder="Superficie en m²" id="add_size" name="_size" value="" step="any" required/>
+            <input type="number" placeholder="Superficie en m²" id="add_size" name="_size" value="" step="0.001" min="0" required/>
         </p>
 
         <p>
             <label for="type">Type de pièces :</label><br/>
-            <select name="_room_type" id="room_type">
-                <option value="CHAMBRE" selected>Chambre</option>
+            <select name="_room_type" id="room_type" required>
+                <option value="CHAMBRE">Chambre</option>
                 <option value="SALON">Salon</option>
                 <option value="CUISINE">Cuisine</option>
                 <option value="TOILETTE">Toilette</option>
