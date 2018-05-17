@@ -14,14 +14,19 @@
 <div id="page_contact">
     <h1 id="contact">Contact</h1>
     <section id="corps_contact">
-        <form id="form_contact">
 
-            <input type="text" name="object_contact" value="Object" id="object_contact">
+        <form method="post" id="form_contact" action="index.php?action=sendmail">
+
+            <input type="text" name="object_contact" placeholder="Object" id="object_contact"/>
+
             <textarea name="message_contact" rows="10" cols="50" id="message_contact">
-Votre message ici
 
-</textarea>
+
+            </textarea>
+
+            <input type="submit" name="sendmail" value="Envoyer" id="envoyer_contact"/>
         </form>
+
 
         <div id="findepage_contact">
             <div id="coordonnees_contact">
@@ -34,9 +39,7 @@ Votre message ici
                 </p>
             </div>
 
-            <form>
-                <input type="submit" name="Envoi" value="Envoyer" id="envoyer_contact"/>
-            </form>
+
         </div>
 
     </section>

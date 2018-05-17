@@ -29,7 +29,7 @@ VALUES (:home_type,:address,:city,:postcode)');
     $req->execute();
 
     $req=$db->prepare('SELECT id_home FROM `home` WHERE address=?');
-    $req->bindValue('address',$address, PDO::PARAM_STR);
+    $req->bindValue(1,$address, PDO::PARAM_STR);
     $req->execute();
     $post=$req->fetch();
     return $post;

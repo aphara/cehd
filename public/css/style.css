@@ -84,41 +84,29 @@ h1 {
 
 }
 
-
-
-
-#dropdown-content
-{
+#dropdown-content {
     display: none;
     position: absolute;
 
-
-
 }
 
-#dropdown:hover #dropdown-content
-{
+#dropdown:hover #dropdown-content {
     display: block;
 
 }
 
-#dropdown-content a
-{
+#dropdown-content a {
     font-size: 1.2em;
     line-height: 40px;
     position: relative;
     left: 245px;
 
-
-
 }
 
-
-#content
-{
+#content {
 
     border: 3px solid;
-    max-height:500px;
+    max-height: 500px;
     min-height: 500px;
     min-width: 80%;
 
@@ -171,9 +159,9 @@ footer div div {
 #form_contact {
 
     display: flex;
-    flex-direction: column;
     margin: 1%;
-    width: 40%;
+    max-width: 40%;
+
 }
 
 #corps_contact {
@@ -181,6 +169,7 @@ footer div div {
     flex-direction: row;
     width: 140%;
     height: 140%;
+
 
 }
 
@@ -190,15 +179,17 @@ footer div div {
 
 #message_contact {
     margin-top: 2%;
+    margin-bottom: 10%;
     border: 3px solid;
     overflow: scroll;
+
 
 }
 
 #coordonnees_contact {
     border: 3px solid;
-    width: 110%;
-    min-height: 60%;
+
+    min-height: 30%;
     display: flex;
     margin: 15%;
     justify-content: center;
@@ -210,29 +201,32 @@ footer div div {
     border: 1px solid;
     border-radius: 5px;
     box-shadow: 6px 6px 6px black;
-    margin-left: 15%;
+    margin: 15%;
     width: 43%;
+    position: absolute;
+    right: 20%;
 
 }
 
-#findepage_contact{
+#findepage_contact {
     display: flex;
     flex-direction: column;
 }
 
 /*CGU*/
 
-.CGU{
-  font-family: courier;
-  text-align: justify;
-  height: 100%;
-  overflow: scroll;
+.CGU {
+    font-family: courier;
+    text-align: justify;
+    height: 100%;
+    overflow: scroll;
 }
 
-.CGU ul, .CGU p{
-  font-size: 15px;
-  max-width: auto;
+.CGU ul, .CGU p {
+    font-size: 15px;
+    max-width: auto;
 }
-.CGU h1,.CGU h2,.CGU ul, .CGU p {
-  margin:10px;
+
+.CGU h1, .CGU h2, .CGU ul, .CGU p {
+    margin: 10px;
 }
