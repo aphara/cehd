@@ -11,22 +11,12 @@
   .button:active {
   }
 </style> -->
-<script>
-function affiche() {
-  if (document.getElementById("bouton").innerHTML == "Comment se connecter pour la première fois ?") {
-     document.getElementById("bouton").innerHTML == "Comment se connecter pour la première fois :";
-     document.getElementById("cache").style.display == "block";
-   }
-  else {
-    document.getElementById("bouton").innerHTML == "Comment se connecter pour la première fois ?";
-    document.getElementById("cache").style.display == "none";
-  }
-};
-</script>
+<script src="view/frontend/pageAide.js"></script>
+
 <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pictogram_voting_question.svg/220px-Pictogram_voting_question.svg.png" class="LogoAide" alt="LogoAide" />Aide</h3>
 <ul>
     <li><div id="question_1">
-        <button id="bouton" style="width: 100%;" onClick="affiche();"><h4>Comment se connecter pour la première fois ?</h4></button>
+        <button id="bouton" type="button" class="btn btn-group-lg" data-target="#question_1" style="width: 100%;"><i class="fa fa-envelope text-center"></i><h4>Comment se connecter pour la première fois ?</h4></button>
         <p class="cache">
           Lors de votre première connexion, cliquez sur "Première connexion" sur la page d'accueil puis renseignez dans le champ proposé l'adresse mail que vous avez choisi lors de la configuration de votre maison.
           Puis rentrez de la même façon le mot de passe que nous vous avons communiqué par mail.

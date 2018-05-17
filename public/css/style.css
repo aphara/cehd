@@ -269,10 +269,7 @@ ul
     word-wrap: break-word;
     padding: 10px;
 }
-.cache
+.active
 {
-  display: block;
-  color: black;
-}
-.bouton:active {
+  font-weight: bold;
 }
