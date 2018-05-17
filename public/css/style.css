@@ -39,7 +39,7 @@ h1 {
 #right_header {
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     font-size: 1em;
     z-index: 1;
 }
@@ -47,16 +47,14 @@ h1 {
 #setting_wheel {
     margin: 10px;
     width: 32px;
-    height:32px;
+    height: 32px;
 }
-
 
 .sign_out {
     width: 32px;
-    height:32px;
+    height: 32px;
     margin: 10px;
 }
-
 
 /*NAV*/
 
@@ -92,15 +90,12 @@ h1 {
     background-color: #ff6c06;
 }
 
-
-#dropdown-content
-{
+#dropdown-content {
     display: none;
     position: absolute;
 }
 
-#sidebar
-{
+#sidebar {
     margin-right: -1%;
 }
 
@@ -108,8 +103,7 @@ h1 {
     display: block;
 }
 
-#dropdown-content a
-{
+#dropdown-content a {
     font-size: 1.1em;
     line-height: 230%;
     position: relative;
@@ -119,14 +113,12 @@ h1 {
 
 }
 
-#content
-{
+#content {
     border: 3px solid;
-    background-color: #f0f5ef ;
+    background-color: #f0f5ef;
     min-width: 85%;
     min-height: 100%;
 }
-
 
 /*FOOTER*/
 
@@ -156,49 +148,56 @@ footer div div {
     color: black;
 }
 
-/*CSS CONTACT   RESPONSIVE SAUF BLOC COORDONNEES*/
+/*CSS CONTACT   */
 
 #page_contact {
     display: flex;
     flex-direction: column;
-
-    /* justify-content: center;
-     align-items: center; */
+    height: 100%;
 
 }
 
-#contact {
+#title_contact {
     display: flex;
     justify-content: center;
-}
-
-#form_contact {
-
-    display: flex;
-    margin: 1%;
-    max-width: 40%;
 
 }
+#intro_contact{
+    margin-left: 1.4%;
+    font-size: 120%;
 
+}
 #corps_contact {
     display: flex;
     flex-direction: row;
     width: 140%;
     height: 140%;
 
+}
+
+#form_contact {
+
+    display: flex;
+    margin: 1%;
+    max-width: 60%;
+    flex-direction: column;
 
 }
 
 #object_contact {
     border: 3px solid;
+    max-width: 20%;
+    margin-bottom: 2%;
 }
 
 #message_contact {
     margin-top: 2%;
-    margin-bottom: 10%;
+    margin-right: 5%;
+    margin-bottom: 8%;
     border: 3px solid;
     overflow: scroll;
-
+    height: 140%;
+    width: 120%;
 
 }
 
@@ -209,17 +208,21 @@ footer div div {
     display: flex;
     margin: 15%;
     justify-content: center;
-    align-content: center;
-
+    align-content: right;
+    width: 42%;
 }
 
 #envoyer_contact {
     border: 1px solid;
     border-radius: 5px;
     box-shadow: 6px 6px 6px black;
-    margin: 15%;
-    width: 43%;
-    position: absolute;
+    margin-top: 2%;
+    margin-right: 15%;
+
+    margin-bottom: 15%;
+    width: 16%;
+
+    justify-content: left;
     right: 20%;
 
 }
@@ -227,16 +230,19 @@ footer div div {
 #findepage_contact {
     display: flex;
     flex-direction: column;
+    width: 20%;
+    margin-left: 5%;
 }
 
 /*CGU*/
 
-.CGU{
+.CGU {
     font-family: courier;
     text-align: justify;
     height: 100%;
     overflow: scroll;
 }
+
 .CGU ul, .CGU p {
     font-size: 15px;
     max-width: auto;
@@ -244,16 +250,15 @@ footer div div {
 
 .CGU h1, .CGU h2, .CGU ul, .CGU p {
     margin: 10px;
+}
 
 /*gestion utilisateur*/
 
-.ref_table table
-{
+.ref_table table {
     border-collapse: collapse;
 }
 
-.ref_table td,th
-{
+.ref_table td, th {
     border: 1px solid black;
     padding: 10px;
 }

@@ -12,7 +12,8 @@ ob_start(); ?>
 
 <body>
 <div id="page_contact">
-    <h1 id="contact">Contact</h1>
+    <h1 id="title_contact">Contact</h1>
+   <div id="intro_contact"> <p>Envoyez nous un mail ! </p></div>
     <section id="corps_contact">
 
         <form method="post" id="form_contact" action="index.php?action=sendmail">
