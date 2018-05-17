@@ -1,6 +1,6 @@
-<?php @session_start(); ?>
-<?php $title = 'CeHD - Contact'; ?>
-<?php ob_start(); ?>
+<?php @session_start();
+$title = 'CeHD - Contact';
+ob_start(); ?>
 
 <!DOCTYPE html>
 <html>

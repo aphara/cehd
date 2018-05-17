@@ -1,11 +1,11 @@
-<?php $title = 'CeHD - Administateur'; ?>
-<?php @session_start(); ?>
-<?php ob_start(); ?>
+<?php $title = 'CeHD - Administateur';
+@session_start();
+ob_start(); ?>
 
 
     <div class="home_searchbar_add">
         <div class="searchbar">
-            <form>
+            <form action="index.php?action=search" method="post">
                 <h3>Recherche :</h3>
                 <select name="_searchbar_mode" id="searchbar_mode">
                     <option value="id" selected>par Référence</option>
@@ -13,6 +13,7 @@
                     <option value="phone">par Téléphone</option>
                     <option value="name">par Nom</option>
                 </select>
+                <input type="search" name="_searchbar_field">
 
                 <input type="submit" value="Rechercher">
             </form>
@@ -50,7 +51,9 @@
                         <td> <?= $ref_home['phone'];?> </td>
                         <td> <?= $ref_home['last_name'];?> <?= $ref_home['first_name'];?></td>
                         <td> <?= $ref_home['address'];?>, <?= $ref_home['postcode'];?>, <?= $ref_home['city'];?> </td>
-                        <td> <a href="#"><img src="" name="user"/> </a> <a href="#"><img src="" name="home"/></a> </td>
+                        <?php $target_id=$ref_home['id_user'];?>
+                        <td> <a href="index.php?action=user_management&id=<?= $target_id;?>"><img src="public/img/user_img.png" name="user"/></a>
+                            <a href="index.php?action=home_management&id=<?= $target_id;?>"><img src="public/img/home_img.png" name="home"/></a> </td>
                     </tr>
                 <?php } ?>
             </tbody>
