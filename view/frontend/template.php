@@ -57,7 +57,19 @@
             <div>|</div>
             <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
-            <div id='aide'><a href="#">Aide</a></div>
+            <div id='aide'><a href="index.php?action=aide">Aide</a></div>
+          <script>
+          function affiche() {
+            if (document.getElementById("bouton").innerHTML == "J'ai besoin d'aide, comment contacter le service client ?") {
+               document.getElementById("bouton").innerHTML == "J'ai besoin d'aide, comment contacter le service client :";
+               document.getElementById("cache").style.display == "none";
+             }
+            else {
+              document.getElementById("bouton").innerHTML == "J'ai besoin d'aide, comment contacter le service client ?";
+              document.getElementById("cache").style.display == "none";
+            }
+          };
+         </script>
         </div>
 
     </div>

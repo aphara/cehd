@@ -135,12 +135,20 @@ try {
                 authErr();
             }
             break;
-            
+
         case 'cgu':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
                 require 'view/frontend/cgu.php';
             }else{
                 authErr();
+            }
+            break;
+
+        case 'aide':
+            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+                require 'view/frontend/pageAide.php';
+            }else{
+                AuthErr();
             }
             break;
 
