@@ -119,9 +119,16 @@ try {
             if ($_SESSION['status'] == 'SUPER_USER' ){
                 addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                     $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['id']);
-                require 'view/frontend/user_management.php';
+                echo 'Utilisateur ajouté';
+                require 'view/frontend/add_user';
             }else{
                 authErr();
+            }
+            break;
+
+        case 'settings':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                require 'view/frontend/setting.php';
             }
             break;
 
@@ -155,6 +162,9 @@ try {
 //backend
         case 'homeb':
             if ($_SESSION['status'] == 'ADMIN') {
+                unset($_SESSION['target_id']);
+                unset($_SESSION['target_home']);
+                unset($_SESSION['target_room']);
                 $req=getUserHome();
                 require 'view/backend/home_view.php';
             }else{
@@ -188,9 +198,12 @@ try {
         case 'user_management':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
-                    $_SESSION['target_id']=htmlspecialchars($_GET['id']);
-                    $req=getSuperUserAndChild(htmlspecialchars($_GET['id']));
+                    $_SESSION['target_id']=$_GET['id'];
+                    $req=getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
                     $user=$req->fetchAll();
+                }elseif(isset($_SESSION['target_id'])) {
+                $req=getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
+                $user=$req->fetchAll();
                 }
                 require 'view/backend/user_management.php';
             }else{
@@ -201,15 +214,70 @@ try {
         case 'home_management':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
-                    $_SESSION['target_userId']=htmlspecialchars($_GET['id']);
-                    /*$req=getHome(htmlspecialchars($_GET['id']));
-                    $user=$req->fetchAll();*/
+                    $_SESSION['target_id']=$_GET['id'];
+                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/home_management.php';
+                }elseif(isset($_SESSION['target_id'])){
+                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/home_management.php';
                 }
-                require 'view/backend/home_management.php';
             }else{
                 authErr();
             }
             break;
+
+        case 'add_room_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_home'])){
+                    require 'view/backend/add_room.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_room':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
+                    addRoom($_POST['_name'], $_POST['_floor'], $_POST['_size'], $_POST['_room_type'], $_SESSION['target_home']);
+                    $link=$_SESSION['target_id'];
+                    header("Location:index.php?action=home_management&id=$link");
+                }
+            }
+            break;
+
+        case 'modify_room_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $_SESSION['target_room']=$_GET['id'];
+                    $room=getRoomDetail($_SESSION['target_room']);
+                    require 'view/backend/modify_room.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'modify_room':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_room'])){
+                    modifyRoom($_SESSION['target_room'],$_POST['_name'],$_POST['_floor'],$_POST['_size'],$_POST['_room_type']);
+                    $link=$_SESSION['target_id'];
+                    header("Location:index.php?action=home_management&id=$link");
+                }
+            }else{
+                authErr();
+            }
+
+        case 'delete_room':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if ($_GET['id_room']){
+                    deleteRoom(htmlspecialchars($_GET['id_room']));
+                    header("Location:index.php?action=home_management");
+                }
+            }
+            break;
+
 
         case 'delete':
             if ($_SESSION['status'] == 'ADMIN'){
@@ -233,7 +301,7 @@ try {
                 if (isset($_GET['id'])) {
                     deleteUser(htmlspecialchars($_GET['id']));
                     echo 'utilisateur supprimé';
-                    header("Location:index.php?action=home");
+                    header("Location:index.php?action=user_manage");
                 }
             }
             break;
@@ -248,4 +316,5 @@ try {
 
     }
 } catch (Exception $e) {
+    echo 'Erreur : ' . $e->getMessage();
 }

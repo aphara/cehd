@@ -38,19 +38,25 @@ h1 {
 
 #right_header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items:center;
+    font-size: 1em;
+    z-index: 1;
 }
 
 #setting_wheel {
-    display: flex;
-    align-items: center;
-    font-size: 1em;
+    margin: 10px;
+    width: 32px;
+    height:32px;
 }
 
-#img_wheel {
-    margin: 3px;
-    padding: 5px;
+
+.sign_out {
+    width: 32px;
+    height:32px;
+    margin: 10px;
 }
+
 
 /*NAV*/
 
@@ -58,6 +64,7 @@ h1 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
+
 }
 
 #sidebar ul {
@@ -108,7 +115,7 @@ h1 {
     position: relative;
     left: 128%;
     top: -45px;
-    text-align: right;
+    text-align: right
 
 }
 
@@ -116,9 +123,8 @@ h1 {
 {
     border: 3px solid;
     background-color: #f0f5ef ;
-    height: 180%;
-
-    min-width: 80%;
+    min-width: 85%;
+    min-height: 100%;
 }
 
 

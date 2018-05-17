@@ -11,7 +11,7 @@ ob_start(); ?>
   </head>
 
 <body>
-   <!-- affichage des données perso -->
+   <!-- affichage des données perso
     <div id='user_name'>
         <?php echo getUserinfo("first_name",$_SESSION['id']); ?>
         <?php echo getUserinfo("last_name",$_SESSION['id']); ?>
@@ -23,8 +23,7 @@ ob_start(); ?>
 
     <div id='phone_number'>
       <?php echo getUserinfo("phone",$_SESSION['id']); ?>
-    </div>
-
+    </div> -->
   </html>
 
   <?php $content = ob_get_clean(); ?>

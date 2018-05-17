@@ -99,6 +99,62 @@ function get_superuser_and_child($id){
 /*function get_home
 requete avec maison et pièces puis capteurs*/
 
+function get_id_home($id_user){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT id_home FROM user_home WHERE id_user=?');
+    $req->bindValue(1,$id_user,PDO::PARAM_INT);
+    $req->execute();
+    $id_home=$req->fetch();
+    return $id_home;
+}
+
+function get_room($id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `room` WHERE id_home=? ORDER BY floor_name');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function get_room_detail($id_room){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `room` WHERE id_room=?');
+    $req->bindValue(1,$id_room,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function add_room($name, $floor, $size, $type, $id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('INSERT INTO room(name, floor_name, size, type, id_home) 
+VALUES (:name,:floor,:size,:type,:id_home)');
+    $req->bindValue('name',$name,PDO::PARAM_STR);
+    $req->bindValue('floor',$floor,PDO::PARAM_STR);
+    $req->bindValue('size',$size,PDO::PARAM_STR);
+    $req->bindValue('type',$type,PDO::PARAM_STR);
+    $req->bindValue('id_home',$id_home,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function modify_room($id_room, $name, $floor, $size, $type){
+    $db=dbConnect1();
+    $req=$db->prepare('UPDATE room 
+SET name=:name,floor_name=:floor,size=:size,type=:type WHERE id_room=:id_room');
+    $req->bindValue('name',$name,PDO::PARAM_STR);
+    $req->bindValue('floor',$floor,PDO::PARAM_STR);
+    $req->bindValue('size',$size,PDO::PARAM_STR);
+    $req->bindValue('type',$type,PDO::PARAM_STR);
+    $req->bindValue('id_room',$id_room,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_room($id_room){
+    $db=dbConnect1();
+    $req=$db->prepare('DELETE FROM `room` WHERE id_room=?');
+    $req->bindValue(1,$id_room,PDO::PARAM_INT);
+    $req->execute();
+}
+
 function get_status($id){
     $db=dbConnect1();
     $req=$db->prepare('SELECT status FROM `user` WHERE id_user=?');
@@ -113,15 +169,6 @@ function delete_user($id){
     $req=$db->prepare('DELETE FROM user WHERE id_user=?');
     $req->bindValue(1,$id,PDO::PARAM_INT);
     $req->execute();
-}
-
-function get_id_home($id_user){
-    $db=dbConnect1();
-    $req=$db->prepare('SELECT id_home FROM user_home WHERE id_user=?');
-    $req->bindValue(1,$id_user,PDO::PARAM_INT);
-    $req->execute();
-    $id_home=$req->fetch();
-    return $id_home;
 }
 
 function delete_link($id_home){
@@ -144,6 +191,9 @@ function delete_user_and_child($id_user){
     $req->bindValue('id',$id_user,PDO::PARAM_INT);
     $req->execute();
 }
+
+
+
 
 function dbConnect1()
 {
