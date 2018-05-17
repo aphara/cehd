@@ -47,3 +47,13 @@ function passwordHash($password,$mail){
     $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
     insertPassword($hashedPassword,$mail);
 }
+
+function getUsers($id){
+    $req=get_users($id);
+    return $req;
+}
+
+function addUser($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser)
+{
+    add_user($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser);
+}

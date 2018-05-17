@@ -42,20 +42,28 @@ function insertPassword($password,$mail){
     $req->execute(array('password'=>$password, 'mail'=>$mail));
 }
 
-
-function dbConnect()
+function get_users($id)
 {
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
+    $db = dbConnect1();
+    $req = $db->prepare('SELECT * FROM `user` WHERE id_superuser=:id ORDER BY status');
+    $req->bindValue('id', $id, PDO::PARAM_INT);
+    $req->execute();
+    return $req;
 }
 
+function add_user($mail,$first_name,$last_name,$date_of_birth,$phone,$id_superuser)
+{
+    $db = dbConnect1();
+    $req = $db->prepare('INSERT INTO user(status,mail,first_name,last_name,date_of_birth,phone,id_superuser)
+ VALUES(\'USER\',:mail,:first_name,:last_name,:date_of_birth,:phone,:id_superuser)');
+    $req->bindValue('mail', $mail, PDO::PARAM_STR);
+    $req->bindValue('first_name', $first_name, PDO::PARAM_STR);
+    $req->bindValue('last_name', $last_name, PDO::PARAM_STR);
+    $req->bindValue('date_of_birth', $date_of_birth, PDO::PARAM_STR);
+    $req->bindValue('phone', $phone, PDO::PARAM_STR);
+    $req->bindValue('id_superuser', $id_superuser, PDO::PARAM_STR);
+    $req->execute();
+}
 
 function UserUpdate($update, $user_new, $id_session)
 {
@@ -83,3 +91,19 @@ function getUserinfo($categorie, $id_session)
 //   $newstring= str_replace("_"," ",$string);
 //   return $newstring;
 // }
+
+
+
+function dbConnect()
+{
+    try
+    {
+        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
+        return $db;
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+}
+

@@ -1,6 +1,6 @@
-<?php $title = 'CeHD - Ajout d\'utilisateur'; ?>
-<?php @session_start(); ?>
-<?php ob_start(); ?>
+<?php $title = 'CeHD - Ajout d\'utilisateur';
+@session_start();
+ob_start(); ?>
 
 
     <h1>Bienvenue <?= htmlspecialchars($_SESSION['name']) ?></h1>
