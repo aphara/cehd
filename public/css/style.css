@@ -38,18 +38,22 @@ h1 {
 
 #right_header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1em;
+    z-index: 1;
 }
 
 #setting_wheel {
-    display: flex;
-    align-items: center;
-    font-size: 1em;
+    margin: 10px;
+    width: 32px;
+    height: 32px;
 }
 
-#img_wheel {
-    margin: 3px;
-    padding: 5px;
+.sign_out {
+    width: 32px;
+    height: 32px;
+    margin: 10px;
 }
 
 /*NAV*/
@@ -58,6 +62,7 @@ h1 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
+
 }
 
 #sidebar ul {
@@ -85,42 +90,35 @@ h1 {
     background-color: #ff6c06;
 }
 
-#dropdown-content
-{
+#dropdown-content {
     display: none;
     position: absolute;
 }
 
-#sidebar
-{
+#sidebar {
     margin-right: -1%;
 }
 
-#dropdown:hover #dropdown-content
-{
+#dropdown:hover #dropdown-content {
     display: block;
 }
 
-#dropdown-content a
-{
+#dropdown-content a {
     font-size: 1.1em;
     line-height: 230%;
     position: relative;
     left: 128%;
     top: -45px;
-    text-align: right;
+    text-align: right
 
 }
 
-#content
-{
+#content {
     border: 3px solid;
-    background-color: #f0f5ef ;
-    height: 180%;
-
-    min-width: 80%;
+    background-color: #f0f5ef;
+    min-width: 85%;
+    min-height: 100%;
 }
-
 
 /*FOOTER*/
 
@@ -150,30 +148,25 @@ footer div div {
     color: black;
 }
 
-/*CSS CONTACT   RESPONSIVE SAUF BLOC COORDONNEES*/
+/*CSS CONTACT   */
 
 #page_contact {
     display: flex;
     flex-direction: column;
-
-    /* justify-content: center;
-     align-items: center; */
+    height: 100%;
 
 }
 
-#contact {
+#title_contact {
     display: flex;
     justify-content: center;
+
 }
+#intro_contact{
+    margin-left: 1.4%;
+    font-size: 120%;
 
-#form_contact {
-
-    display: flex;
-    flex-direction: column;
-    margin: 1%;
-    width: 40%;
 }
-
 #corps_contact {
     display: flex;
     flex-direction: row;
@@ -182,66 +175,90 @@ footer div div {
 
 }
 
+#form_contact {
+
+    display: flex;
+    margin: 1%;
+    max-width: 60%;
+    flex-direction: column;
+
+}
+
 #object_contact {
     border: 3px solid;
+    max-width: 20%;
+    margin-bottom: 2%;
 }
 
 #message_contact {
     margin-top: 2%;
+    margin-right: 5%;
+    margin-bottom: 8%;
     border: 3px solid;
     overflow: scroll;
+    height: 140%;
+    width: 120%;
 
 }
 
 #coordonnees_contact {
     border: 3px solid;
-    width: 110%;
-    min-height: 60%;
+
+    min-height: 30%;
     display: flex;
     margin: 15%;
     justify-content: center;
-    align-content: center;
-
+    align-content: right;
+    width: 42%;
 }
 
 #envoyer_contact {
     border: 1px solid;
     border-radius: 5px;
     box-shadow: 6px 6px 6px black;
-    margin-left: 15%;
-    width: 43%;
+    margin-top: 2%;
+    margin-right: 15%;
+
+    margin-bottom: 15%;
+    width: 16%;
+
+    justify-content: left;
+    right: 20%;
 
 }
 
-#findepage_contact{
+#findepage_contact {
     display: flex;
     flex-direction: column;
+    width: 20%;
+    margin-left: 5%;
 }
 
 /*CGU*/
 
-.CGU{
-    font-family: courier, serif;
+.CGU {
+    font-family: courier;
     text-align: justify;
     height: 100%;
     overflow: scroll;
 }
 
-.CGU ul, .CGU p{
+.CGU ul, .CGU p {
     font-size: 15px;
-}
-.CGU h1,.CGU h2,.CGU ul, .CGU p {
-    margin:10px;
+    max-width: auto;
 }
 
+.CGU h1, .CGU h2, .CGU ul, .CGU p {
+    margin: 10px;
+}
 
-.ref_table table
-{
+/*gestion utilisateur*/
+
+.ref_table table {
     border-collapse: collapse;
 }
 
-.ref_table td,th
-{
+.ref_table td, th {
     border: 1px solid black;
     padding: 10px;
 }

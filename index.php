@@ -1,12 +1,13 @@
 <?php
 require_once('controller/frontend.php');
 require_once('controller/backend.php');
+require_once('controller/mail.php');
 @session_start();
 
 try {
     if (!isset($_GET['action']))
-        $_GET['action']='';
-    switch($_GET['action']) {
+        $_GET['action'] = '';
+    switch ($_GET['action']) {
 //login
         case 'login':
             $isPasswordCorrect = login($_POST['_mail'], $_POST['_password']);
@@ -137,6 +138,18 @@ try {
                 require 'view/frontend/contact.php';
             } else {
                 authErr();
+            }
+            break;
+
+        case 'sendmail' :
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+
+                if (isset ($_POST['message_contact']) AND !empty($_POST['message_contact']) AND isset($_POST['object_contact']) AND !empty ($_POST['message_contact'])) {
+                    sendmail($_POST['message_contact'],$_POST['object_contact']);
+                    echo 'Message envoyé !';
+                    require 'view/frontend/contact.php';
+                }
+
             }
             break;
 

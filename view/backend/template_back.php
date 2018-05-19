@@ -16,8 +16,8 @@
     <div id='setting_wheel'>
         <h2> <?= $_SESSION['name'] ?> </h2>
     </div>
-    <div>
-        <a href="index.php?action=logout">Déconnexion</a>
+    <div class="sign_out">
+        <a href="index.php?action=logout"><img src="public/img/sign_out.png" onmouseover="this.src='public/img/sign_out_2.png';" onmouseout="this.src='public/img/sign_out.png';"></a>
     </div>
 </header>
 
