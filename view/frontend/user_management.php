@@ -30,7 +30,7 @@ ob_start(); ?>
                 <td> <?= $userList['status'];?> </td>
                 <td> <?= $userList['last_name'];?> <?= $userList['first_name'];?></td>
                 <td> <?= $userList['phone'];?> </td>
-                <td> <a href="#"><button>Modifier</button></a>
+                <td> <a href="index.php?action=modify_user_form&id=<?= $userList['id_user'];?>"><button>Modifier</button></a>
                     <a href="index.php?action=delete&id=<?= $userList['id_user'];?>"><img src="public/img/bin.png" name="home"/></a> </td>
             </tr>
             <?php

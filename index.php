@@ -239,13 +239,32 @@ try {
             break;
 
         case 'modify_user_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
                     $_SESSION['target_user'] = $_GET['id'];
-                    $user=getUserDetail($_SESSION['target_user']);
+                    $user = getUserDetail($_SESSION['target_user']);
                     require 'view/backend/modify_user.php';
                 }
+            }elseif ($_SESSION['status'] == 'SUPER_USER'){
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_user'] = $_GET['id'];
+                    $user = getUserDetail($_SESSION['target_user']);
+                    require 'view/frontend/modify_user.php';
+                }
             }else{
+                authErr();
+            }
+            break;
+
+        case 'modify_user_front':
+            if ($_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_SESSION['target_user'])) {
+                    modifyUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                        $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_user']);
+                    //modification des permissions à ajouter
+                    header("Location:index.php?action=user_manage");
+                }
+            }else {
                 authErr();
             }
             break;
