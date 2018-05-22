@@ -131,7 +131,41 @@ try {
             }
             break;
 
+        case 'global_stats':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/global_stats.php';
+            }
+            else {
+                authErr();
+            }
+            break;
 
+        case 'module_management':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_management.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'link_module':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/link_module.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'programs':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/programs.php';
+            }
+            else {
+                authErr();
+            }
+            break;
         //Liens footer
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
