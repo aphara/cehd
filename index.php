@@ -140,15 +140,6 @@ try {
             }
             break;
 
-        case 'module_management':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/module_management.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
         case 'link_module':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/link_module.php';
@@ -166,6 +157,44 @@ try {
                 authErr();
             }
             break;
+
+        case 'home_manage':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/home_manage.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'module_light':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_light.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'module_shutter':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_shutter.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'module_temp':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_temp.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+
         //Liens footer
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
