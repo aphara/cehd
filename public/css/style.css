@@ -275,7 +275,35 @@ ul
     word-wrap: break-word;
     padding: 10px;
 }
-.active
+.bouton
 {
-  font-weight: bold;
+  width: 100%;
+  border: 2px solid black;
+  font-size: 25px;
+}
+
+#question_1
+{
+  display: none;
+  color: black;
+}
+#question_2
+{
+  display: none;
+  color: black;
+}
+#question_3
+{
+  display: none;
+  color: black;
+}
+#question_4
+{
+  display: none;
+  color: black;
+}
+#question_5
+{
+  display: none;
+  color: black;
 }
