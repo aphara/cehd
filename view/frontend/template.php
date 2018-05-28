@@ -41,7 +41,6 @@
                     </div>
                 </li>
 
-
                 <?php if ($_SESSION['status']=='SUPER_USER'){ ?>
                     <li><a href="index.php?action=user_manage">Gestion Utilisateurs</a></li>
                 <?php } ?>
