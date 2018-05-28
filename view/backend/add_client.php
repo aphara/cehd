@@ -1,4 +1,4 @@
-<?php $title = 'CeHD - Ajout d\'utilisateur';
+<?php $title = 'CeHD - Ajout d\'un client';
 @session_start();
 ob_start(); ?>
 
