@@ -98,7 +98,7 @@ function dbConnect()
 {
     try
     {
-        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', 'root');
         return $db;
     }
     catch(Exception $e)
@@ -106,4 +106,3 @@ function dbConnect()
         die('Erreur : '.$e->getMessage());
     }
 }
-

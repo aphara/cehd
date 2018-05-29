@@ -92,8 +92,67 @@ try {
             break;
 
         case 'home_manage':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/home_manage.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'link_module':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/link_module.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'programs':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/programs.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'user_manage':
+            if ($_SESSION['status'] == 'SUPER_USER') {
+                $req = getUsers($_SESSION['id']);
+                $user = $req->fetchAll();
+                require 'view/frontend/user_management.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'add_user_front':
+            if ($_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/add_user';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'add_user':
+            if ($_SESSION['status'] == 'SUPER_USER') {
+                addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                    $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['id']);
+                echo 'Utilisateur ajouté';
+                require 'view/frontend/add_user';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'settings':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/setting.php';
+            }
+            break;
+
+        case 'global_stats':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/global_stats.php';
             }
             else {
                 authErr();
@@ -101,7 +160,7 @@ try {
             break;
 
         case 'link_module':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/link_module.php';
             }
             else {
@@ -110,7 +169,7 @@ try {
             break;
 
         case 'programs':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/programs.php';
             }
             else {
@@ -118,43 +177,44 @@ try {
             }
             break;
 
-        case 'user_manage':
-            if ($_SESSION['status'] == 'SUPER_USER' ){
-                $req=getUsers($_SESSION['id']);
-                $user=$req->fetchAll();
-                require 'view/frontend/user_management.php';
-            }else{
+        case 'home_manage':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/home_manage.php';
+            }
+            else {
                 authErr();
             }
             break;
 
-        case 'add_user_front':
-            if ($_SESSION['status'] == 'SUPER_USER' ){
-                require 'view/frontend/add_user';
-            }else{
+        case 'module_light':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_light.php';
+            }
+            else {
                 authErr();
             }
             break;
 
-        case 'add_user':
-            if ($_SESSION['status'] == 'SUPER_USER' ){
-                addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
-                    $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['id']);
-                echo 'Utilisateur ajouté';
-                require 'view/frontend/add_user';
-            }else{
+        case 'module_shutter':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_shutter.php';
+            }
+            else {
                 authErr();
             }
             break;
 
-        case 'settings':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require 'view/frontend/setting.php';
+        case 'module_temp':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_temp.php';
+            }
+            else {
+                authErr();
             }
             break;
 
 
-    //Liens footer
+//Liens footer
         case 'contact':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/contact.php';
@@ -162,6 +222,7 @@ try {
                 authErr();
             }
             break;
+
         case 'sendmail' :
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
 
@@ -175,10 +236,18 @@ try {
             break;
 
         case 'cgu':
-            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/cgu.php';
-            }else{
+            } else {
                 authErr();
+            }
+            break;
+
+        case 'aide':
+            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+                require 'view/frontend/pageAide.php';
+            }else{
+                AuthErr();
             }
             break;
 
@@ -188,48 +257,117 @@ try {
                 unset($_SESSION['target_id']);
                 unset($_SESSION['target_home']);
                 unset($_SESSION['target_room']);
-                $req=getUserHome();
+                unset($_SESSION['target_user']);
+                $req = getUserHome();
                 require 'view/backend/home_view.php';
             } else {
                 authErr();
             }
             break;
-        case 'add_user_form':
+        case 'add_client_form':
             if ($_SESSION['status'] == 'ADMIN') {
-                require 'view/backend/add_user_view.php';
+                require 'view/backend/add_client.php';
+            }else{
+                authErr();
             }
+
             break;
         case 'add_client':
             if ($_SESSION['status'] == 'ADMIN') {
                 addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                     $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
-                require 'view/backend/add_user_view.php';
+                require 'view/backend/add_client.php';
             } else {
                 authErr();
             }
             break;
         case 'search':
-            if ($_SESSION['status'] == 'ADMIN'){
-                $req=searchUser($_POST['_searchbar_field'],$_POST['_searchbar_mode']);
+            if ($_SESSION['status'] == 'ADMIN') {
+                $req = searchUser($_POST['_searchbar_field'], $_POST['_searchbar_mode']);
                 require 'view/backend/home_view.php';
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         case 'user_management':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_id']=$_GET['id'];
-                    $req=getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
-                    $user=$req->fetchAll();
-                }elseif(isset($_SESSION['target_id'])) {
-                $req=getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
-                $user=$req->fetchAll();
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_id'] = $_GET['id'];
+                    $req = getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
+                    $user = $req->fetchAll();
+                } elseif (isset($_SESSION['target_id'])) {
+                    $req = getSuperUserAndChild(htmlspecialchars($_SESSION['target_id']));
+                    $user = $req->fetchAll();
                 }
                 require 'view/backend/user_management.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        case 'add_user_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                require 'view/backend/add_user.php';
             }else{
+                authErr();
+            }
+            break;
+
+        case 'add_user_back':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_id'])) {
+                    addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                        $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_id']);
+                    $link=$_SESSION['target_id'];
+                    header("Location:index.php?action=user_management&id=$link");
+                }
+            }else {
+                authErr();
+            }
+            break;
+
+        case 'modify_user_form':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_user'] = $_GET['id'];
+                    $user = getUserDetail($_SESSION['target_user']);
+                    require 'view/backend/modify_user.php';
+                }
+            }elseif ($_SESSION['status'] == 'SUPER_USER'){
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_user'] = $_GET['id'];
+                    $user = getUserDetail($_SESSION['target_user']);
+                    require 'view/frontend/modify_user.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'modify_user_front':
+            if ($_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_SESSION['target_user'])) {
+                    modifyUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                        $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_user']);
+                    //modification des permissions à ajouter
+                    header("Location:index.php?action=user_manage");
+                }
+            }else {
+                authErr();
+            }
+            break;
+
+        case 'modify_user_back':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_user'])) {
+                    modifyUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
+                        $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_user']);
+                    $link=$_SESSION['target_id'];
+                    header("Location:index.php?action=user_management&id=$link");
+                }
+            }else {
                 authErr();
             }
             break;
