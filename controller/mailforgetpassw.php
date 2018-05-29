@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . "/../config.php";
 
-function sendmail($message_contact, $object_contact)
+function sendmail_forgetpassw($mail_forgetpassw)
 {
-    $mail = 'cehddomisep@gmail.com'; // Déclaration de l'adresse de destination.
+    $mail = $mail_forgetpassw; // Déclaration de l'adresse de destination.
     if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
     {
         $passage_ligne = "\r\n";
@@ -11,8 +11,8 @@ function sendmail($message_contact, $object_contact)
         $passage_ligne = "\n";
     }
 //=====Déclaration des messages au format texte et au format HTML.
-    $message_txt = $message_contact;
-    $message_html = "<html><head></head><body>$message_contact</body></html>";
+    $message_txt = "Un oubli de mot de passe ? Voici votre nouveau mot de passe !";
+    $message_html = "<html><head></head><body>\"Un oubli de mot de passe ? Voici votre nouveau mot de passe !\"</body></html>";
 //==========
 
 //=====Création de la boundary
@@ -20,11 +20,11 @@ function sendmail($message_contact, $object_contact)
 //==========
 
 //=====Définition du sujet.
-    $sujet = $object_contact;
+    $sujet = "Réinitialisation du Mot de Passe";
 //=========
 
 //=====Création du header de l'e-mail.
-    $sender=$_SESSION['mail'];
+    $sender="cehddomisep@gmail.com";
     $header = "From: $sender <noreplycehddomisep@gmail.com>" . $passage_ligne;
     $header .= "Reply-to: $sender <noreplycehddomisep@gmail.com>" . $passage_ligne;
     $header .= "MIME-Version: 1.0" . $passage_ligne;

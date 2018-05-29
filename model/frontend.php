@@ -1,7 +1,7 @@
 <?php
 
 
-function getPassword($mail)
+function get_password($mail)
 {
     $db=dbConnect();
     $req=$db->prepare('SELECT password,status,id_user,first_name FROM `user` WHERE mail= ?');
@@ -10,16 +10,7 @@ function getPassword($mail)
     return $post;
 }
 
-function getUserSession($mail)
-{
-    $db=dbConnect();
-    $req=$db->prepare('SELECT id_user,first_name FROM `user` WHERE mail= ?');
-    $req->execute(array($mail));
-    $post=$req->fetch();
-    return $post;
-}
-
-function mailCheck($mail){
+function mail_check($mail){
     $db=dbConnect();
     $req=$db->prepare('SELECT id_user FROM `user` WHERE mail=?');
     $req->execute(array($mail));
@@ -28,7 +19,7 @@ function mailCheck($mail){
     return $post;
 }
 
-function is_PasswordSet($mail){
+function is_password_set($mail){
     $db=dbConnect();
     $req=$db->prepare('SELECT password FROM `user` WHERE mail=?');
     $req->execute(array($mail));
@@ -42,28 +33,7 @@ function insertPassword($password,$mail){
     $req->execute(array('password'=>$password, 'mail'=>$mail));
 }
 
-function get_users($id)
-{
-    $db = dbConnect1();
-    $req = $db->prepare('SELECT * FROM `user` WHERE id_superuser=:id ORDER BY status');
-    $req->bindValue('id', $id, PDO::PARAM_INT);
-    $req->execute();
-    return $req;
-}
 
-function add_user($mail,$first_name,$last_name,$date_of_birth,$phone,$id_superuser)
-{
-    $db = dbConnect1();
-    $req = $db->prepare('INSERT INTO user(status,mail,first_name,last_name,date_of_birth,phone,id_superuser)
- VALUES(\'USER\',:mail,:first_name,:last_name,:date_of_birth,:phone,:id_superuser)');
-    $req->bindValue('mail', $mail, PDO::PARAM_STR);
-    $req->bindValue('first_name', $first_name, PDO::PARAM_STR);
-    $req->bindValue('last_name', $last_name, PDO::PARAM_STR);
-    $req->bindValue('date_of_birth', $date_of_birth, PDO::PARAM_STR);
-    $req->bindValue('phone', $phone, PDO::PARAM_STR);
-    $req->bindValue('id_superuser', $id_superuser, PDO::PARAM_STR);
-    $req->execute();
-}
 
 function UserUpdate($update, $user_new, $id_session)
 {
@@ -106,4 +76,3 @@ function dbConnect()
         die('Erreur : '.$e->getMessage());
     }
 }
-

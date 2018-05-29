@@ -2,10 +2,11 @@
 require_once __DIR__ . "/../config.php";
 require_once ROOT . '/model/frontend.php';
 
+
 function login($_mail, $_password)
 {
     //password hash check
-    $result = getPassword($_mail);
+    $result = get_password($_mail);
     $isPasswordCorrect = password_verify($_password, $result['password']);
     if ($isPasswordCorrect) {
         @session_start();
@@ -28,7 +29,7 @@ function authErr()
 
 function checkMail($mail)
 {
-    $isMailOk = mailCheck($mail);
+    $isMailOk = mail_check($mail);
     if ($isMailOk == 1) {
         return $test = true;
     } else {
@@ -38,7 +39,7 @@ function checkMail($mail)
 
 function isPasswordSet($mail)
 {
-    $passwordSet = is_PasswordSet($mail);
+    $passwordSet = is_password_set($mail);
     if ($passwordSet['password'] == '') {
         return false;
     } else {
@@ -51,12 +52,4 @@ function passwordHash($password,$mail){
     insertPassword($hashedPassword,$mail);
 }
 
-function getUsers($id){
-    $req=get_users($id);
-    return $req;
-}
 
-function addUser($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser)
-{
-    add_user($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser);
-}

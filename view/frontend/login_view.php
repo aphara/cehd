@@ -36,7 +36,8 @@
 
     </div>
     <br/><br/>
-    <a href="index.php?action=firstlog">Première connexion ?</a>
+    <a href="index.php?action=firstlog">Première connexion ?</a> <br>
+    <a href="index.php?action=pageforgetpassw">Mot de passe oublié ?</a>
 
 </div>
 

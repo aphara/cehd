@@ -39,7 +39,12 @@
         font-size: 1em;
         z-index: 1;
     }
-    #setting_wheel {
+
+    #setting_wheel h2{
+        margin: 0;
+
+    }
+    #setting_wheel a{
         margin: 10px;
         width: 32px;
         height: 32px;
@@ -233,6 +238,61 @@
     .ref_table td, th {
         border: 1px solid black;
         padding: 10px;
+    }
+    /*Aide*/
+
+    h3
+    {
+      font-size: 40px;
+      text-align: center;
+      color: black;
+    }
+    .LogoAide
+    {
+      width: 50px;
+      height: 50px;
+    }
+
+    ul
+    {
+      font-size: 18px;
+      text-align: justify;
+      color: black;
+      overflow: scroll;
+      word-wrap: break-word;
+      padding: 10px;
+    }
+    .bouton
+    {
+    width: 100%;
+    border: 2px solid black;
+    font-size: 25px;
+    }
+
+    #question_1
+    {
+    display: none;
+    color: black;
+    }
+    #question_2
+    {
+    display: none;
+    color: black;
+    }
+    #question_3
+    {
+    display: none;
+    color: black;
+    }
+    #question_4
+    {
+    display: none;
+    color: black;
+    }
+    #question_5
+    {
+    display: none;
+    color: black;
     }
 
     /*onglet gestion des modules*/
@@ -492,6 +552,63 @@
         margin: 10px;
     }
 
+    /*Aide*/
+
+    h3
+    {
+      font-size: 40px;
+      text-align: center;
+      color: black;
+    }
+    .LogoAide
+    {
+      width: 50px;
+      height: 50px;
+    }
+
+    ul
+    {
+      font-size: 18px;
+      text-align: justify;
+      color: black;
+      overflow: scroll;
+      word-wrap: break-word;
+      padding: 10px;
+    }
+    .bouton
+    {
+    width: 100%;
+    border: 2px solid black;
+    font-size: 25px;
+    }
+
+    #question_1
+    {
+    display: none;
+    color: black;
+    }
+    #question_2
+    {
+    display: none;
+    color: black;
+    }
+    #question_3
+    {
+    display: none;
+    color: black;
+    }
+    #question_4
+    {
+    display: none;
+    color: black;
+    }
+    #question_5
+    {
+    display: none;
+    color: black;
+    }
+
+
     /*gestion utilisateur*/
     .add_user{
         display: flex;
@@ -537,3 +654,5 @@
     }
 
 }
+
+
