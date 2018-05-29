@@ -56,30 +56,39 @@ function dbConnect()
     }
 }
 
-
-function UserUpdate($update, $user_new, $id_session)
+function dbConnectA()
 {
-  $db=dbConnect();
-  $req1="SELECT $update from user where id_user= $id_session";
+    try
+    {
+        $db = new PDO('mysql:host=localhost;dbname=cehd_alex;charset=utf8', 'root', '');
+        return $db;
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+}
+
+function UserUpdate($categorie, $user_new, $id_session)
+{
+ //  $db=dbConnect();
+ $db=dbConnectA();
+  $req->prepare('update :categorie set user = :user_new where id_user= :id_session');
+  $req->bindValue('categorie',$categorie,PDO::PARAM_STR);
+  $req->bindValue('user_new',$user_new,PDO::PARAM_STR);
+  $req->bindValue('$id_session',$id_session,PDO::PARAM_int);
   $test=$db->query($req1);
-  if($test===$user_new){
-    return "you can't put the same ". phrase($update) ;
-  }
-  $req2="Update user set first_name where id_user=$id_session ";
-   return ("your ". string($update) . " has been changed with success!");
+  // return ("your ". string($categorie) . " has been changed with success!");
 }
 
 function getUserinfo($categorie, $id_session)
 {
-  $db=dbConnect();
-  $req="SELECT $categorie FROM user where id_user =$id_session";
-  $post=$db->query($req);
-  return $post;
+  //  $db=dbConnect();
+  $db=dbConnectA();
+  $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
+  $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
+  $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
+  $req->execute(array($res));
+  $post=$req->fetch();
+  //return $post;
 }
-
-// function phrase($str)
-// {
-//   $string=(string)$str
-//   $newstring= str_replace("_"," ",$string);
-//   return $newstring;
-// }

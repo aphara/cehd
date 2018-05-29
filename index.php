@@ -86,6 +86,12 @@ try {
             }
             else {
                 authErr();
+
+        case 'cgu':
+            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+                require'view/frontend/cgu_view.php';
+            }else{
+                authErr();
             }
             break;
 
@@ -113,6 +119,40 @@ try {
                 authErr();
             }
             break;
+
+//update pour setting
+        case 'update_firstname' :
+              Update_Info('first_name',$_POST['_first_name'],$_SESSION['id']);
+              $_SESSION['name']=$_POST['_first_name'];
+              echo 'le prenom a ete change avec succes';
+             require ' view/frontend/setting';
+
+        case 'update_lastname' :
+               Update_Info('last_name',$_POST['_last_name'],$_SESSION['id']);
+               echo 'le nom a ete change avec succes';
+              require ' view/frontend/setting';
+
+        case 'update_birthdate' :
+              Update_Info('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
+              echo 'la date de naissance a ete changee avec succes';
+              require ' view/frontend/setting';
+
+        case 'update_phone_number' :
+              Update_Info('phone_number',$_POST['_phone_number'],$_SESSION['id']);
+              echo 'le numero de telephone a ete change avec succes';
+              require ' view/frontend/setting';
+
+        case 'update_password' :
+              update_password($_SESSION['id'],$_SESSION['_mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
+              echo 'password change avec succes';
+              require 'view/front/setting';
+
+        case 'update_e-mail' :
+              Update_Info('mail',$_POST['_mail'],$_SESSION['id']);
+              $_SESSION['mail']=$_POST['_mail'];
+              echo 'mail change avec succes';
+              require 'view/front/setting';
+
 
 //logout
         case 'logout':
