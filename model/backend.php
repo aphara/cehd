@@ -96,8 +96,28 @@ function get_superuser_and_child($id){
     return $req;
 }
 
-/*function get_home
-requete avec maison et pièces puis capteurs*/
+function get_user_detail($id_user){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT * FROM `user` WHERE id_user=?');
+    $req->bindValue(1,$id_user,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function modify_user($mail, $firstname, $lastname, $date_of_birth, $phone, $id_user){
+    $db=dbConnect1();
+    $req=$db->prepare('UPDATE user 
+    SET mail=:mail, first_name=:firstname, last_name=:lastname, date_of_birth=:date_of_birth, phone=:phone
+    WHERE id_user=:id_user');
+    $req->bindValue('mail',$mail,PDO::PARAM_STR);
+    $req->bindValue('firstname',$firstname,PDO::PARAM_STR);
+    $req->bindValue('lastname',$lastname,PDO::PARAM_STR);
+    $req->bindValue('date_of_birth',$date_of_birth,PDO::PARAM_STR);
+    $req->bindValue('phone',$phone,PDO::PARAM_STR);
+    $req->bindValue('id_user',$id_user,PDO::PARAM_STR);
+    $req->execute();
+}
+
 
 function get_id_home($id_user){
     $db=dbConnect1();

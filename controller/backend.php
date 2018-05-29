@@ -51,6 +51,16 @@ function getStatus($id){
     return $req;
 }
 
+function getUserDetail($id_user){
+    $req=get_user_detail($id_user);
+    $post=$req;
+    return $post;
+}
+
+function modifyUser($mail, $firstname, $lastname, $date_of_birth, $phone, $id_user){
+    modify_user($mail, $firstname, $lastname, $date_of_birth, $phone, $id_user);
+}
+
 function deleteUser($id){
     delete_user($id);
 

@@ -35,7 +35,7 @@
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
                 <li id='dropdown'><a href="index.php?action=home_manage">Gestion Maison</a>
                     <div id="dropdown-content">
-                        <a href="index.php?action=module_management">gestion modules</a>
+                        <a href="index.php?action=module_light">gestion modules</a>
                         <a href="index.php?action=link_module">associer modules</a>
                         <a href="index.php?action=programs">programmes</a>
                     </div>
