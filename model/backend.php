@@ -146,12 +146,12 @@ function get_room_detail($id_room){
 
 function add_room($name, $floor, $size, $type, $id_home){
     $db=dbConnect1();
-    $req=$db->prepare('INSERT INTO room(name, floor_name, size, type, id_home) 
+    $req=$db->prepare('INSERT INTO room(name, floor_name, size, room_type, id_home) 
 VALUES (:name,:floor,:size,:type,:id_home)');
     $req->bindValue('name',$name,PDO::PARAM_STR);
     $req->bindValue('floor',$floor,PDO::PARAM_STR);
     $req->bindValue('size',$size,PDO::PARAM_STR);
-    $req->bindValue('type',$type,PDO::PARAM_STR);
+    $req->bindValue('room_type',$type,PDO::PARAM_STR);
     $req->bindValue('id_home',$id_home,PDO::PARAM_INT);
     $req->execute();
 }
@@ -159,11 +159,11 @@ VALUES (:name,:floor,:size,:type,:id_home)');
 function modify_room($id_room, $name, $floor, $size, $type){
     $db=dbConnect1();
     $req=$db->prepare('UPDATE room 
-SET name=:name,floor_name=:floor,size=:size,type=:type WHERE id_room=:id_room');
+SET name=:name,floor_name=:floor,size=:size,room_type=:type WHERE id_room=:id_room');
     $req->bindValue('name',$name,PDO::PARAM_STR);
     $req->bindValue('floor',$floor,PDO::PARAM_STR);
     $req->bindValue('size',$size,PDO::PARAM_STR);
-    $req->bindValue('type',$type,PDO::PARAM_STR);
+    $req->bindValue('room_type',$type,PDO::PARAM_STR);
     $req->bindValue('id_room',$id_room,PDO::PARAM_INT);
     $req->execute();
 }
@@ -172,6 +172,50 @@ function delete_room($id_room){
     $db=dbConnect1();
     $req=$db->prepare('DELETE FROM `room` WHERE id_room=?');
     $req->bindValue(1,$id_room,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function get_sensor($id_home){
+    $db=dbConnect1();
+    $req=$db->prepare('SELECT 
+`id_sensor`,`sensor_type`,`current_state`,`current_value`,`sensor_name`,`id_room`,`name`
+FROM `room`NATURAL JOIN sensor
+WHERE id_home=?;');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function check_id_sensor($id_sensor){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT id_sensor FROM `sensor` WHERE id_sensor=?');
+    $req->bindValue(1,$id_sensor,PDO::PARAM_INT);
+    $req->execute();
+    $post=$req->rowCount();
+    $req->closeCursor();
+    return $post;
+}
+
+function check_sensor_name($id_home,$sensor_name){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT sensor_name FROM `room`NATURAL JOIN sensor
+WHERE id_home=? AND sensor_name=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,$sensor_name,PDO::PARAM_STR);
+    $req->execute();
+    $post=$req->rowCount();
+    $req->closeCursor();
+    return $post;
+}
+
+function add_sensor($id_sensor, $sensor_type, $sensor_name, $id_room){
+    $db=dbConnect1();
+    $req=$db->prepare('INSERT INTO sensor(id_sensor,sensor_type,sensor_name, id_room) 
+VALUES (:id,:type,:name,:room)');
+    $req->bindValue('id',$id_sensor,PDO::PARAM_INT);
+    $req->bindValue('type',$sensor_type,PDO::PARAM_STR);
+    $req->bindValue('name',$sensor_name,PDO::PARAM_STR);
+    $req->bindValue('room',$id_room,PDO::PARAM_INT);
     $req->execute();
 }
 

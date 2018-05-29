@@ -80,6 +80,33 @@ try {
             }
             break;
 
+        case 'module_light':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_light.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'module_shutter':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_shutter.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
+        case 'module_temp':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/module_temp.php';
+            }
+            else {
+                authErr();
+            }
+            break;
+
         case 'link_module':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/link_module.php';
@@ -134,60 +161,6 @@ try {
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/global_stats.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'link_module':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/link_module.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'programs':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/programs.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'home_manage':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/home_manage.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'module_light':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/module_light.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'module_shutter':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/module_shutter.php';
-            }
-            else {
-                authErr();
-            }
-            break;
-
-        case 'module_temp':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/module_temp.php';
             }
             else {
                 authErr();
@@ -402,6 +375,7 @@ try {
             }else{
                 authErr();
             }
+            break;
 
         case 'delete_room':
             if ($_SESSION['status'] == 'ADMIN'){
@@ -411,6 +385,86 @@ try {
                 }
             }
             break;
+
+        case 'module_management':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $_SESSION['target_id']=$_GET['id'];
+                    $req=getSensor(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/module_management.php';
+                }elseif(isset($_SESSION['target_id'])){
+                    $req=getSensor(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/module_management.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_sensor_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_home'])){
+                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/add_sensor.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_sensor':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
+                    if (checkIDSensor(htmlspecialchars($_POST['_id']))==true){
+                        if (checkSensorName(htmlspecialchars($_POST['_name']))==true){
+                            addSensor($_POST['_id'], $_POST['_sensor_type'], $_POST['_name'], $_POST['_room']);
+                            $link=$_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }
+                        else echo 'Ce nom est déjà utilisé !';
+                    }else echo 'Cette référence est déjà utilisée !';
+
+
+
+
+
+                }
+            }
+            break;
+
+        case 'modify_module_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $_SESSION['target_room']=$_GET['id'];
+                    $room=getRoomDetail($_SESSION['target_room']);
+                    require 'view/backend/modify_room.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'modify_module':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_room'])){
+                    modifyRoom($_SESSION['target_room'],$_POST['_name'],$_POST['_floor'],$_POST['_size'],$_POST['_room_type']);
+                    $link=$_SESSION['target_id'];
+                    header("Location:index.php?action=home_management&id=$link");
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'delete_module':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if ($_GET['id_room']){
+                    deleteRoom(htmlspecialchars($_GET['id_room']));
+                    header("Location:index.php?action=home_management");
+                }
+            }
+            break;
+
 
 
         case 'delete':
