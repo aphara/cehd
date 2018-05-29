@@ -2,6 +2,7 @@
 require_once('controller/frontend.php');
 require_once('controller/backend.php');
 require_once('controller/mail.php');
+require_once('controller/mailforgetpassw.php');
 @session_start();
 
 try {
@@ -59,6 +60,24 @@ try {
             } else {
                 echo 'Les mots de passe ne correspondent pas';
                 require 'view/frontend/firstlog_password.php';
+            }
+            break;
+
+//mdp oublié
+        case 'pageforgetpassw':
+            require('view/frontend/pageforgetpassw.php');
+            break;
+
+        case 'forgetpassw':
+            $test = checkMail($_POST['mail_forgetpassw']);
+            if ($test == true ) {
+                sendmail_forgetpassw($_POST['mail_forgetpassw']);
+                echo 'Un lien de mot de passe a été envoyé par nos équipes ! ';
+                require 'view/frontend/login_view.php';
+            }
+            else{
+                echo "Une erreur est survenue";
+                require 'view/frontend/login_view.php';
             }
             break;
 
