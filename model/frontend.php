@@ -1,7 +1,7 @@
 <?php
 
 
-function getPassword($mail)
+function get_password($mail)
 {
     $db=dbConnect();
     $req=$db->prepare('SELECT password,status,id_user,first_name FROM `user` WHERE mail= ?');
@@ -10,16 +10,7 @@ function getPassword($mail)
     return $post;
 }
 
-function getUserSession($mail)
-{
-    $db=dbConnect();
-    $req=$db->prepare('SELECT id_user,first_name FROM `user` WHERE mail= ?');
-    $req->execute(array($mail));
-    $post=$req->fetch();
-    return $post;
-}
-
-function mailCheck($mail){
+function mail_check($mail){
     $db=dbConnect();
     $req=$db->prepare('SELECT id_user FROM `user` WHERE mail=?');
     $req->execute(array($mail));
@@ -28,7 +19,7 @@ function mailCheck($mail){
     return $post;
 }
 
-function is_PasswordSet($mail){
+function is_password_set($mail){
     $db=dbConnect();
     $req=$db->prepare('SELECT password FROM `user` WHERE mail=?');
     $req->execute(array($mail));
@@ -43,6 +34,7 @@ function insertPassword($password,$mail){
 }
 
 
+<<<<<<< HEAD
 function dbConnect()
 {
     try
@@ -68,6 +60,8 @@ function dbConnectA()
         die('Erreur : '.$e->getMessage());
     }
 }
+=======
+>>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
 
 function UserUpdate($categorie, $user_new, $id_session)
 {
@@ -92,3 +86,28 @@ function getUserinfo($categorie, $id_session)
   $post=$req->fetch();
   //return $post;
 }
+<<<<<<< HEAD
+=======
+
+// function phrase($str)
+// {
+//   $string=(string)$str
+//   $newstring= str_replace("_"," ",$string);
+//   return $newstring;
+// }
+
+
+
+function dbConnect()
+{
+    try
+    {
+        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
+        return $db;
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+}
+>>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
