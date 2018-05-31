@@ -468,7 +468,7 @@ try {
                 if (isset($_GET['id'])){
                     $_SESSION['target_id']=$_GET['id'];
                     $req=getSensor(htmlspecialchars($_SESSION['target_id']));
-                    $req2=getActuator(htmlspecialchars($_SESSION['target_id']));
+                    $req2=getEffector(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/module_management.php';
                 }elseif(isset($_SESSION['target_id'])){
                     $req=getSensor(htmlspecialchars($_SESSION['target_id']));
@@ -502,48 +502,130 @@ try {
                         }
                         else echo 'Ce nom est déjà utilisé !';
                     }else echo 'Cette référence est déjà utilisée !';
-
-
-
-
-
                 }
             }
             break;
 
-        case 'modify_module_form':
+        case 'modify_sensor_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
-                    $_SESSION['target_room']=$_GET['id'];
-                    $room=getRoomDetail($_SESSION['target_room']);
-                    require 'view/backend/modify_room.php';
+                    $_SESSION['target_sensor']=$_GET['id'];
+                    $sensor=getSensorDetail($_SESSION['target_sensor']);
+                    $req1=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/modify_sensor.php';
                 }
             }else{
                 authErr();
             }
             break;
 
-        case 'modify_module':
+        case 'modify_sensor':
             if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_room'])){
-                    modifyRoom($_SESSION['target_room'],$_POST['_name'],$_POST['_floor'],$_POST['_size'],$_POST['_room_type']);
-                    $link=$_SESSION['target_id'];
-                    header("Location:index.php?action=home_management&id=$link");
+                if (isset($_SESSION['target_sensor'])){
+                    if (isset($_SESSION['target_home'])) {
+                        if (($_POST['_name']==$_SESSION['sensor_name'])){
+                            modifySensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            $link = $_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }elseif ($_SESSION['sensor_name'] != $_POST['_name'] && checkSensorName($_POST['_name'])) {
+                            modifySensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            $link = $_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }else echo 'Ce nom est déjà utilisé !';
+                    }
+                unset($_SESSION['sensor_name']);
                 }
             }else{
                 authErr();
             }
             break;
 
-        case 'delete_module':
+
+        case 'delete_sensor':
             if ($_SESSION['status'] == 'ADMIN'){
-                if ($_GET['id_room']){
-                    deleteRoom(htmlspecialchars($_GET['id_room']));
-                    header("Location:index.php?action=home_management");
+                if ($_GET['id_sensor']){
+                    deleteSensor(htmlspecialchars($_GET['id_sensor']));
+                    $link = $_SESSION['target_id'];
+                    header("Location:index.php?action=module_management&id=$link");
                 }
             }
             break;
 
+
+        case 'add_effector_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_home'])){
+                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/add_effector.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'add_effector':
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
+                    if (checkIDEffector(htmlspecialchars($_POST['_id']))==true){
+                        if (checkEffectorName(htmlspecialchars($_POST['_name']))==true){
+                            addEffector($_POST['_id'], $_POST['_effector_type'], $_POST['_name'], $_POST['_room']);
+                            $link=$_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }
+                        else echo 'Ce nom est déjà utilisé !';
+                    }else echo 'Cette référence est déjà utilisée !';
+                }
+            }
+            break;
+
+        case 'modify_effector_form':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_GET['id'])){
+                    $_SESSION['target_effector']=$_GET['id'];
+                    $effector=getEffectorDetail($_SESSION['target_effector']);
+                    $req1=getRoom(htmlspecialchars($_SESSION['target_id']));
+                    require 'view/backend/modify_effector.php';
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'modify_effector':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if (isset($_SESSION['target_effector'])){
+                    if (isset($_SESSION['target_home'])) {
+                        if (($_POST['_name']==$_SESSION['effector_name'])){
+                            modifyEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            $link = $_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }elseif ($_SESSION['effector_name'] != $_POST['_name'] && checkEffectorName($_POST['_name'])) {
+                            modifyEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            $link = $_SESSION['target_id'];
+                            header("Location:index.php?action=module_management&id=$link");
+                        }else echo 'Ce nom est déjà utilisé !';
+                    }
+                    unset($_SESSION['effector_name']);
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+
+        case 'delete_effector':
+            if ($_SESSION['status'] == 'ADMIN'){
+                if ($_GET['id_effector']){
+                    deleteEffector(htmlspecialchars($_GET['id_effector']));
+                    $link = $_SESSION['target_id'];
+                    header("Location:index.php?action=module_management&id=$link");
+                }
+            }
+            break;
 
 
         case 'delete':
