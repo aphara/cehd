@@ -71,8 +71,12 @@ try {
         case 'forgetpassw':
             $test = checkMail($_POST['mail_forgetpassw']);
             if ($test == true ) {
-                sendmail_forgetpassw($_POST['mail_forgetpassw']);
                 echo 'Un lien de mot de passe a été envoyé par nos équipes ! ';
+                $_SESSION['chaine'] =genererChaineAleatoire(20,'abcdefghijklmnopqrstuvwxyz123456789*/#&');
+                passwordHash($_SESSION['chaine'],$_POST['mail_forgetpassw']);
+                //die(var_dump($_GLOBAL['chaine']));
+                sendmail_forgetpassw($_POST['mail_forgetpassw'],$_SESSION['chaine']);
+                unset($_SESSION['chaine']);
                 require 'view/frontend/login_view.php';
             }
             else{

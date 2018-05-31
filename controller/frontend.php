@@ -49,6 +49,7 @@ function isPasswordSet($mail)
 function passwordHash($password,$mail){
     $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
     insertPassword($hashedPassword,$mail);
+
 }
 
 function getUsers($id){
