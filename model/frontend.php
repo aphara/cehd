@@ -34,7 +34,7 @@ function insertPassword($password,$mail){
 }
 
 
-<<<<<<< HEAD
+
 function dbConnect()
 {
     try
@@ -60,8 +60,7 @@ function dbConnectA()
         die('Erreur : '.$e->getMessage());
     }
 }
-=======
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+
 
 function UserUpdate($categorie, $user_new, $id_session)
 {
@@ -86,28 +85,3 @@ function getUserinfo($categorie, $id_session)
   $post=$req->fetch();
   //return $post;
 }
-<<<<<<< HEAD
-=======
-
-// function phrase($str)
-// {
-//   $string=(string)$str
-//   $newstring= str_replace("_"," ",$string);
-//   return $newstring;
-// }
-
-
-
-function dbConnect()
-{
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-}
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f

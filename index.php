@@ -187,14 +187,14 @@ try {
             }
             break;
 
-<<<<<<< HEAD
+
         case 'setting':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
                 require'view/frontend/setting.php';
             }
             else {
                 authErr();
-=======
+
 
 //Liens footer
         case 'contact':
@@ -216,7 +216,7 @@ try {
 
             }
             break;
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+
 
         case 'cgu':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
@@ -228,11 +228,11 @@ try {
 
         case 'aide':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-<<<<<<< HEAD
+
                 require'view/frontend/cgu_view.php';
-=======
+
                 require 'view/frontend/pageAide.php';
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+
             }else{
                 authErr();
             }
@@ -442,18 +442,20 @@ try {
             }
             break;
 
-<<<<<<< HEAD
+
 //update pour setting
         case 'update_firstname' :
               Update_Info('first_name',$_POST['_first_name'],$_SESSION['id']);
               $_SESSION['name']=$_POST['_first_name'];
               echo 'le prenom a ete change avec succes';
              require ' view/frontend/setting';
+             break;
 
         case 'update_lastname' :
                Update_Info('last_name',$_POST['_last_name'],$_SESSION['id']);
                echo 'le nom a ete change avec succes';
               require ' view/frontend/setting';
+              break;
 
         case 'update_birthdate' :
               Update_Info('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
@@ -464,20 +466,23 @@ try {
               Update_Info('phone_number',$_POST['_phone_number'],$_SESSION['id']);
               echo 'le numero de telephone a ete change avec succes';
               require ' view/frontend/setting';
+              break;
 
         case 'update_password' :
               update_password($_SESSION['id'],$_SESSION['_mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
               echo 'password change avec succes';
               require 'view/front/setting';
+              break;
 
         case 'update_e-mail' :
               Update_Info('mail',$_POST['_mail'],$_SESSION['id']);
               $_SESSION['mail']=$_POST['_mail'];
               echo 'mail change avec succes';
               require 'view/front/setting';
+              break;
 
 
-=======
+
         case 'add_sensor_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_home'])){
@@ -570,7 +575,7 @@ try {
                 }
             }
             break;
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+
 //logout
         case 'logout':
             session_destroy();
