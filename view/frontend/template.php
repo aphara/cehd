@@ -18,15 +18,17 @@
         </div>
 
         <div id='right_header'>
+            <h2> <?= $_SESSION['name'] ?> </h2>
             <div id='setting_wheel'>
-                <h2> <?= $_SESSION['name'] ?> </h2>
-                <a href="#"><img src='public/img/setting_wheel.png' alt='setting wheel' id="img_wheel"/></a>
+
+
+                <a href="index.php?action=setting"><img src='public/img/setting_wheel.png' onmouseover="this.src='public/img/setting_wheel_2.png'" onmouseout="this.src='public/img/setting_wheel.png'" alt='setting wheel'/></a>
+
             </div>
 
             <div>
-                <a href="index.php?action=logout">Déconnexion</a>
+                <a href="index.php?action=logout"><img src='public/img/sign_out.png' onmouseover="this.src='public/img/sign_out_2.png'" onmouseout="this.src='public/img/sign_out.png'" alt='signout' /></a>
             </div>
-        </div>
     </header>
 
     <div id='nav_content'>

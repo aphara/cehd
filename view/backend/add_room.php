@@ -1,4 +1,4 @@
-<?php $title = 'CeHD - Gestion maison';
+<?php $title = 'CeHD - Ajout de pièces';
 @session_start();
 ob_start(); ?>
 

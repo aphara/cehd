@@ -2,10 +2,11 @@
 require_once __DIR__ . "/../config.php";
 require_once ROOT . '/model/frontend.php';
 
+
 function login($_mail, $_password)
 {
     //password hash check
-    $result = getPassword($_mail);
+    $result = get_password($_mail);
     $isPasswordCorrect = password_verify($_password, $result['password']);
     if ($isPasswordCorrect) {
         @session_start();
@@ -28,7 +29,7 @@ function authErr()
 
 function checkMail($mail)
 {
-    $isMailOk = mailCheck($mail);
+    $isMailOk = mail_check($mail);
     if ($isMailOk == 1) {
         return $test = true;
     } else {
@@ -38,7 +39,7 @@ function checkMail($mail)
 
 function isPasswordSet($mail)
 {
-    $passwordSet = is_PasswordSet($mail);
+    $passwordSet = is_password_set($mail);
     if ($passwordSet['password'] == '') {
         return false;
     } else {
@@ -52,12 +53,31 @@ function passwordHash($password,$mail){
 
 }
 
-function getUsers($id){
-    $req=get_users($id);
-    return $req;
+function Update_Info($_categorie,$user_new,$id_session){
+  $oldinfo=get_user_info($_categorie,$id_session);
+  if($oldinfo==$user_new){
+    return "on ne peut mettre les meme donnees";
+  }else{
+    return user_update($_categorie, $user_new,$id_session);
+  }
 }
 
-function addUser($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser)
-{
-    add_user($mail, $first_name, $last_name, $date_of_birth, $phone, $id_superuser);
-}
+//function checkpassword($_mail,$_password){
+//      //password hash check
+//      $result=getPassword($_mail);
+//      $isPasswordCorrect = password_verify($_password,$result['password']);
+//      else {
+//          echo 'mot de passe incorrect!';
+//          require 'view/frontend/setting.php';
+//      }
+//  }
+
+//function update_password($id_session,$_mail,$_old_password,$_new_password,$_new_password_2){
+//    checkpassword($_mail,$_old_password);
+//    if ($_new_password===$_new_password_2){
+//    user_update("password",$_new_password,$id_session);
+//  }else{
+//    echo 'les mots de passe ne sont pas identiques'
+//    require 'view/frontend/setting.php';
+//  }
+//}
