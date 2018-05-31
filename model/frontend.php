@@ -34,7 +34,7 @@ function insertPassword($password,$mail){
 }
 
 
-<<<<<<< HEAD
+
 function dbConnect()
 {
     try
@@ -60,34 +60,32 @@ function dbConnectA()
         die('Erreur : '.$e->getMessage());
     }
 }
-=======
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
 
-function UserUpdate($categorie, $user_new, $id_session)
+
+function user_update($categorie, $user_new, $id_session)
 {
- //  $db=dbConnect();
- $db=dbConnectA();
-  $req->prepare('update :categorie set user = :user_new where id_user= :id_session');
-  $req->bindValue('categorie',$categorie,PDO::PARAM_STR);
-  $req->bindValue('user_new',$user_new,PDO::PARAM_STR);
-  $req->bindValue('$id_session',$id_session,PDO::PARAM_int);
-  $test=$db->query($req1);
+    $db=dbConnect();
+// $db=dbConnectA();
+    $req->prepare('update :categorie set user = :user_new where id_user= :id_session');
+    $req->bindValue('categorie',$categorie,PDO::PARAM_STR);
+    $req->bindValue('user_new',$user_new,PDO::PARAM_STR);
+    $req->bindValue('$id_session',$id_session,PDO::PARAM_int);
+    $test=$db->query($req1);
   // return ("your ". string($categorie) . " has been changed with success!");
 }
 
-function getUserinfo($categorie, $id_session)
+/*function get_user_info($categorie, $id_session)
 {
-  //  $db=dbConnect();
-  $db=dbConnectA();
-  $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
-  $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
-  $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
-  $req->execute(array($res));
-  $post=$req->fetch();
-  //return $post;
-}
-<<<<<<< HEAD
-=======
+    $db=dbConnect();
+    //$db=dbConnectA();
+    $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
+    $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
+    $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
+    $req->execute(array($res));
+    $post=$req->fetch();
+    //return $post;
+}*/
+
 
 // function phrase($str)
 // {
@@ -98,16 +96,4 @@ function getUserinfo($categorie, $id_session)
 
 
 
-function dbConnect()
-{
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-}
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+

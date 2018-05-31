@@ -18,16 +18,11 @@ VALUES (:home_type,:address,:city,:postcode)');
     return $post;
 }
 
-<<<<<<< HEAD
-function linkUserHome($id_user,$id_home){
-    $db=dbConnect1();
-    $req=$db->prepare('INSERT INTO user_home VALUES(:id_user,:id_home)');
-=======
+
 function link_user_home($id_user,$id_home){
     $db=dbConnect();
     $req=$db->prepare('INSERT INTO user_home VALUES(:id_home,:id_user)');
     $req->bindValue('id_home',$id_home, PDO::PARAM_INT);
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
     $req->bindValue('id_user',$id_user, PDO::PARAM_INT);
     $req->bindValue('id_home',$id_home, PDO::PARAM_INT);
     $req->execute(array('id_user'=>$id_user,'id_home'=>$id_home));
@@ -190,6 +185,17 @@ VALUES (:id,:type,:name,:room)');
     $req->bindValue('name',$sensor_name,PDO::PARAM_STR);
     $req->bindValue('room',$id_room,PDO::PARAM_INT);
     $req->execute();
+}
+
+function get_actuator($id_home){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT 
+`id_actuator`,`actuator_type`,`request_value`,`actuator_name`,`id_room`,`name`
+FROM `room`NATURAL JOIN actuator
+WHERE id_home=?;');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
 }
 
 function get_status($id){

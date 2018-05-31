@@ -2,7 +2,7 @@
 $title = 'CeHD - setting';
 ob_start(); ?>
 
-<<<<<<< HEAD
+
       <!--first name-->
   <div >
     <form action="index.php?action=update_firstname" method="post">
@@ -34,12 +34,12 @@ ob_start(); ?>
       <input type="submit" value="changer numero">
     </form>
   </div>
-=======
+
 <!-- affichage des données perso -->
 <!--    <div id='user_name'>
-        <?php /*echo getUserinfo("first_name",$_SESSION['id']); */?>
-        <?php /*echo getUserinfo("last_name",$_SESSION['id']); */?>
-=======
+        <?php /*echo get_user_info("first_name",$_SESSION['id']); */?>
+        <?php /*echo get_user_info("last_name",$_SESSION['id']); */?>
+
 <DOCTYPE html>
   <html>
   <head>
@@ -51,11 +51,11 @@ ob_start(); ?>
 <body>
    <!-- affichage des données perso
     <div id='user_name'>
-        <?php echo getUserinfo("first_name",$_SESSION['id']); ?>
-        <?php echo getUserinfo("last_name",$_SESSION['id']); ?>
->>>>>>> 16a262ab2d6b01de456c762e600586d242036b21
+        <?php echo get_user_info("first_name",$_SESSION['id']); ?>
+        <?php echo get_user_info("last_name",$_SESSION['id']); ?>
+
     </div>
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
+
 
 <hr>
 
@@ -81,17 +81,16 @@ ob_start(); ?>
         <input type="submit" value="changer mot de passe">
     </form>
     </div>
-=======
-      <?php /*echo getUserinfo("mail",$_SESSION['id']); */?>
+
+      <?php /*echo get_user_info("mail",$_SESSION['id']); */?>
     </div>
 
     <div id='phone_number'>
-<<<<<<< HEAD
-      <?php /*echo getUserinfo("phone",$_SESSION['id']); */?>
+
+      <?php /*echo get_user_info("phone",$_SESSION['id']); */?>
     </div>-->
 
 
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

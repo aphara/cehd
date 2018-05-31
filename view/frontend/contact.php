@@ -2,24 +2,6 @@
 $title = 'CeHD - Contact';
 ob_start(); ?>
 
-<<<<<<< HEAD
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>CeHD - Contact</title>
-
-    </head>
-
-    <body>
-
-
-    <p>Bonjour</p>
-
-
-
-    </body>
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +46,6 @@ ob_start(); ?>
     </section>
 </div>
 </body>
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
 
 </html>
 

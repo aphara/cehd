@@ -52,6 +52,38 @@ ob_start(); ?>
                     </td>
                 </tr>
         </div>
+
+        <div class="ref_table">
+            <table id="tab_actuator">
+                <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Nom de l'actionneur</th>
+                    <th>Type</th>
+                    <th>Pièce associée</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($req2 as $row => $actuatorList){ ?>
+                    <tr>
+                        <td> <?= $actuatorList['id_actuator'];?> </td>
+                        <td> <?= $actuatorList['actuator_name'];?> </td>
+                        <td> <?= $actuatorList['actuator_type'];?> </td>
+                        <td> <?= $actuatorList['name'];?> </td>
+                        <?php $target_actuator=$actuatorList['id_actuator'];?>
+                        <td> <a href="index.php?action=modify_sensor_form&id=<?= $target_actuator?>"><button>Modifier</button></a>
+                            <a href="index.php?action=delete_sensor&id=<?= $target_actuator;?>"><img src="public/img/bin.png" name="home"/></a> </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                <tr>
+                    <td colspan="5">
+                        <a href="index.php?action=add_sensor_form">Ajouter un actionneur</a>
+                    </td>
+                </tr>
+        </div>
     </div>
 </div>
 

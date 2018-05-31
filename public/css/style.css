@@ -1,154 +1,3 @@
-<<<<<<< HEAD
-/*css du login*/
-
-body
-{
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f5ef ;
-}
-
-.all
-{
-    margin: auto;
-    text-align: center;
-}
-
-h1
-{
-    font-weight: bold;
-    font-size: 2em;
-}
-
-/*------css du template--------*/
-
-/*HEADER*/
-
-header
-{
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-}
-
-#logo
-{
-    align-self: flex-start;
-}
-
-h1
-{
-    font-size: 2.5em;
-}
-
-#right_header
-{
-    display: flex;
-    flex-direction: column;
-}
-
-#setting_wheel
-{
-    display: flex;
-    align-items: center;
-    font-size: 1em;
-}
-
-#img_wheel
-{
-    margin: 3px;
-    padding: 5px;
-}
-
-/*NAV*/
-
-#nav_content
-{
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-}
-
-#sidebar ul
-{
-    list-style-type: none;
-
-}
-
-#sidebar a
-{
-    background-color: rgb(200,200,200);
-    color: black;
-    text-decoration: none;
-    font-size: 1.5em;
-    display: block;
-    line-height: 50px;
-    padding: 0 24px;
-    border: 3px groove black;
-    border-radius: 10px;
-}
-
-#sidebar a:hover
-{
-    color: white;
-    border-color: black;
-    background-color: #ff6c06;
-
-}
-
-
-
-#dropdown-content
-{
-    display: none;
-    position: absolute;
-
-
-
-}
-
-#dropdown:hover #dropdown-content
-{
-    display: block;
-
-}
-
-#dropdown-content a
-{
-    font-size: 1.2em;
-    line-height: 40px;
-    position: relative;
-    left: 245px;
-
-
-
-}
-
-
-#content
-{
-    border: 3px solid;
-
-}
-
-/*FOOTER*/
-
-footer
-{
-    display: flex;
-    position: fixed;
-    bottom:1%;
-    left: 0;
-    width: 100%;
-    background-color: rgb(200,200,200);
-    padding: 5px;
-}
-
-#footer
-{
-=======
 @media screen and (min-width: 800px ) {
     /*css du login*/
 
@@ -190,12 +39,7 @@ footer
         font-size: 1em;
         z-index: 1;
     }
-
-    #setting_wheel h2{
-        margin: 0;
-
-    }
-    #setting_wheel a{
+    #setting_wheel {
         margin: 10px;
         width: 32px;
         height: 32px;
@@ -394,58 +238,57 @@ footer
 
     h3
     {
-      font-size: 40px;
-      text-align: center;
-      color: black;
+        font-size: 40px;
+        text-align: center;
+        color: black;
     }
     .LogoAide
     {
-      width: 50px;
-      height: 50px;
+        width: 50px;
+        height: 50px;
     }
 
     ul
     {
-      font-size: 18px;
-      text-align: justify;
-      color: black;
-      overflow: scroll;
-      word-wrap: break-word;
-      padding: 10px;
+        font-size: 18px;
+        text-align: justify;
+        color: black;
+        overflow: scroll;
+        word-wrap: break-word;
+        padding: 10px;
     }
     .bouton
     {
-    width: 100%;
-    border: 2px solid black;
-    font-size: 25px;
+        width: 100%;
+        border: 2px solid black;
+        font-size: 25px;
     }
 
     #question_1
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_2
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_3
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_4
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_5
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
-
     /*onglet gestion des modules*/
 
     #onglets    {
@@ -500,7 +343,6 @@ footer
 
     header {
         display: flex;
-
         justify-content: space-between;
         align-items: center;
     }
@@ -512,7 +354,6 @@ footer
     }
     #right_header {
         display: flex;
-        flex-direction: row;
         align-items: center;
         font-size: 1em;
         z-index: 1;
@@ -702,76 +543,61 @@ footer
     .CGU h1, .CGU h2, .CGU ul, .CGU p {
         margin: 10px;
     }
-
     /*Aide*/
 
     h3
     {
-      font-size: 40px;
-      text-align: center;
-      color: black;
+        font-size: 40px;
+        text-align: center;
+        color: black;
     }
     .LogoAide
     {
-      width: 50px;
-      height: 50px;
+        width: 50px;
+        height: 50px;
     }
 
     ul
     {
-      font-size: 18px;
-      text-align: justify;
-      color: black;
-      overflow: scroll;
-      word-wrap: break-word;
-      padding: 10px;
+        font-size: 18px;
+        text-align: justify;
+        color: black;
+        overflow: scroll;
+        word-wrap: break-word;
+        padding: 10px;
     }
     .bouton
     {
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f
-    width: 100%;
-    border: 2px solid black;
-    font-size: 25px;
+        width: 100%;
+        border: 2px solid black;
+        font-size: 25px;
     }
 
-<<<<<<< HEAD
-footer a
-{
-    text-decoration: none;
-    color: black;
-}
-
-footer div div
-{
-    color: black;
-}
-=======
     #question_1
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_2
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_3
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_4
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
     #question_5
     {
-    display: none;
-    color: black;
+        display: none;
+        color: black;
     }
-
 
     /*gestion utilisateur*/
     .add_user{
@@ -816,8 +642,3 @@ footer div div
     #onglets a:hover {
         background : #fff;
     }
-
-}
-
-
->>>>>>> 9a7c680182b6219f5cc6013bc414d6bda9d2312f

@@ -53,30 +53,30 @@ function passwordHash($password,$mail){
 }
 
 function Update_Info($_categorie,$user_new,$id_session){
-  $oldinfo=getUserinfo($_categorie,$id_session);
+  $oldinfo=get_user_info($_categorie,$id_session);
   if($oldinfo==$user_new){
     return "on ne peut mettre les meme donnees";
   }else{
-    return UserUpdate($_categorie, $user_new,$id_session);
+    return user_update($_categorie, $user_new,$id_session);
   }
 }
 
-function checkpassword($_mail,$_password){
-      //password hash check
-      $result=getPassword($_mail);
-      $isPasswordCorrect = password_verify($_password,$result['password']);
-      else {
-          echo 'mot de passe incorrect!';
-          require 'view/frontend/setting.php';
-      }
-  }
+//function checkpassword($_mail,$_password){
+//      //password hash check
+//      $result=getPassword($_mail);
+//      $isPasswordCorrect = password_verify($_password,$result['password']);
+//      else {
+//          echo 'mot de passe incorrect!';
+//          require 'view/frontend/setting.php';
+//      }
+//  }
 
-function update_password($id_session,$_mail,$_old_password,$_new_password,$_new_password_2){
-    checkpassword($_mail,$_old_password);
-    if ($_new_password===$_new_password_2){
-    UserUpdate("password",$_new_password,$id_session);
-  }else{
-    echo 'les mots de passe ne sont pas identiques'
-    require 'view/frontend/setting.php';
-  }
-}
+//function update_password($id_session,$_mail,$_old_password,$_new_password,$_new_password_2){
+//    checkpassword($_mail,$_old_password);
+//    if ($_new_password===$_new_password_2){
+//    user_update("password",$_new_password,$id_session);
+//  }else{
+//    echo 'les mots de passe ne sont pas identiques'
+//    require 'view/frontend/setting.php';
+//  }
+//}

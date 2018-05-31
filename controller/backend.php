@@ -70,3 +70,10 @@ function modifySensor(){
 function deleteSensor(){
 
 }
+
+function getActuator($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_actuator($_SESSION['target_home']);
+    return $req;
+}
