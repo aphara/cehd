@@ -87,6 +87,7 @@ try {
             break;
 
 //frontend
+        /*Accueil*/
         case 'home':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/home_view.php';
@@ -96,6 +97,7 @@ try {
             }
             break;
 
+        /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/home_manage.php';
@@ -104,6 +106,7 @@ try {
             }
             break;
 
+        /*Gestion des Modules*/
         case 'module_light':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/module_light.php';
@@ -131,6 +134,7 @@ try {
             }
             break;
 
+        /*Associer un module*/
         case 'link_module':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/link_module.php';
@@ -139,6 +143,7 @@ try {
             }
             break;
 
+        /*Programmes*/
         case 'programs':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/programs.php';
@@ -147,6 +152,7 @@ try {
             }
             break;
 
+        /*Gestion utilisateur, accueil*/
         case 'user_manage':
             if ($_SESSION['status'] == 'SUPER_USER') {
                 $req = getUsers($_SESSION['id']);
@@ -157,6 +163,8 @@ try {
             }
             break;
 
+        /*ajout d'un utilisateur
+        -formulaire*/
         case 'add_user_front':
             if ($_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/add_user';
@@ -164,7 +172,7 @@ try {
                 authErr();
             }
             break;
-
+        /*-ajout de l'utilisateur dans la bdd*/
         case 'add_user':
             if ($_SESSION['status'] == 'SUPER_USER') {
                 addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
@@ -176,6 +184,7 @@ try {
             }
             break;
 
+        /*Page de statistiques*/
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/global_stats.php';
@@ -185,7 +194,7 @@ try {
             }
             break;
 
-
+        /*Paramètres utilisateur*/
         case 'setting':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
                 require'view/frontend/setting.php';
@@ -242,19 +251,20 @@ try {
             }
             break;
 
+        /*Fonction d'envoi de mail au SAV*/
         case 'sendmail' :
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-
                 if (isset ($_POST['message_contact']) AND !empty($_POST['message_contact']) AND isset($_POST['object_contact']) AND !empty ($_POST['message_contact'])) {
                     sendmail($_POST['message_contact'],$_POST['object_contact']);
                     echo 'Message envoyé !';
                     require 'view/frontend/contact.php';
                 }
-
+            }else{
+                authErr();
             }
             break;
 
-
+        /*conditions générales d'utilisations*/
         case 'cgu':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/cgu.php';
@@ -263,6 +273,7 @@ try {
             }
             break;
 
+        /*page d'aide*/
         case 'aide':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
 
@@ -275,6 +286,7 @@ try {
             break;
 
 //backend
+        /*accueil du backend*/
         case 'homeb':
             if ($_SESSION['status'] == 'ADMIN') {
                 unset($_SESSION['target_id']);
@@ -287,6 +299,9 @@ try {
                 authErr();
             }
             break;
+
+        /*Ajout d'un client (utilisateur et maison)
+        -formulaire*/
         case 'add_client_form':
             if ($_SESSION['status'] == 'ADMIN') {
                 require 'view/backend/add_client.php';
@@ -295,6 +310,8 @@ try {
             }
 
             break;
+
+        /*-ajout du client dans la bdd*/
         case 'add_client':
             if ($_SESSION['status'] == 'ADMIN') {
                 addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
@@ -305,6 +322,8 @@ try {
                 authErr();
             }
             break;
+
+        /*fonction de recherche*/
         case 'search':
             if ($_SESSION['status'] == 'ADMIN') {
                 $req = searchUser($_POST['_searchbar_field'], $_POST['_searchbar_mode']);
@@ -314,6 +333,7 @@ try {
             }
             break;
 
+        /*Gestion utilisateur*/
         case 'user_management':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_GET['id'])) {
@@ -330,6 +350,8 @@ try {
             }
             break;
 
+        /*ajout d'un utilisateur
+        -formulaire*/
         case 'add_user_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 require 'view/backend/add_user.php';
@@ -338,6 +360,7 @@ try {
             }
             break;
 
+        /*ajout de l'utilisateur dans la bdd*/
         case 'add_user_back':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_id'])) {
@@ -351,6 +374,8 @@ try {
             }
             break;
 
+        /*Modification d'un utilisateur
+        -formulaire*/
         case 'modify_user_form':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_GET['id'])) {
@@ -369,6 +394,7 @@ try {
             }
             break;
 
+        /*Modification de l'utilisateur dans la bdd via frontoffice*/
         case 'modify_user_front':
             if ($_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_SESSION['target_user'])) {
@@ -382,6 +408,7 @@ try {
             }
             break;
 
+        /*Modification de l'utilisateur dans la bdd via backoffice*/
         case 'modify_user_back':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_user'])) {
@@ -395,6 +422,7 @@ try {
             }
             break;
 
+        /*Gestion de la maison*/
         case 'home_management':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -410,6 +438,8 @@ try {
             }
             break;
 
+        /*Ajout de pièce
+        -formulaire*/
         case 'add_room_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_home'])){
@@ -420,6 +450,7 @@ try {
             }
             break;
 
+        /*ajout de la pièce dans la bdd*/
         case 'add_room':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_home'])) {
@@ -430,6 +461,8 @@ try {
             }
             break;
 
+        /*Modification de pièce
+        -formulaire*/
         case 'modify_room_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -442,6 +475,7 @@ try {
             }
             break;
 
+        /*-bdd*/
         case 'modify_room':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_room'])){
@@ -454,6 +488,7 @@ try {
             }
             break;
 
+        /*suppression de pièce*/
         case 'delete_room':
             if ($_SESSION['status'] == 'ADMIN'){
                 if ($_GET['id_room']){
@@ -463,6 +498,7 @@ try {
             }
             break;
 
+        /*Gestion des modules (capteurs et actionneurs*/
         case 'module_management':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -479,7 +515,8 @@ try {
             }
             break;
 
-
+        /*Ajout de capteur
+        -formulaire*/
         case 'add_sensor_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_home'])){
@@ -491,6 +528,7 @@ try {
             }
             break;
 
+        /*-bdd*/
         case 'add_sensor':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_home'])) {
@@ -506,6 +544,8 @@ try {
             }
             break;
 
+        /*Modification de capteur
+        -formulaire*/
         case 'modify_sensor_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -519,6 +559,8 @@ try {
             }
             break;
 
+        /*modification de capteur dans la bdd
+        test pour vérifier que chaque nom donné aux capteurs est unique*/
         case 'modify_sensor':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_sensor'])){
@@ -542,7 +584,7 @@ try {
             }
             break;
 
-
+        /*suppression de capteurs*/
         case 'delete_sensor':
             if ($_SESSION['status'] == 'ADMIN'){
                 if ($_GET['id_sensor']){
@@ -553,7 +595,7 @@ try {
             }
             break;
 
-
+        /*Ajout d'actionneur*/
         case 'add_effector_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_home'])){
@@ -580,6 +622,8 @@ try {
             }
             break;
 
+        /*Modification d'actionneur
+        -formulaire*/
         case 'modify_effector_form':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -593,6 +637,8 @@ try {
             }
             break;
 
+        /*Modification d'actionneur dans la bdd
+        avec test d'unicité du nom*/
         case 'modify_effector':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_SESSION['target_effector'])){
@@ -616,7 +662,7 @@ try {
             }
             break;
 
-
+        /*suppression d'actionneur*/
         case 'delete_effector':
             if ($_SESSION['status'] == 'ADMIN'){
                 if ($_GET['id_effector']){
@@ -627,7 +673,7 @@ try {
             }
             break;
 
-
+        /*Suppression de client (utilisateurs (users + super user)+ maison (pièces + capteurs))*/
         case 'delete':
             if ($_SESSION['status'] == 'ADMIN'){
                 if (isset($_GET['id'])){
@@ -646,6 +692,7 @@ try {
                 }else{
                     header("Location:index.php?action=homeb");
                 }
+            /*suppression d'utilisateur via le frontoffice*/
             }elseif ($_SESSION['status']== 'SUPER_USER') {
                 if (isset($_GET['id'])) {
                     deleteUser(htmlspecialchars($_GET['id']));
