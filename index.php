@@ -2,7 +2,6 @@
 require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
 require_once 'controller/mail.php';
-require_once 'controller/mailforgetpassw.php';
 require_once 'controller/user.php';
 @session_start();
 
@@ -300,6 +299,7 @@ try {
                 addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                     $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
+                sendmail_bienvenue($_POST['_mail']);
                 require 'view/backend/add_client.php';
             } else {
                 authErr();
