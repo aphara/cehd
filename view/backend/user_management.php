@@ -16,14 +16,14 @@ ob_start(); ?>
     <div>
         <h1>Domicile de <?= $user[0]['first_name'];?> <?= $user[0]['last_name'];?></h1>
     </div>
-    <div class="add_user">
+    <div class="add_button">
         <h3>Ajouter un utilisateur</h3>
         <form action="index.php?action=add_user_form" method="post">
             <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
         </form>
     </div>
     <div class="ref_table">
-        <table>
+        <table id="table_id">
             <thead>
             <tr>
                 <th>Référence</th>

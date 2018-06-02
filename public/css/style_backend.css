@@ -1,5 +1,5 @@
 /*css du template*/
-
+/* for styling tables :  https://datatables.net/manual/styling/classes  */
 
 header{
     display: flex;
@@ -24,20 +24,21 @@ h1 {
 .home_searchbar_add {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
 }
-.add_user{
+.add_button{
     display: flex;
     flex-direction: row;
     align-self: center;
 }
-.add_user h3 {
+.add_button h3 {
     margin: 5px;
 }
+/*
 .ref_table table {
     border-collapse: collapse;
 }
 .ref_table td,th {
     border: 1px solid black;
     padding: 10px;
-}
+}*/

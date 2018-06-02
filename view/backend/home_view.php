@@ -2,8 +2,7 @@
 @session_start();
 ob_start(); ?>
 
-
-    <div class="home_searchbar_add">
+ <!--   <div class="home_searchbar_add">
         <div class="searchbar">
             <form action="index.php?action=search" method="post">
                 <h3>Recherche :</h3>
@@ -17,20 +16,20 @@ ob_start(); ?>
 
                 <input type="submit" value="Rechercher">
             </form>
-        </div>
+        </div>-->
 
 
 
-        <div class="add_user">
+        <div class="add_button">
             <h3>Ajouter un utilisateur</h3>
             <form action="index.php?action=add_client_form" method="post">
                 <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
             </form>
         </div>
-    </div>
+    <!--</div>-->
     <hr/>
     <div class="ref_table">
-        <table>
+        <table id="table_id">
             <thead>
                 <tr>
                     <th>Référence</th>
