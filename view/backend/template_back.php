@@ -5,8 +5,9 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <link href="public/css/style_backend.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="public/DataTables/datatables.css">
-    <script type="text/javascript" charset="utf8" src="public/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="public/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="public/datatables.js"></script>
+
 </head>
 
 <body>
