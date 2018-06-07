@@ -11,7 +11,7 @@ ob_start(); ?>
 </div>
 
 <div class="ref_table">
-    <table>
+    <table id="table_id" class="tab_user">
         <thead>
         <tr>
             <th>Référence</th>
@@ -36,6 +36,9 @@ ob_start(); ?>
             <?php
         }
         ?>
+        </tbody>
+    </table>
+
 </div>
 
 

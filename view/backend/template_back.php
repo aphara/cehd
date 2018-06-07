@@ -5,8 +5,11 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <link href="public/css/style_backend.css" rel="stylesheet" />
-    <script type="text/javascript" src="public/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="public/datatables.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
 
 </head>
 
