@@ -160,6 +160,28 @@ try {
             }
             break;
 
+        /*Associer les modules temperatures*/
+
+        case 'link_module_temp':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $req=getSensorTemp(htmlspecialchars($_SESSION['id']));
+                $req2=getEffectorTemp(htmlspecialchars($_SESSION['id']));
+                require 'view/frontend/link_module_temp.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        /*Associer les modules volets*/
+
+        case 'link_module_shutter':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/link_module_shutter.php';
+            } else {
+                authErr();
+            }
+            break;
+
         /*Modifier les capteurs*/
 
         case 'edit_sensor_form':
@@ -234,26 +256,6 @@ try {
                     unset($_SESSION['effector_name']);
                 }
             }else{
-                authErr();
-            }
-            break;
-
-        /*Associer les modules temperatures*/
-
-        case 'link_module_temp':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/link_module_temp.php';
-            } else {
-                authErr();
-            }
-            break;
-
-        /*Associer les modules volets*/
-
-        case 'link_module_shutter':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/link_module_shutter.php';
-            } else {
                 authErr();
             }
             break;

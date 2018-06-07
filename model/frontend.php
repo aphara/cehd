@@ -59,6 +59,31 @@ WHERE id_home=? and effector_type=?');
     return $req2;
 }
 
+function get_sensor_temp($id_home){
+    $db = dbConnect();
+    $req = $db-> prepare ('SELECT 
+`id_sensor`, `sensor_type`, `sensor_name`,`id_room`,`name` 
+FROM room NATURAL JOIN sensor
+WHERE id_home=? and sensor_type=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,'TEMP',PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+function get_effector_temp($id_home){
+    $db =dbConnect();
+    $req2 = $db-> prepare( 'SELECT 
+    `id_effector`,`effector_type`,`effector_name`,`id_room`,`name`
+    FROM room NATURAL JOIN effector
+    WHERE id_home=? and effector_type=?');
+    $req2->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req2->bindValue(2,'TEMP_CTRL',PDO::PARAM_STR);
+    $req2->execute();
+    return $req2;
+
+}
+
 function edit_sensor( $id_sensor, $sensor_type, $sensor_name, $id_room){
     $db=dbConnect();
     $req=$db->prepare('UPDATE sensor SET sensor_name=:name, sensor_type=:type, id_room=:room WHERE id_sensor=:id');
