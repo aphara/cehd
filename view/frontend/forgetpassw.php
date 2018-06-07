@@ -3,16 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <title>CeHD - Mot de passe oublié</title>
-    <link rel="stylesheet" href="public/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/style.css"/>
 </head>
 
 <body>
 
 <div class="all">
-    <img src='public/img/LOGO_login.png' alt='logo' id="img_logo"/>
-    <h1 >Mot de passe oublié</h1>
+    <div class="img_title">
+        <img src='public/img/LOGO_login.png' alt='logo' id="img_logo"/>
+        <h1>Mot de passe oublié</h1>
 
-
+    </div>
     <div class="form">
         <form action="index.php?action=forgetpassw" method="post">
             <p>Veuillez rentrer votre adresse mail</p>
@@ -30,4 +31,3 @@
     </div>
 </div>
 
-</body>

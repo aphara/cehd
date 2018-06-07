@@ -69,7 +69,7 @@ try {
 
 //mdp oublié
         case 'pageforgetpassw':
-            require('view/frontend/pageforgetpassw.php');
+            require('view/frontend/forgetpassw.php');
             break;
 
         case 'forgetpassw':
