@@ -22,7 +22,6 @@
 
     header {
         display: flex;
-
         justify-content: space-between;
         align-items: center;
     }
@@ -313,8 +312,9 @@
     #onglets a:hover {
         background : #fff;
     }
+
     /*Associer lumière*/
-    #associer_lumiere, td, th{
+    .associer_lumiere, td, th{
         border: 2px solid black;
         border-collapse: collapse;
         margin-left: 10px;

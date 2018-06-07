@@ -30,6 +30,7 @@ ob_start(); ?>
             <p>
                 <label for="room">Pièce :</label><br/>
                 <select name="_room" id="room" required>
+                    <option></option>
                     <?php foreach ($req1 as $row => $roomList){ ?>
                         <option value=<?= $roomList['id_room'];?>> <?= $roomList['name'];?></option>
                     <?php }?>

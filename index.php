@@ -69,7 +69,7 @@ try {
 
 //mdp oublié
         case 'pageforgetpassw':
-            require('view/frontend/pageforgetpassw.php');
+            require('view/frontend/forgetpassw.php');
             break;
 
         case 'forgetpassw':
@@ -167,7 +167,7 @@ try {
                 if (isset($_GET['id'])){
                     $_SESSION['target_sensor'] = $_GET['id'];
                     $sensor = getSensorDetail($_SESSION['target_sensor']);
-                    $req1 = getRoom(htmlspecialchars($_SESSION['target_sensor']));
+                    $req1 = getRoom(htmlspecialchars($_SESSION['id']));
                     require 'view/frontend/edit_sensor.php';
                 }
 
@@ -206,7 +206,7 @@ try {
                 if (isset($_GET['id'])){
                     $_SESSION['target_effector'] = $_GET['id'];
                     $effector = getEffectorDetail($_SESSION['target_effector']);
-                    $req1 = getRoom(htmlspecialchars($_SESSION['target_effector']));
+                    $req1 = getRoom(htmlspecialchars($_SESSION['id']));
                     require 'view/frontend/edit_effector.php';
                 }
 

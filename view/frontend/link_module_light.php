@@ -3,7 +3,7 @@ $title = 'CeHD - Associer modules - Lumières';
 ob_start(); ?>
 
 <h1>Associer de la lumière maison de <?= htmlspecialchars($_SESSION['name']) ?></h1>
-<table id="associer_lumiere">
+<table class="associer_lumiere" id="tab_id">
     <tr>
         <th>Nom Capteur</th>
         <th>Pièce Asocciée</th>
@@ -23,7 +23,7 @@ ob_start(); ?>
 
 <br>
 
-<table id="associer_lumiere">
+<table class="associer_lumiere" id="tab_id">
     <tr>
         <th>Nom Actionneur</th>
         <th>Pièce Asocciée</th>
@@ -36,7 +36,7 @@ ob_start(); ?>
         <tr>
             <td><?= $donnees1['effector_name'];?></td>
             <td><?= $donnees1['name'];?></td>
-            <td><a href="index.php?action=edit_effector_form&id<?=$donnees1['id_effector'];?>"><button>Modifier</button></a></td>
+            <td><a href="index.php?action=edit_effector_form&id=<?=$donnees1['id_effector'];?>"><button>Modifier</button></a></td>
         </tr>
     <?php } ?>
 </table>
