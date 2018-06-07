@@ -23,15 +23,6 @@
                        autofocus required>
             </div>
 
-<div class="form">
-    <form action="index.php?action=forgetpassw" method="post">
-        <p>Veuillez rentrez votre adresse mail</p>
-        <div>
-            <input type="email" placeholder="Adresse email" id="mail_forgetpassw" name="mail_forgetpassw" value=""
-                   autofocus required>
-        </div>
-
-
         <hr>
 
         <input type="submit" placeholder="Envoyer" id="envoyer_forgetpassw" name="envoyer_forgetpassw">
