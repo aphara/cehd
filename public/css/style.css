@@ -411,12 +411,15 @@
     #dropdown-content {
         display: none;
     }
+
     #sidebar {
         margin-right: -1%;
     }
+
     #dropdown:hover #dropdown-content {
         display: block;
     }
+
     dropdown-content a {
         font-size: 1.1em;
         line-height: 230%;
@@ -431,7 +434,7 @@
         background-color: #f0f5ef;
         min-width: 85%;
         min-height: 100%;
-        }
+    }
 
     /*FOOTER*/
     footer {
@@ -660,6 +663,7 @@
     }
 
     #onglets a:hover {
+
         background: #fff;
     }
     /*Associer lumière*/
@@ -667,5 +671,18 @@
         border: 1px solid black;
         border-collapse: collapse;
         margin-left: 10px;
+    }
+
+    /*Stat Generales*/
+    #consommation {
+
+    }
+
+    #global_chart {
+
+    }
+
+    #consommation_instantanee {
+
     }
 }
