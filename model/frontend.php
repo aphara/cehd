@@ -35,7 +35,7 @@ function insertPassword($password,$mail){
 
 
 
-function dbConnect()
+function dbConnectA()
 {
     try
     {
@@ -48,7 +48,7 @@ function dbConnect()
     }
 }
 
-function dbConnectA()
+function dbConnect()
 {
     try
     {
@@ -61,39 +61,91 @@ function dbConnectA()
     }
 }
 
-
+// fonction update
 function user_update($categorie, $user_new, $id_session)
+      {
+      //  var_dump($user_new);
+      //  var_dump($id_session);
+         $db=dbConnect();
+       //$db=dbConnectA();
+
+        $req=$db->prepare('UPDATE user SET ' . $categorie . ' =? WHERE id_user=?');
+        //var_dump($categorie);
+        //$req->bindValue(1,$categorie,PDO::PARAM_STR);
+        //$req->bindValue(2,$user_new,PDO::PARAM_STR);
+        //$req->bindValue(3,$id_session,PDO::PARAM_STR);
+        //$req->execute(array('categorie'=>$categorie,'user_new'=>$user_new,'id'=>$id_session));
+          $req->execute(array($user_new,$id_session));
+          //var_dump($req);
+        }
+
+function user_update_first_name( $user_new,$id_session)
+      {
+         $db=dbConnect();
+       //$db=dbConnectA();
+        $req=$db->prepare('UPDATE user SET first_name=? WHERE id_user=?');
+        $test=$req->execute(array($user_new, $id_session));
+        }
+
+function user_update_last_name( $user_new,$id_session)
+      {
+         $db=dbConnect();
+       //$db=dbConnectA();
+        $req=$db->prepare('UPDATE user SET last_name=? WHERE id_user=?');
+        $test=$req->execute(array($user_new, $id_session));
+        }
+
+function user_update_date_of_birth( $user_new,$id_session)
+      {
+         $db=dbConnect();
+       //$db=dbConnectA();
+        $req=$db->prepare('UPDATE user SET date_of_birth=? WHERE id_user=?');
+        $test=$req->execute(array($user_new, $id_session));
+        }
+
+function user_update_phone_number( $user_new,$id_session)
+      {
+         $db=dbConnect();
+       //$db=dbConnectA();
+        $req=$db->prepare('UPDATE user SET phone=? WHERE id_user=?');
+        $test=$req->execute(array($user_new, $id_session));
+        }
+
+function user_update_mail( $user_new,$id_session)
+      {
+         $db=dbConnect();
+       //$db=dbConnectA();
+        $req=$db->prepare('UPDATE user SET mail=? WHERE id_user=?');
+        $test=$req->execute(array($user_new, $id_session));
+        }
+
+function user_update_password($user_new,$id_session)
+      {
+        $db=dbConnect();
+      //$db=dbConnectA();
+       $req=$db->prepare('UPDATE user SET password=? WHERE id_user=?');
+       $test=$req->execute(array($user_new, $id_session));
+      }
+
+//function check_all_mail($mail)
+//      {
+//        $db=dbConnect();
+//        //$db=dbConnectA();
+//        $req= $db->prepare('SELECT mail FROM user ');
+//        $req->execute();
+//        while ($donnees = $reponse->fetch()){
+//        $post=$req->fetch();
+//        if()
+//      }
+//        return $post;
+//      }
+
+function get_user_info($id_session)
 {
-    $db=dbConnect();
-// $db=dbConnectA();
-    $req->prepare('update :categorie set user = :user_new where id_user= :id_session');
-    $req->bindValue('categorie',$categorie,PDO::PARAM_STR);
-    $req->bindValue('user_new',$user_new,PDO::PARAM_STR);
-    $req->bindValue('$id_session',$id_session,PDO::PARAM_int);
-    $test=$db->query($req1);
-  // return ("your ". string($categorie) . " has been changed with success!");
+  $db=dbConnect();
+  //$db=dbConnectA();
+  $req= $db->prepare('SELECT * FROM user WHERE id_user= ?');
+  $req->execute(array($id_session));
+  $post=$req->fetch();
+  return $post;
 }
-
-/*function get_user_info($categorie, $id_session)
-{
-    $db=dbConnect();
-    //$db=dbConnectA();
-    $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
-    $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
-    $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
-    $req->execute(array($res));
-    $post=$req->fetch();
-    //return $post;
-}*/
-
-
-// function phrase($str)
-// {
-//   $string=(string)$str
-//   $newstring= str_replace("_"," ",$string);
-//   return $newstring;
-// }
-
-
-
-

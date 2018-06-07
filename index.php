@@ -184,50 +184,56 @@ try {
 
         case 'setting':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require'view/frontend/setting.php';
+                $resultat=get_user_info($_SESSION['id']);
+                require 'view/frontend/setting.php';
             }
             else {
                 authErr();}
             break;
 
-        //update pour setting
+//update pour setting
         case 'update_firstname' :
-            Update_Info('first_name',$_POST['_first_name'],$_SESSION['id']);
+            UpdateInfo('first_name',$_POST['_first_name'],$_SESSION['id']);
             $_SESSION['name']=$_POST['_first_name'];
-            echo 'le prenom a ete change avec succes';
-            require ' view/frontend/setting';
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_lastname' :
-            Update_Info('last_name',$_POST['_last_name'],$_SESSION['id']);
+            UpdateInfo('last_name',$_POST['_last_name'],$_SESSION['id']);
             echo 'le nom a ete change avec succes';
-            require ' view/frontend/setting';
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_birthdate' :
-            Update_Info('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
+            UpdateInfo('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
             echo 'la date de naissance a ete changee avec succes';
-            require ' view/frontend/setting';
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_phone_number' :
-            Update_Info('phone_number',$_POST['_phone_number'],$_SESSION['id']);
+            Update_Info('phone',$_POST['_phone_number'],$_SESSION['id']);
             echo 'le numero de telephone a ete change avec succes';
-            require ' view/frontend/setting';
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
+            break;
+
+        case 'update_email' :
+            UpdateMail($_POST['_mail'],$_SESSION['id']);
+            $_SESSION['mail']=$_POST['_mail'];
+            echo 'mail change avec succes';
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_password' :
-            update_password($_SESSION['id'],$_SESSION['_mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
-            echo 'password change avec succes';
-            require 'view/front/setting';
+            UpdatePassword($_SESSION['id'],$_SESSION['mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
-        case 'update_e-mail' :
-            Update_Info('mail',$_POST['_mail'],$_SESSION['id']);
-            $_SESSION['mail']=$_POST['_mail'];
-            echo 'mail change avec succes';
-            require 'view/front/setting';
-            break;
 
 //Liens footer
         case 'contact':
