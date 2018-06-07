@@ -2,7 +2,9 @@
 require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
 require_once 'controller/mail.php';
+require_once 'controller/mailforgetpassw.php';
 require_once 'controller/user.php';
+require_once 'controller/requestpasserelle.php';
 @session_start();
 
 try {
@@ -26,7 +28,9 @@ try {
             } else {
                 break;
             }
-
+        case 'test':
+            recupdonneebrut();
+            break;
 //Premiere connexion
         case 'firstlog':
             require('view/frontend/firstlog.php');
@@ -106,6 +110,7 @@ try {
             break;
 
         /*Gestion des Modules*/
+
         case 'module_light':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/module_light.php';
@@ -134,9 +139,120 @@ try {
             break;
 
         /*Associer un module*/
+
         case 'link_module':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/link_module.php';
+                require 'view/frontend/link_module_light.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        /*Associer les modules light*/
+
+        case 'link_module_light':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                    $req=getSensorLight(htmlspecialchars($_SESSION['id']));
+                    $req2=getEffectorLight(htmlspecialchars($_SESSION['id']));
+                    require 'view/frontend/link_module_light.php';
+            }else{
+                authErr();
+            }
+            break;
+
+        /*Modifier les capteurs*/
+
+        case 'edit_sensor_form':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_GET['id'])){
+                    $_SESSION['target_sensor'] = $_GET['id'];
+                    $sensor = getSensorDetail($_SESSION['target_sensor']);
+                    $req1 = getRoom(htmlspecialchars($_SESSION['id']));
+                    require 'view/frontend/edit_sensor.php';
+                }
+
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'edit_sensor':
+            if ($_SESSION['status']== 'USER' || $_SESSION['status']== 'SUPER_USER') {
+                if(isset($_SESSION['target_sensor'])){
+                    if (isset($_SESSION['target_home'])){
+                        if ($_POST['_name']== $_SESSION['sensor_name']){
+                            editSensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            header("location:index.php?action=link_module_light");
+                        } elseif ($_SESSION['sensor_name'] != $_POST['_name']&& checkSensorName($_POST['_name'])){
+                            editSensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            header("location:index.php?action=link_module_light");
+                        }else{
+                            echo 'ce nom est déjà attribué!';
+                        }
+                    }
+                unset($_SESSION['sensor_name']);
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        /*Modifier les actionneurs*/
+
+        case 'edit_effector_form':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_GET['id'])){
+                    $_SESSION['target_effector'] = $_GET['id'];
+                    $effector = getEffectorDetail($_SESSION['target_effector']);
+                    $req1 = getRoom(htmlspecialchars($_SESSION['id']));
+                    require 'view/frontend/edit_effector.php';
+                }
+
+            }else{
+                authErr();
+            }
+            break;
+
+        case 'edit_effector':
+            if ($_SESSION['status']== 'USER' || $_SESSION['status']== 'SUPER_USER') {
+                if(isset($_SESSION['target_effector'])){
+                    if (isset($_SESSION['target_home'])){
+                        if ($_POST['_name']== $_SESSION['sensor_name']){
+                            editEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            header("location:index.php?action=link_module_light");
+                        } elseif ($_SESSION['effector_name'] != $_POST['_name']&& checkEffectorName($_POST['_name'])){
+                            editEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
+                                htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
+                            header("location:index.php?action=link_module_light");
+                        }else{
+                            echo 'ce nom est déjà attribué!';
+                        }
+                    }
+                    unset($_SESSION['effector_name']);
+                }
+            }else{
+                authErr();
+            }
+            break;
+
+        /*Associer les modules temperatures*/
+
+        case 'link_module_temp':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/link_module_temp.php';
+            } else {
+                authErr();
+            }
+            break;
+
+        /*Associer les modules volets*/
+
+        case 'link_module_shutter':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                require 'view/frontend/link_module_shutter.php';
             } else {
                 authErr();
             }
@@ -316,7 +432,6 @@ try {
                 addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                     $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
-                sendmail_bienvenue($_POST['_mail']);
                 require 'view/backend/add_client.php';
             } else {
                 authErr();

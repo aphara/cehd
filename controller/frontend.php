@@ -54,6 +54,28 @@ function passwordHash($password,$mail){
     insertPassword($hashedPassword,$mail);
 
 }
+function getSensorLight($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_sensor_light($_SESSION['target_home']);
+
+    return $req;
+}
+
+function editSensor ( $id_sensor, $sensor_type, $sensor_name, $id_room){
+    edit_sensor($id_sensor, $sensor_type, $sensor_name, $id_room);
+}
+
+function getEffectorLight($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req2=get_effector_light($_SESSION['target_home']);
+    return $req2;
+}
+
+function editEffector($id_effector, $effector_type, $effector_name, $id_room){
+    edit_effector($id_effector, $effector_type, $effector_name, $id_room);
+}
 
 function Update_Info($_categorie,$user_new,$id_session){
   $oldinfo=get_user_info($_categorie,$id_session);

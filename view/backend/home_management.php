@@ -20,9 +20,17 @@ ob_start(); ?>
         </ul>
     </nav>
     </div>
+
     <div class="content_content">
+        <div class="add_button">
+            <h3>Ajouter une pièce</h3>
+            <form action="index.php?action=add_room_form" method="post">
+                <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+            </form>
+        </div>
+
         <div class="ref_table">
-            <table>
+            <table id="table_id">
                 <thead>
                 <tr>
                     <th>Pièce</th>
@@ -44,11 +52,8 @@ ob_start(); ?>
                     <?php
                 }
                 ?>
-                <tr>
-                    <td colspan="4">
-                        <a href="index.php?action=add_room_form">Ajouter une pièce</a>
-                    </td>
-                </tr>
+
+                </tbody>
         </div>
     </div>
 </div>

@@ -21,8 +21,15 @@ ob_start(); ?>
         </nav>
     </div>
     <div class="content_content">
+        <div class="add_button">
+            <h3>Ajouter un capteur</h3>
+            <form action="index.php?action=add_sensor_form" method="post">
+                <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+            </form>
+        </div>
+
         <div class="ref_table">
-            <table id="tab_sensor">
+            <table id="table_id" class="tab_sensor">
                 <thead>
                 <tr>
                     <th>Référence</th>
@@ -46,15 +53,24 @@ ob_start(); ?>
                     <?php
                 }
                 ?>
-                <tr>
-                    <td colspan="5">
-                        <a href="index.php?action=add_sensor_form">Ajouter un capteur</a>
-                    </td>
-                </tr>
+                </tbody>
         </div>
 
+        <div class="add_button">
+            <h3>Ajouter un actionneur</h3>
+            <form action="index.php?action=add_effector_form" method="post">
+                <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+            </form>
+        </div>
+
+        <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table_id2').DataTable();
+        } );
+        </script>
+
         <div class="ref_table">
-            <table id="tab_effector">
+            <table id="table_id2" class="tab_effector">
                 <thead>
                 <tr>
                     <th>Référence</th>
@@ -78,11 +94,7 @@ ob_start(); ?>
                     <?php
                 }
                 ?>
-                <tr>
-                    <td colspan="5">
-                        <a href="index.php?action=add_effector_form">Ajouter un actionneur</a>
-                    </td>
-                </tr>
+                </tbody>
         </div>
     </div>
 </div>
