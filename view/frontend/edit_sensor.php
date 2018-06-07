@@ -2,10 +2,10 @@
 @session_start();
 ob_start(); ?>
 
-    <form action="index.php?action=modify_sensor" method="post">
+    <form action="index.php?action=edit_sensor" method="post">
         <fieldset>
             <legend>Modifier capteur</legend>
-            <?php while($req=$sensor->fetch()){ ?>
+            <?php while($req = $sensor->fetch()){ ?>
 
                 <p>
                     Numéro de série :<br/>
@@ -14,7 +14,7 @@ ob_start(); ?>
                 <?php $_SESSION['sensor_name']=$req['sensor_name'];?>
                 <p>
                     <label for="add_name">Nom :</label><br/>
-                    <input type="text" placeholder="Nom" id="add_name" name="_name" value="<?= $_SESSION['sensor_name'];?>" required/>
+                    <input type="text" placeholder="Nom" id="add_name" name="_name" value="<?= $req['sensor_name'];?>" required/>
                 </p>
 
                 <p>
@@ -37,7 +37,6 @@ ob_start(); ?>
 
                 </select>
             </p>
-
             <p>
                 <input type="submit" value="Modifier capteur"/>
             </p>
@@ -45,4 +44,4 @@ ob_start(); ?>
     </form>
 
 <?php $content = ob_get_clean();
-require 'template_back.php'; ?>
+require 'template.php'; ?>
