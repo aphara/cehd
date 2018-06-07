@@ -2,13 +2,22 @@
 $title = 'CeHD - Associer modules - Lumières';
 ob_start(); ?>
 
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table_id2').DataTable();
+        } );
+    </script>
+
 <h1>Associer de la lumière maison de <?= htmlspecialchars($_SESSION['name']) ?></h1>
-<table class="associer_lumiere" id="tab_id">
+<table class="associer_lumiere" id="table_id">
+    <thead>
     <tr>
         <th>Nom Capteur</th>
         <th>Pièce Asocciée</th>
         <th>Modifier</th>
     </tr>
+    </thead>
+    <tbody>
     <?php
 
     while ($donnees = $req->fetch()) {
@@ -19,16 +28,20 @@ ob_start(); ?>
             <td><a href="index.php?action=edit_sensor_form&id=<?=$donnees['id_sensor'];?>"><button>Modifier</button></a></td>
         </tr>
     <?php } ?>
+    </tbody>
 </table>
 
 <br>
 
-<table class="associer_lumiere" id="tab_id">
+<table class="associer_lumiere" id="table_id2">
+    <thead>
     <tr>
         <th>Nom Actionneur</th>
         <th>Pièce Asocciée</th>
         <th>Modifier</th>
     </tr>
+    </thead>
+    <tbody>
     <?php
 
     while ($donnees1 = $req2->fetch()) {
@@ -39,6 +52,7 @@ ob_start(); ?>
             <td><a href="index.php?action=edit_effector_form&id=<?=$donnees1['id_effector'];?>"><button>Modifier</button></a></td>
         </tr>
     <?php } ?>
+    </tbody>
 </table>
 
 <?php $content_link = ob_get_clean(); ?>
