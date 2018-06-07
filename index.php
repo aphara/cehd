@@ -3,6 +3,7 @@ require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
 require_once 'controller/mail.php';
 require_once 'controller/user.php';
+require_once 'controller/requestpasserelle.php';
 @session_start();
 
 try {
@@ -26,7 +27,9 @@ try {
             } else {
                 break;
             }
-
+        case 'test':
+            recupdonneebrut();
+            break;
 //Premiere connexion
         case 'firstlog':
             require('view/frontend/firstlog.php');
