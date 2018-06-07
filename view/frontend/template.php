@@ -39,18 +39,26 @@
                 <a href="index.php?action=logout"><img src='public/img/sign_out.png' onmouseover="this.src='public/img/sign_out_2.png'" onmouseout="this.src='public/img/sign_out.png'" alt='signout' /></a>
             </div>
     </header>
+    <script type="text/javascript">
+        function dropdown_content() {
+            if (document.getElementById("dropdown-content").style.display == "none")
+                document.getElementById("dropdown-content").style.display = "block";
+            else
+                document.getElementById("dropdown-content").style.display = "none";
+        }
+    </script>
 
     <div id='nav_content'>
         <nav id='sidebar'>
-
             <ul>
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
-                <li id='dropdown'><a href="index.php?action=home_manage">Gestion Maison</a>
-                    <div id="dropdown-content">
-                        <a href="index.php?action=module_light">gestion modules</a>
-                        <a href="index.php?action=link_module">associer modules</a>
-                        <a href="index.php?action=programs">programmes</a>
-                    </div>
+                <li id='dropdown'>
+                    <a href="index.php?action=home_manage" onclick="dropdown_content();">Gestion Maison</a>
+                    <ul id="dropdown-content">
+                        <li><a href="index.php?action=module_light">gestion modules</a></li>
+                        <li><a href="index.php?action=link_module_light">associer modules</a></li>
+                        <li><a href="index.php?action=programs">programmes</a></li>
+                    </ul>
                 </li>
 
                 <?php if ($_SESSION['status']=='SUPER_USER'){ ?>
