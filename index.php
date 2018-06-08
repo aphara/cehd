@@ -344,21 +344,18 @@ try {
 
         case 'update_lastname' :
             UpdateInfo('last_name',$_POST['_last_name'],$_SESSION['id']);
-            echo 'le nom a ete change avec succes';
             $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
         case 'update_birthdate' :
             UpdateInfo('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
-            echo 'la date de naissance a ete changee avec succes';
             $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
         case 'update_phone_number' :
             UpdateInfo('phone',$_POST['_phone_number'],$_SESSION['id']);
-            echo 'le numero de telephone a ete change avec succes';
             $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
