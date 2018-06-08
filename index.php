@@ -28,9 +28,7 @@ try {
             } else {
                 break;
             }
-        case 'test':
-            recupdonneebrut();
-            break;
+
 //Premiere connexion
         case 'firstlog':
             require('view/frontend/firstlog.php');
@@ -41,12 +39,23 @@ try {
             $test = checkMail($_POST['_mail']);
             if ($test == true) {
                 $_SESSION['mail'] = $_POST['_mail'];
-                require 'view/frontend/firstlog_password.php';
+                require 'view/frontend/firstlog_cgu.php';
             } else {
                 echo 'Ce compte utilisateur est déjà existant ou n\'existe pas';
                 require 'view/frontend/firstlog.php';
             }
             break;
+        case 'firstlog_cgu':
+            if (isset($_SESSION['mail'])){
+                if (isset($_POST['acceptcgu'])){
+                    require 'view/frontend/firstlog_password.php';
+                }else{
+                    echo 'Vous n\'avez pas accepté les CGU.';
+                    require 'view/frontend/firstlog_cgu.php';
+                }
+            }
+            break;
+
         /*test l'existence du password et si non encrypte le password défini par l'utilisateur
         et l'ajoute à la db*/
         case 'firstlog_password':
@@ -107,6 +116,10 @@ try {
             } else {
                 authErr();
             }
+            break;
+
+        case 'test':
+            recupdonneebrut();
             break;
 
         /*Gestion des Modules*/
@@ -395,17 +408,20 @@ try {
                 authErr();
             }
             break;
+        case 'cgu_public':
+            require 'view/frontend/cgu_public.php';
+            break;
 
         /*page d'aide*/
-        case 'aide':
+        case 'help':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-
-
-                require 'view/frontend/pageAide.php';
-
+                require 'view/frontend/help.php';
             }else{
                 authErr();
             }
+            break;
+        case 'help_public':
+            require 'view/frontend/help_public.php';
             break;
 
 //backend
