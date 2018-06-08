@@ -7,12 +7,13 @@ function recupdonneebrut()
     curl_setopt(
         $ch,
         CURLOPT_URL,
-        "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=T10D");
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=G10D");
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
     curl_close($ch);
-
+    echo "Raw Data:<br />";
+    echo("$data");
 
     $data_tab = str_split($data, 33);
     echo "Tabular Data:<br />";
