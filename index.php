@@ -363,7 +363,6 @@ try {
         case 'update_email' :
             UpdateMail($_POST['_mail'],$_SESSION['id']);
             $_SESSION['mail']=$_POST['_mail'];
-            echo 'mail change avec succes';
             $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;

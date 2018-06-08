@@ -103,7 +103,7 @@ function UpdateMail( $user_new,$id_session){
     $oldinfo=get_user_info($id_session);
    if($oldinfo['mail']==$user_new){
     echo "on ne peut mettre les meme donnees";
-  }elseif (checkMail($user_new)==false) {
+  }elseif (checkMail($user_new)==true) {
     echo "ceci n'est pas un mail";
   } else{
     user_update_mail( $user_new,$id_session);
