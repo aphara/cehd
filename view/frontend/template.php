@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
-    <link href="public/css/style.css" rel="stylesheet" />
+    <!--<link href="public/css/style.css" rel="stylesheet" />-->
+<link href="public/css/style.css" rel="stylesheet" />
+  <!-- <link href="public/css/stylesetting.css" rel="stylesheet" />-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -41,7 +43,7 @@
     </header>
     <script type="text/javascript">
         function dropdown_content() {
-            if (document.getElementById("dropdown-content").style.display == "none")
+            if (document.ge tElementById("dropdown-content").style.display == "none")
                 document.getElementById("dropdown-content").style.display = "block";
             else
                 document.getElementById("dropdown-content").style.display = "none";
@@ -67,8 +69,7 @@
                 <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>
-        <div id='content'>
-            <?= $content ?>
+        <div id="content"><?= $content ?>
         </div>
     </div>
 

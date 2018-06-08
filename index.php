@@ -2,7 +2,6 @@
 require_once 'controller/frontend.php';
 require_once 'controller/backend.php';
 require_once 'controller/mail.php';
-require_once 'controller/mailforgetpassw.php';
 require_once 'controller/user.php';
 require_once 'controller/data.php';
 @session_start();
@@ -46,10 +45,10 @@ try {
             }
             break;
         case 'firstlog_cgu':
-            if (isset($_SESSION['mail'])){
-                if (isset($_POST['acceptcgu'])){
+            if (isset($_SESSION['mail'])) {
+                if (isset($_POST['acceptcgu'])) {
                     require 'view/frontend/firstlog_password.php';
-                }else{
+                } else {
                     echo 'Vous n\'avez pas accepté les CGU.';
                     require 'view/frontend/firstlog_cgu.php';
                 }
@@ -83,16 +82,15 @@ try {
 
         case 'forgetpassw':
             $test = checkMail($_POST['mail_forgetpassw']);
-            if ($test == true ) {
+            if ($test == true) {
                 echo 'Un lien de mot de passe a été envoyé par nos équipes ! ';
-                $_SESSION['chaine'] =genererChaineAleatoire(20,'abcdefghijklmnopqrstuvwxyz123456789*/#&');
-                passwordHash($_SESSION['chaine'],$_POST['mail_forgetpassw']);
+                $_SESSION['chaine'] = genererChaineAleatoire(20, 'abcdefghijklmnopqrstuvwxyz123456789*/#&');
+                passwordHash($_SESSION['chaine'], $_POST['mail_forgetpassw']);
                 //die(var_dump($_GLOBAL['chaine']));
-                sendmail_forgetpassw($_POST['mail_forgetpassw'],$_SESSION['chaine']);
+                sendmail_forgetpassw($_POST['mail_forgetpassw'], $_SESSION['chaine']);
                 unset($_SESSION['chaine']);
                 require 'view/frontend/login_view.php';
-            }
-            else{
+            } else {
                 echo "Une erreur est survenue";
                 require 'view/frontend/login_view.php';
             }
@@ -127,8 +125,7 @@ try {
         case 'module_light':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/module_light.php';
-            }
-            else {
+            } else {
                 authErr();
             }
             break;
@@ -136,8 +133,7 @@ try {
         case 'module_shutter':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/module_shutter.php';
-            }
-            else {
+            } else {
                 authErr();
             }
             break;
@@ -145,8 +141,7 @@ try {
         case 'module_temp':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/module_temp.php';
-            }
-            else {
+            } else {
                 authErr();
             }
             break;
@@ -165,10 +160,10 @@ try {
 
         case 'link_module_light':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                    $req=getSensorLight(htmlspecialchars($_SESSION['id']));
-                    $req2=getEffectorLight(htmlspecialchars($_SESSION['id']));
-                    require 'view/frontend/link_module_light.php';
-            }else{
+                $req = getSensorLight(htmlspecialchars($_SESSION['id']));
+                $req2 = getEffectorLight(htmlspecialchars($_SESSION['id']));
+                require 'view/frontend/link_module_light.php';
+            } else {
                 authErr();
             }
             break;
@@ -177,8 +172,8 @@ try {
 
         case 'link_module_temp':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                $req=getSensorTemp(htmlspecialchars($_SESSION['id']));
-                $req2=getEffectorTemp(htmlspecialchars($_SESSION['id']));
+                $req = getSensorTemp(htmlspecialchars($_SESSION['id']));
+                $req2 = getEffectorTemp(htmlspecialchars($_SESSION['id']));
                 require 'view/frontend/link_module_temp.php';
             } else {
                 authErr();
@@ -199,37 +194,37 @@ try {
 
         case 'edit_sensor_form':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                if (isset($_GET['id'])){
+                if (isset($_GET['id'])) {
                     $_SESSION['target_sensor'] = $_GET['id'];
                     $sensor = getSensorDetail($_SESSION['target_sensor']);
                     $req1 = getRoom(htmlspecialchars($_SESSION['id']));
                     require 'view/frontend/edit_sensor.php';
                 }
 
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         case 'edit_sensor':
-            if ($_SESSION['status']== 'USER' || $_SESSION['status']== 'SUPER_USER') {
-                if(isset($_SESSION['target_sensor'])){
-                    if (isset($_SESSION['target_home'])){
-                        if ($_POST['_name']== $_SESSION['sensor_name']){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_SESSION['target_sensor'])) {
+                    if (isset($_SESSION['target_home'])) {
+                        if ($_POST['_name'] == $_SESSION['sensor_name']) {
                             editSensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             header("location:index.php?action=link_module_light");
-                        } elseif ($_SESSION['sensor_name'] != $_POST['_name']&& checkSensorName($_POST['_name'])){
+                        } elseif ($_SESSION['sensor_name'] != $_POST['_name'] && checkSensorName($_POST['_name'])) {
                             editSensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             header("location:index.php?action=link_module_light");
-                        }else{
+                        } else {
                             echo 'ce nom est déjà attribué!';
                         }
                     }
-                unset($_SESSION['sensor_name']);
+                    unset($_SESSION['sensor_name']);
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -238,37 +233,37 @@ try {
 
         case 'edit_effector_form':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                if (isset($_GET['id'])){
+                if (isset($_GET['id'])) {
                     $_SESSION['target_effector'] = $_GET['id'];
                     $effector = getEffectorDetail($_SESSION['target_effector']);
                     $req1 = getRoom(htmlspecialchars($_SESSION['id']));
                     require 'view/frontend/edit_effector.php';
                 }
 
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         case 'edit_effector':
-            if ($_SESSION['status']== 'USER' || $_SESSION['status']== 'SUPER_USER') {
-                if(isset($_SESSION['target_effector'])){
-                    if (isset($_SESSION['target_home'])){
-                        if ($_POST['_name']== $_SESSION['sensor_name']){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_SESSION['target_effector'])) {
+                    if (isset($_SESSION['target_home'])) {
+                        if ($_POST['_name'] == $_SESSION['sensor_name']) {
                             editEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             header("location:index.php?action=link_module_light");
-                        } elseif ($_SESSION['effector_name'] != $_POST['_name']&& checkEffectorName($_POST['_name'])){
+                        } elseif ($_SESSION['effector_name'] != $_POST['_name'] && checkEffectorName($_POST['_name'])) {
                             editEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             header("location:index.php?action=link_module_light");
-                        }else{
+                        } else {
                             echo 'ce nom est déjà attribué!';
                         }
                     }
                     unset($_SESSION['effector_name']);
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -318,59 +313,60 @@ try {
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/global_stats.php';
-            }
-            else {
+            } else {
                 authErr();
             }
             break;
 
         /*Paramètres utilisateur*/
         case 'setting':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
-                require'view/frontend/setting.php';
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $resultat = get_user_info($_SESSION['id']);
+                require 'view/frontend/setting.php';
+            } else {
+                authErr();
             }
-            else {
-                authErr();}
             break;
 
-        //update pour setting
+//update pour setting
         case 'update_firstname' :
-            Update_Info('first_name',$_POST['_first_name'],$_SESSION['id']);
-            $_SESSION['name']=$_POST['_first_name'];
-            echo 'le prenom a ete change avec succes';
-            require ' view/frontend/setting';
+            UpdateInfo('first_name', $_POST['_first_name'], $_SESSION['id']);
+            $_SESSION['name'] = $_POST['_first_name'];
+            $resultat = get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_lastname' :
-            Update_Info('last_name',$_POST['_last_name'],$_SESSION['id']);
-            echo 'le nom a ete change avec succes';
-            require ' view/frontend/setting';
+            UpdateInfo('last_name',$_POST['_last_name'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_birthdate' :
-            Update_Info('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
-            echo 'la date de naissance a ete changee avec succes';
-            require ' view/frontend/setting';
+            UpdateInfo('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_phone_number' :
-            Update_Info('phone_number',$_POST['_phone_number'],$_SESSION['id']);
-            echo 'le numero de telephone a ete change avec succes';
-            require ' view/frontend/setting';
+            UpdateInfo('phone',$_POST['_phone_number'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
+            break;
+
+        case 'update_email' :
+            UpdateMail($_POST['_mail'],$_SESSION['id']);
+            $_SESSION['mail']=$_POST['_mail'];
+            $resultat=get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
         case 'update_password' :
-            update_password($_SESSION['id'],$_SESSION['_mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
-            echo 'password change avec succes';
-            require 'view/front/setting';
+            UpdatePassword($_SESSION['id'], $_SESSION['mail'], $_POST['_old_password'], $_POST['_password'], $_POST['_verifpassword']);
+            $resultat = get_user_info($_SESSION['id']);
+            require 'view/frontend/setting.php';
             break;
 
-        case 'update_e-mail' :
-            Update_Info('mail',$_POST['_mail'],$_SESSION['id']);
-            $_SESSION['mail']=$_POST['_mail'];
-            echo 'mail change avec succes';
-            require 'view/front/setting';
-            break;
 
 //Liens footer
         case 'contact':
@@ -380,16 +376,26 @@ try {
                 authErr();
             }
             break;
+        case'contact_public':
+            require 'view/frontend/contact_public.php';
 
+            break;
+        case 'sendmail_public':
+          //  if (isset ($_POST['message_contact_public']) AND !empty($_POST['message_contact_public']) AND!empty($_POST['mail_public']) AND isset($_POST['mail_public']) AND isset($_POST['object_contact_public']) AND !empty ($_POST['message_contact_public'])) {
+                sendmail_public($_POST['message_contact_public'], $_POST['object_contact_public'], $_POST['mail_public']);
+                echo 'Message envoyé !';
+                require 'view/frontend/login_view.php';
+          //  }
+            break;
         /*Fonction d'envoi de mail au SAV*/
         case 'sendmail' :
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 if (isset ($_POST['message_contact']) AND !empty($_POST['message_contact']) AND isset($_POST['object_contact']) AND !empty ($_POST['message_contact'])) {
-                    sendmail($_POST['message_contact'],$_POST['object_contact']);
-                    echo 'Message envoyé !';
+                    sendmail($_POST['message_contact'], $_POST['object_contact']);
+
                     require 'view/frontend/contact.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -408,9 +414,9 @@ try {
 
         /*page d'aide*/
         case 'help':
-            if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/help.php';
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -438,7 +444,7 @@ try {
         case 'add_client_form':
             if ($_SESSION['status'] == 'ADMIN') {
                 require 'view/backend/add_client.php';
-            }else{
+            } else {
                 authErr();
             }
 
@@ -450,6 +456,7 @@ try {
                 addClient($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                     $_POST['_date_of_birth'], $_POST['_phone'], $_POST['_home_type'],
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
+                sendmail_bienvenue($_POST['_mail']);
                 require 'view/backend/add_client.php';
             } else {
                 authErr();
@@ -486,9 +493,9 @@ try {
         /*ajout d'un utilisateur
         -formulaire*/
         case 'add_user_form':
-            if ($_SESSION['status'] == 'ADMIN'){
+            if ($_SESSION['status'] == 'ADMIN') {
                 require 'view/backend/add_user.php';
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -499,10 +506,10 @@ try {
                 if (isset($_SESSION['target_id'])) {
                     addUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                         $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_id']);
-                    $link=$_SESSION['target_id'];
+                    $link = $_SESSION['target_id'];
                     header("Location:index.php?action=user_management&id=$link");
                 }
-            }else {
+            } else {
                 authErr();
             }
             break;
@@ -516,13 +523,13 @@ try {
                     $user = getUserDetail($_SESSION['target_user']);
                     require 'view/backend/modify_user.php';
                 }
-            }elseif ($_SESSION['status'] == 'SUPER_USER'){
+            } elseif ($_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_GET['id'])) {
                     $_SESSION['target_user'] = $_GET['id'];
                     $user = getUserDetail($_SESSION['target_user']);
                     require 'view/frontend/modify_user.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -536,7 +543,7 @@ try {
                     //modification des permissions à ajouter
                     header("Location:index.php?action=user_manage");
                 }
-            }else {
+            } else {
                 authErr();
             }
             break;
@@ -547,26 +554,26 @@ try {
                 if (isset($_SESSION['target_user'])) {
                     modifyUser($_POST['_mail'], $_POST['_firstname'], $_POST['_lastname'],
                         $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['target_user']);
-                    $link=$_SESSION['target_id'];
+                    $link = $_SESSION['target_id'];
                     header("Location:index.php?action=user_management&id=$link");
                 }
-            }else {
+            } else {
                 authErr();
             }
             break;
 
         /*Gestion de la maison*/
         case 'home_management':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_id']=$_GET['id'];
-                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_id'] = $_GET['id'];
+                    $req = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/home_management.php';
-                }elseif(isset($_SESSION['target_id'])){
-                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+                } elseif (isset($_SESSION['target_id'])) {
+                    $req = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/home_management.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -574,11 +581,11 @@ try {
         /*Ajout de pièce
         -formulaire*/
         case 'add_room_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_home'])){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
                     require 'view/backend/add_room.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -588,7 +595,7 @@ try {
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_home'])) {
                     addRoom($_POST['_name'], $_POST['_floor'], $_POST['_size'], $_POST['_room_type'], $_SESSION['target_home']);
-                    $link=$_SESSION['target_id'];
+                    $link = $_SESSION['target_id'];
                     header("Location:index.php?action=home_management&id=$link");
                 }
             }
@@ -597,34 +604,34 @@ try {
         /*Modification de pièce
         -formulaire*/
         case 'modify_room_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_room']=$_GET['id'];
-                    $room=getRoomDetail($_SESSION['target_room']);
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_room'] = $_GET['id'];
+                    $room = getRoomDetail($_SESSION['target_room']);
                     require 'view/backend/modify_room.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         /*-bdd*/
         case 'modify_room':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_room'])){
-                    modifyRoom($_SESSION['target_room'],$_POST['_name'],$_POST['_floor'],$_POST['_size'],$_POST['_room_type']);
-                    $link=$_SESSION['target_id'];
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_room'])) {
+                    modifyRoom($_SESSION['target_room'], $_POST['_name'], $_POST['_floor'], $_POST['_size'], $_POST['_room_type']);
+                    $link = $_SESSION['target_id'];
                     header("Location:index.php?action=home_management&id=$link");
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         /*suppression de pièce*/
         case 'delete_room':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if ($_GET['id_room']){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if ($_GET['id_room']) {
                     deleteRoom(htmlspecialchars($_GET['id_room']));
                     header("Location:index.php?action=home_management");
                 }
@@ -633,17 +640,17 @@ try {
 
         /*Gestion des modules (capteurs et actionneurs*/
         case 'module_management':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_id']=$_GET['id'];
-                    $req=getSensor(htmlspecialchars($_SESSION['target_id']));
-                    $req2=getEffector(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_id'] = $_GET['id'];
+                    $req = getSensor(htmlspecialchars($_SESSION['target_id']));
+                    $req2 = getEffector(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/module_management.php';
-                }elseif(isset($_SESSION['target_id'])){
-                    $req=getSensor(htmlspecialchars($_SESSION['target_id']));
+                } elseif (isset($_SESSION['target_id'])) {
+                    $req = getSensor(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/module_management.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -651,12 +658,12 @@ try {
         /*Ajout de capteur
         -formulaire*/
         case 'add_sensor_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_home'])){
-                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
+                    $req = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/add_sensor.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -665,14 +672,13 @@ try {
         case 'add_sensor':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_home'])) {
-                    if (checkIDSensor(htmlspecialchars($_POST['_id']))==true){
-                        if (checkSensorName(htmlspecialchars($_POST['_name']))==true){
+                    if (checkIDSensor(htmlspecialchars($_POST['_id'])) == true) {
+                        if (checkSensorName(htmlspecialchars($_POST['_name'])) == true) {
                             addSensor($_POST['_id'], $_POST['_sensor_type'], $_POST['_name'], $_POST['_room']);
-                            $link=$_SESSION['target_id'];
+                            $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }
-                        else echo 'Ce nom est déjà utilisé !';
-                    }else echo 'Cette référence est déjà utilisée !';
+                        } else echo 'Ce nom est déjà utilisé !';
+                    } else echo 'Cette référence est déjà utilisée !';
                 }
             }
             break;
@@ -680,14 +686,14 @@ try {
         /*Modification de capteur
         -formulaire*/
         case 'modify_sensor_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_sensor']=$_GET['id'];
-                    $sensor=getSensorDetail($_SESSION['target_sensor']);
-                    $req1=getRoom(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_sensor'] = $_GET['id'];
+                    $sensor = getSensorDetail($_SESSION['target_sensor']);
+                    $req1 = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/modify_sensor.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -695,32 +701,32 @@ try {
         /*modification de capteur dans la bdd
         test pour vérifier que chaque nom donné aux capteurs est unique*/
         case 'modify_sensor':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_sensor'])){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_sensor'])) {
                     if (isset($_SESSION['target_home'])) {
-                        if (($_POST['_name']==$_SESSION['sensor_name'])){
+                        if (($_POST['_name'] == $_SESSION['sensor_name'])) {
                             modifySensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }elseif ($_SESSION['sensor_name'] != $_POST['_name'] && checkSensorName($_POST['_name'])) {
+                        } elseif ($_SESSION['sensor_name'] != $_POST['_name'] && checkSensorName($_POST['_name'])) {
                             modifySensor($_SESSION['target_sensor'], htmlspecialchars($_POST['_sensor_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }else echo 'Ce nom est déjà utilisé !';
+                        } else echo 'Ce nom est déjà utilisé !';
                     }
-                unset($_SESSION['sensor_name']);
+                    unset($_SESSION['sensor_name']);
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         /*suppression de capteurs*/
         case 'delete_sensor':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if ($_GET['id_sensor']){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if ($_GET['id_sensor']) {
                     deleteSensor(htmlspecialchars($_GET['id_sensor']));
                     $link = $_SESSION['target_id'];
                     header("Location:index.php?action=module_management&id=$link");
@@ -730,12 +736,12 @@ try {
 
         /*Ajout d'actionneur*/
         case 'add_effector_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_home'])){
-                    $req=getRoom(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_home'])) {
+                    $req = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/add_effector.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -743,14 +749,13 @@ try {
         case 'add_effector':
             if ($_SESSION['status'] == 'ADMIN') {
                 if (isset($_SESSION['target_home'])) {
-                    if (checkIDEffector(htmlspecialchars($_POST['_id']))==true){
-                        if (checkEffectorName(htmlspecialchars($_POST['_name']))==true){
+                    if (checkIDEffector(htmlspecialchars($_POST['_id'])) == true) {
+                        if (checkEffectorName(htmlspecialchars($_POST['_name'])) == true) {
                             addEffector($_POST['_id'], $_POST['_effector_type'], $_POST['_name'], $_POST['_room']);
-                            $link=$_SESSION['target_id'];
+                            $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }
-                        else echo 'Ce nom est déjà utilisé !';
-                    }else echo 'Cette référence est déjà utilisée !';
+                        } else echo 'Ce nom est déjà utilisé !';
+                    } else echo 'Cette référence est déjà utilisée !';
                 }
             }
             break;
@@ -758,14 +763,14 @@ try {
         /*Modification d'actionneur
         -formulaire*/
         case 'modify_effector_form':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $_SESSION['target_effector']=$_GET['id'];
-                    $effector=getEffectorDetail($_SESSION['target_effector']);
-                    $req1=getRoom(htmlspecialchars($_SESSION['target_id']));
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $_SESSION['target_effector'] = $_GET['id'];
+                    $effector = getEffectorDetail($_SESSION['target_effector']);
+                    $req1 = getRoom(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/modify_effector.php';
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
@@ -773,32 +778,32 @@ try {
         /*Modification d'actionneur dans la bdd
         avec test d'unicité du nom*/
         case 'modify_effector':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_SESSION['target_effector'])){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_SESSION['target_effector'])) {
                     if (isset($_SESSION['target_home'])) {
-                        if (($_POST['_name']==$_SESSION['effector_name'])){
+                        if (($_POST['_name'] == $_SESSION['effector_name'])) {
                             modifyEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }elseif ($_SESSION['effector_name'] != $_POST['_name'] && checkEffectorName($_POST['_name'])) {
+                        } elseif ($_SESSION['effector_name'] != $_POST['_name'] && checkEffectorName($_POST['_name'])) {
                             modifyEffector($_SESSION['target_effector'], htmlspecialchars($_POST['_effector_type']),
                                 htmlspecialchars($_POST['_name']), htmlspecialchars($_POST['_room']));
                             $link = $_SESSION['target_id'];
                             header("Location:index.php?action=module_management&id=$link");
-                        }else echo 'Ce nom est déjà utilisé !';
+                        } else echo 'Ce nom est déjà utilisé !';
                     }
                     unset($_SESSION['effector_name']);
                 }
-            }else{
+            } else {
                 authErr();
             }
             break;
 
         /*suppression d'actionneur*/
         case 'delete_effector':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if ($_GET['id_effector']){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if ($_GET['id_effector']) {
                     deleteEffector(htmlspecialchars($_GET['id_effector']));
                     $link = $_SESSION['target_id'];
                     header("Location:index.php?action=module_management&id=$link");
@@ -808,25 +813,25 @@ try {
 
         /*Suppression de client (utilisateurs (users + super user)+ maison (pièces + capteurs))*/
         case 'delete':
-            if ($_SESSION['status'] == 'ADMIN'){
-                if (isset($_GET['id'])){
-                    $req=getStatus(htmlspecialchars($_GET['id']));
-                    if ($req['status']== 'USER'){
+            if ($_SESSION['status'] == 'ADMIN') {
+                if (isset($_GET['id'])) {
+                    $req = getStatus(htmlspecialchars($_GET['id']));
+                    if ($req['status'] == 'USER') {
                         deleteUser(htmlspecialchars($_GET['id']));
                         echo 'utilisateur supprimé';
                         header("Location:index.php?action=homeb");
-                    }elseif ($req['status']=='SUPER_USER'){
+                    } elseif ($req['status'] == 'SUPER_USER') {
                         deleteHome(htmlspecialchars($_GET['id']));
                         echo 'utilisateur supprimé';
                         header("Location:index.php?action=homeb");
-                    }else{
+                    } else {
                         header("Location:index.php?action=homeb");
                     }
-                }else{
+                } else {
                     header("Location:index.php?action=homeb");
                 }
-            /*suppression d'utilisateur via le frontoffice*/
-            }elseif ($_SESSION['status']== 'SUPER_USER') {
+                /*suppression d'utilisateur via le frontoffice*/
+            } elseif ($_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_GET['id'])) {
                     deleteUser(htmlspecialchars($_GET['id']));
                     echo 'utilisateur supprimé';

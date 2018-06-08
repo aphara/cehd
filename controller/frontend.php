@@ -14,8 +14,6 @@ function login($_mail, $_password)
         $_SESSION['name'] = $result['first_name'];
         $_SESSION['status'] = $result['status'];
         $_SESSION['mail'] = $_mail;
-        $home = get_id_home($_SESSION['id']);
-        $_SESSION['id_home'] = $home[0];
     } else {
         echo 'Mauvais identifiant ou mot de passe !';
         require 'view/frontend/login_view.php';
@@ -48,6 +46,7 @@ function isPasswordSet($mail)
         return true;
     }
 }
+
 
 function passwordHash($password,$mail){
     $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
@@ -89,31 +88,42 @@ function editEffector($id_effector, $effector_type, $effector_name, $id_room){
     edit_effector($id_effector, $effector_type, $effector_name, $id_room);
 }
 
-function Update_Info($_categorie,$user_new,$id_session){
-  $oldinfo=get_user_info($_categorie,$id_session);
-  if($oldinfo==$user_new){
-    return "on ne peut mettre les meme donnees";
-  }else{
-    return user_update($_categorie, $user_new,$id_session);
+function UpdateInfo($categorie,$user_new,$id_session){
+    $oldinfo=get_user_info($id_session);
+    if($oldinfo[$categorie]==$user_new){
+        echo "on ne peut mettre les meme donnees";
+    } else{
+        user_update($categorie,$user_new,$id_session);
+        echo "l'information a ete change avec succes";
+    }
+}
+
+
+function UpdateMail( $user_new,$id_session){
+    $oldinfo=get_user_info($id_session);
+   if($oldinfo['mail']==$user_new){
+    echo "on ne peut mettre les meme donnees";
+  }elseif (checkMail($user_new)==true) {
+    echo "ceci n'est pas un mail";
+  } else{
+    user_update_mail( $user_new,$id_session);
+      echo 'le mail a ete change avec succes';
   }
 }
 
-//function checkpassword($_mail,$_password){
-//      //password hash check
-//      $result=getPassword($_mail);
-//      $isPasswordCorrect = password_verify($_password,$result['password']);
-//      else {
-//          echo 'mot de passe incorrect!';
-//          require 'view/frontend/setting.php';
-//      }
-//  }
 
-//function update_password($id_session,$_mail,$_old_password,$_new_password,$_new_password_2){
-//    checkpassword($_mail,$_old_password);
-//    if ($_new_password===$_new_password_2){
-//    user_update("password",$_new_password,$id_session);
-//  }else{
-//    echo 'les mots de passe ne sont pas identiques'
-//    require 'view/frontend/setting.php';
-//  }
-//}
+function UpdatePassword($id_session,$_mail,$_old_password,$_new_password,$_new_password_2){
+      $result=get_password($_mail);
+      $isPasswordCorrect = password_verify($_old_password,$result['password']);
+      if ($isPasswordCorrect) {
+        if ($_new_password===$_new_password_2){
+            passwordHash($_new_password,$_mail);
+            echo 'mot de passe change avec succes';
+        }else{
+            echo 'les mots de passe ne sont pas identiques';
+        }
+      }else {
+          echo 'mot de passe incorrect!';
+
+      }
+}
