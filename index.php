@@ -41,12 +41,23 @@ try {
             $test = checkMail($_POST['_mail']);
             if ($test == true) {
                 $_SESSION['mail'] = $_POST['_mail'];
-                require 'view/frontend/firstlog_password.php';
+                require 'view/frontend/firstlog_cgu.php';
             } else {
                 echo 'Ce compte utilisateur est déjà existant ou n\'existe pas';
                 require 'view/frontend/firstlog.php';
             }
             break;
+        case 'firstlog_cgu':
+            if (isset($_SESSION['mail'])){
+                if (isset($_POST['acceptcgu'])){
+                    require 'view/frontend/firstlog_password.php';
+                }else{
+                    echo 'Vous n\'avez pas accepté les CGU.';
+                    require 'view/frontend/firstlog_cgu.php';
+                }
+            }
+            break;
+
         /*test l'existence du password et si non encrypte le password défini par l'utilisateur
         et l'ajoute à la db*/
         case 'firstlog_password':
