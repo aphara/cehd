@@ -96,7 +96,7 @@ function UpdateInfo($categorie,$user_new,$id_session){
         echo "on ne peut mettre les meme donnees";
     } else{
         user_update($categorie,$user_new,$id_session);
-        echo 'le prenom a ete change avec succes';
+        echo "l'information a ete change avec succes";
     }
 }
 
