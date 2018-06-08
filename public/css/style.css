@@ -677,4 +677,77 @@
         border-collapse: collapse;
         margin-left: 10px;
     }
+
+    /*Stat Generales*/
+    #consommation {
+
+    }
+
+    #global_chart {
+
+    }
+
+    #consommation_instantanee {
+
+    }
+  }
+/*setting */
+
+
+#identity
+{
+
+    display: none;
+    margin: auto;
+    color: black;
+    max-width: 100%;
 }
+#changemail
+{
+    display: none;
+    margin: auto;
+    color: black;
+    max-width: 100%;
+}
+#changepassword
+{
+    display: none;
+    margin: auto;
+    color: black;
+}
+
+/*
+.identity{
+  border: 3px solid;
+  display: none;
+  margin: auto;
+  color: black;
+  max-width: 100%
+}
+
+
+.buttonset{
+width: 100vw;
+}
+
+.buttontext{
+font-size: 100px;
+}
+
+ul {
+    font-size: 18px;
+    text-align: justify;
+    color: black;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+
+.allset {
+  display: flex;
+  flex-direction: column;
+  width: 140%;
+  height: 140%;
+
+}
+*/

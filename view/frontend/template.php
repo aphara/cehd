@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
-    <link href="public/css/style.css" rel="stylesheet" />
+    <!--<link href="public/css/style.css" rel="stylesheet" />-->
+<link href="public/css/style.css" rel="stylesheet" />
+  <!-- <link href="public/css/stylesetting.css" rel="stylesheet" />-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -80,7 +82,7 @@
             <div>|</div>
             <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
-            <div id='aide'><a href="index.php?action=aide">Aide</a></div>
+            <div id='aide'><a href="index.php?action=help">Aide</a></div>
 
         </div>
 
