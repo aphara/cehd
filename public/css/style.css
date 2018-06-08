@@ -22,7 +22,6 @@
 
     header {
         display: flex;
-
         justify-content: space-between;
         align-items: center;
     }
@@ -82,7 +81,6 @@
     }
     #dropdown-content {
         display: none;
-        position: absolute;
     }
     #sidebar {
         margin-right: -1%;
@@ -90,7 +88,7 @@
     #dropdown:hover #dropdown-content {
         display: block;
     }
-    #dropdown-content a {
+    dropdown-content a {
         font-size: 1.1em;
         line-height: 230%;
         position: relative;
@@ -253,9 +251,7 @@
         font-size: 18px;
         text-align: justify;
         color: black;
-        overflow: scroll;
         word-wrap: break-word;
-        padding: 10px;
     }
     .bouton
     {
@@ -316,53 +312,63 @@
     #onglets a:hover {
         background : #fff;
     }
+
+    /*Associer lumière*/
+    .associer_lumiere, td, th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin-left: 10px;
+    }
 }
 
-@media screen and (max-width: 800px ){
+@media screen and (max-width: 800px ) {
 
     /*css du login*/
-
     body {
         height: 100%;
         display: flex;
         flex-direction: column;
         background-color: #f0f5ef;
     }
+
     .all {
         margin: auto;
         text-align: center;
     }
+
     h1 {
         font-weight: bold;
         font-size: 2em;
     }
 
     /*------css du template--------*/
-
     /*HEADER*/
-
     header {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
     #logo {
         align-self: flex-start;
     }
+
     h1 {
         font-size: 2.5em;
     }
+
     #right_header {
         display: flex;
         align-items: center;
         font-size: 1em;
-        z-index: 1;
     }
+
     #setting_wheel {
         margin: 10px;
         width: 32px;
         height: 32px;
     }
+
     .sign_out {
         width: 32px;
         height: 32px;
@@ -370,7 +376,6 @@
     }
 
     /*NAV*/
-
     #nav_content {
         display: flex;
         flex-direction: column;
@@ -379,10 +384,12 @@
         text-align: center;
 
     }
+
     #sidebar ul {
         list-style-type: none;
         padding: 0;
     }
+
     #sidebar a {
         background-color: rgb(200, 200, 200);
         color: black;
@@ -394,40 +401,42 @@
         border: 3px groove black;
         border-radius: 10px;
     }
+
     #sidebar a:hover {
         color: white;
         border-color: black;
         background-color: #ff6c06;
     }
+
     #dropdown-content {
-        position: static;
+        display: none;
     }
+
     #sidebar {
         margin-right: -1%;
     }
+
     #dropdown:hover #dropdown-content {
         display: block;
     }
-    #dropdown-content a {
+
+    dropdown-content a {
         font-size: 1.1em;
-        line-height: 200%;
+        line-height: 230%;
+        position: relative;
         left: 128%;
         top: -45px;
-        text-align: center;
-        width: 70%;
-        margin: auto;
-
+        text-align: right
     }
+
     #content {
         border: 3px solid;
         background-color: #f0f5ef;
         min-width: 85%;
         min-height: 100%;
-        overflow: scroll;
     }
 
     /*FOOTER*/
-
     footer {
         display: flex;
         position: fixed;
@@ -437,38 +446,43 @@
         background-color: rgb(200, 200, 200);
         padding: 5px;
     }
+
     #footer {
         width: 100%;
         display: flex;
         justify-content: space-around;
         margin: auto;
     }
+
     footer a {
         text-decoration: none;
         color: black;
     }
+
     footer div div {
         color: black;
     }
 
     /*CSS CONTACT   */
-
     #page_contact {
         display: flex;
         flex-direction: column;
         height: 100%;
 
     }
+
     #title_contact {
         display: flex;
         justify-content: center;
 
     }
-    #intro_contact{
+
+    #intro_contact {
         margin-left: 1.4%;
         font-size: 120%;
 
     }
+
     #corps_contact {
         display: flex;
         flex-direction: column;
@@ -476,6 +490,7 @@
         height: 140%;
 
     }
+
     #form_contact {
 
         display: flex;
@@ -484,11 +499,13 @@
         flex-direction: column;
 
     }
+
     #object_contact {
         border: 3px solid;
         max-width: 20%;
         margin-bottom: 2%;
     }
+
     #message_contact {
         margin-top: 2%;
         margin-right: 5%;
@@ -499,6 +516,7 @@
         width: 100%;
 
     }
+
     #coordonnees_contact {
         border: 3px solid;
         min-height: 30%;
@@ -508,6 +526,7 @@
         align-content: right;
         width: 80%;
     }
+
     #envoyer_contact {
         border: 1px solid;
         border-radius: 5px;
@@ -522,6 +541,7 @@
         right: 20%;
 
     }
+
     #findepage_contact {
         display: flex;
         flex-direction: column;
@@ -530,93 +550,93 @@
     }
 
     /*CGU*/
-
     .CGU {
         font-family: courier;
         text-align: justify;
         height: 100%;
         overflow: scroll;
     }
+
     .CGU ul, .CGU p {
         font-size: 15px;
     }
+
     .CGU h1, .CGU h2, .CGU ul, .CGU p {
         margin: 10px;
     }
-    /*Aide*/
 
-    h3
-    {
+    /*Aide*/
+    h3 {
         font-size: 40px;
         text-align: center;
         color: black;
     }
-    .LogoAide
-    {
+
+    .LogoAide {
         width: 50px;
         height: 50px;
     }
 
-    ul
-    {
+    ul {
         font-size: 18px;
         text-align: justify;
         color: black;
-        overflow: scroll;
+        /*overflow: scroll;*/
         word-wrap: break-word;
         padding: 10px;
     }
-    .bouton
-    {
+
+    .bouton {
         width: 100%;
         border: 2px solid black;
         font-size: 25px;
     }
 
-    #question_1
-    {
+    #question_1 {
         display: none;
         color: black;
     }
-    #question_2
-    {
+
+    #question_2 {
         display: none;
         color: black;
     }
-    #question_3
-    {
+
+    #question_3 {
         display: none;
         color: black;
     }
-    #question_4
-    {
+
+    #question_4 {
         display: none;
         color: black;
     }
-    #question_5
-    {
+
+    #question_5 {
         display: none;
         color: black;
     }
 
     /*gestion utilisateur*/
-    .add_user{
+    .add_user {
         display: flex;
     }
-    #bouton_ajouter{
+
+    #bouton_ajouter {
         position: absolute;
         right: 1%;
     }
+
     .ref_table table {
         border-collapse: collapse;
     }
+
     .ref_table td, th {
         border: 1px solid black;
         padding: 10px;
     }
 
     /*onglet gestion des modules*/
-
     #onglets {
         list-style-type: none;
         padding-bottom: 1.7em; /* à modifier suivant la taille de la police ET de la hauteur de l'onglet dans #onglets li */
@@ -626,19 +646,105 @@
         padding-left: 1em;
 
     }
+
     #onglets li {
-        float : left;
-        height : 1.5em; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
+        float: left;
+        height: 1.5em; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
         background-color: #F4F9FD;
-        margin : 2px 2px 0 2px;
-        border : 1px solid #9EA0A1;
+        margin: 2px 2px 0 2px;
+        border: 1px solid #9EA0A1;
     }
+
     #onglets a {
-        display : block;
-        color : #ac0002;
-        text-decoration : none;
-        padding : 2px;
+        display: block;
+        color: #ac0002;
+        text-decoration: none;
+        padding: 2px;
     }
+
     #onglets a:hover {
-        background : #fff;
+
+        background: #fff;
     }
+    /*Associer lumière*/
+    .associer_lumiere, td, th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin-left: 10px;
+    }
+
+    /*Stat Generales*/
+    #consommation {
+
+    }
+
+    #global_chart {
+
+    }
+
+    #consommation_instantanee {
+
+    }
+  }
+/*setting */
+
+
+#identity
+{
+
+    display: none;
+    margin: auto;
+    color: black;
+    max-width: 100%;
+}
+#changemail
+{
+    display: none;
+    margin: auto;
+    color: black;
+    max-width: 100%;
+}
+#changepassword
+{
+    display: none;
+    margin: auto;
+    color: black;
+}
+
+/*
+.identity{
+  border: 3px solid;
+  display: none;
+  margin: auto;
+  color: black;
+  max-width: 100%
+}
+
+
+.buttonset{
+width: 100vw;
+}
+
+.buttontext{
+font-size: 100px;
+}
+
+ul {
+    font-size: 18px;
+    text-align: justify;
+    color: black;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+
+.allset {
+  display: flex;
+  flex-direction: column;
+  width: 140%;
+  height: 140%;
+
+}
+*/
+
+}

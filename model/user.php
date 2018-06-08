@@ -72,6 +72,15 @@ function modify_user($mail, $firstname, $lastname, $date_of_birth, $phone, $id_u
     $req->execute();
 }
 
+function get_status($id){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT status FROM `user` WHERE id_user=?');
+    $req->bindValue(1,$id,PDO::PARAM_INT);
+    $req->execute();
+    $post=$req->fetch();
+    return $post;
+}
+
 function delete_user($id){
     $db=dbConnect();
     $req=$db->prepare('DELETE FROM user WHERE id_user=?');

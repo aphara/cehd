@@ -14,6 +14,8 @@ function login($_mail, $_password)
         $_SESSION['name'] = $result['first_name'];
         $_SESSION['status'] = $result['status'];
         $_SESSION['mail'] = $_mail;
+        $home = get_id_home($_SESSION['id']);
+        $_SESSION['id_home'] = $home[0];
     } else {
         echo 'Mauvais identifiant ou mot de passe !';
         require 'view/frontend/login_view.php';
@@ -51,6 +53,41 @@ function isPasswordSet($mail)
 function passwordHash($password,$mail){
     $hashedPassword=password_hash($password,PASSWORD_DEFAULT);
     insertPassword($hashedPassword,$mail);
+
+}
+function getSensorLight($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_sensor_light($_SESSION['target_home']);
+    return $req;
+}
+
+function getEffectorLight($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req2=get_effector_light($_SESSION['target_home']);
+    return $req2;
+}
+
+function getSensorTemp ($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_sensor_temp($_SESSION['target_home']);
+    return $req;
+}
+
+function getEffectorTemp($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req2=get_effector_temp($_SESSION['target_home']);
+    return $req2;
+}
+function editSensor ( $id_sensor, $sensor_type, $sensor_name, $id_room){
+    edit_sensor($id_sensor, $sensor_type, $sensor_name, $id_room);
+}
+
+function editEffector($id_effector, $effector_type, $effector_name, $id_room){
+    edit_effector($id_effector, $effector_type, $effector_name, $id_room);
 }
 
 function UpdateInfo($categorie,$user_new,$id_session){

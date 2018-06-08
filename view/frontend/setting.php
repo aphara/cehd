@@ -1,7 +1,7 @@
 <?php @session_start();
 $title = 'CeHD - setting';
 ob_start(); ?>
-<link href="public/css/stylesetting.css" rel="stylesheet" />
+
 
 <script type="text/javascript">
 function OnOff_1() {
@@ -25,16 +25,17 @@ document.getElementById("changepassword").style.display = "none";
 
 </script>
 
-<ul>
+<ul class="allset">
       <!--first name-->
-  <li>
-    <input type="button" value="changer les informations" class="bouton" onclick="OnOff_1();">
+  <li >
+    <!--<button class="buttonset" onclick="OnOff_1();" ><span class="buttontext">Changer les informations</span></button>-->
+    <input type="button" value="Changer les informations" class="bouton" onclick="OnOff_1();">
     <div id="identity">
 
       prenom :    <?php echo $resultat['first_name'];?>
       <form action="index.php?action=update_firstname" method="post">
-        <input type="text" name="_first_name" required>
-        <input type="submit" value="changer prenom">
+        <input  type="text" name="_first_name" required>
+        <input  type="submit" value="changer prenom">
       </form>
 
 
@@ -66,9 +67,9 @@ document.getElementById("changepassword").style.display = "none";
 
 <hr>
 
-<li>
+<li class="changemailet">
     <!-- mail-->
-    <input type="button" value="changer mail" class="bouton" onclick="OnOff_2();">
+    <input type="button" value="Changer mail" class="bouton" onclick="OnOff_2();">
   <div id="changemail">
 
       e-mail :      <?php echo $resultat['mail'];?>
@@ -82,7 +83,7 @@ document.getElementById("changepassword").style.display = "none";
 
 <hr>
 
-<li>
+<li class="changepasswordset">
   <input type="button" value="Changer mot de passe" class="bouton" onclick="OnOff_3();">
     <!--password -->
     <div id="changepassword">

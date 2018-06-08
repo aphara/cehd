@@ -1,15 +1,75 @@
+/*setting*/
+
 #identity
 {
     display: none;
+    margin: auto;
     color: black;
+    max-width: 100%;
 }
 #changemail
 {
-    display: none;
-    color: black;
+  display: none;
+  margin: auto;
+  color: black;
+  max-width: 100%;
 }
 #changepassword
 {
     display: none;
+margin: auto;
     color: black;
 }
+.formtext{
+
+  display: flex;
+  margin: 1%;
+  max-width: 60%;
+  flex-direction: column;
+
+}
+.nomsetting{
+    border: 3px solid;
+    max-width: 20%;
+    margin-bottom: 2%;
+  }
+  .submitnom{
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 6px 6px 6px black;
+  margin-top: 2%;
+  margin-right: 15%;
+
+  margin-bottom: 15%;
+  width: 16%;
+
+  justify-content: left;
+  right: 20%;
+}
+
+/*
+.buttonset{
+width: 100vw;
+}
+
+.buttontext{
+font-size: 100px;
+}
+
+ul {
+    font-size: 18px;
+    text-align: justify;
+    color: black;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+
+.allset {
+  display: flex;
+  flex-direction: column;
+  width: 140%;
+  height: 140%;
+
+}
+*/

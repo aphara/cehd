@@ -72,7 +72,7 @@ WHERE last_name=?');
     $req->execute();
     return $req;
 }
-
+//datatable
 
 
 function get_id_home($id_user){
@@ -187,25 +187,106 @@ VALUES (:id,:type,:name,:room)');
     $req->execute();
 }
 
-function get_actuator($id_home){
+function get_sensor_detail($id_sensor){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT * FROM `sensor` WHERE id_sensor=?');
+    $req->bindValue(1,$id_sensor,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function modify_sensor($id_sensor, $sensor_type, $sensor_name, $id_room)
+{
+    $db = dbConnect();
+    $req = $db->prepare('UPDATE sensor 
+SET sensor_name=:name, sensor_type=:type, id_room=:room 
+WHERE id_sensor=:id');
+    $req->bindValue('id', $id_sensor, PDO::PARAM_INT);
+    $req->bindValue('type', $sensor_type, PDO::PARAM_STR);
+    $req->bindValue('name', $sensor_name, PDO::PARAM_STR);
+    $req->bindValue('room', $id_room, PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_sensor($id_sensor){
+    $db=dbConnect();
+    $req=$db->prepare('DELETE FROM `sensor` WHERE id_sensor=?');
+    $req->bindValue(1,$id_sensor,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function get_effector($id_home){
     $db=dbConnect();
     $req=$db->prepare('SELECT 
-`id_actuator`,`actuator_type`,`request_value`,`actuator_name`,`id_room`,`name`
-FROM `room`NATURAL JOIN actuator
+`id_effector`,`effector_type`,`request_value`,`effector_name`,`id_room`,`name`
+FROM `room`NATURAL JOIN effector
 WHERE id_home=?;');
     $req->bindValue(1,$id_home,PDO::PARAM_INT);
     $req->execute();
     return $req;
 }
 
-function get_status($id){
+function check_id_effector($id_effector){
     $db=dbConnect();
-    $req=$db->prepare('SELECT status FROM `user` WHERE id_user=?');
-    $req->bindValue(1,$id,PDO::PARAM_INT);
+    $req=$db->prepare('SELECT id_effector FROM `effector` WHERE id_effector=?');
+    $req->bindValue(1,$id_effector,PDO::PARAM_INT);
     $req->execute();
-    $post=$req->fetch();
+    $post=$req->rowCount();
+    $req->closeCursor();
     return $post;
 }
+
+function check_effector_name($id_home,$effector_name){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT effector_name FROM `room`NATURAL JOIN effector
+WHERE id_home=? AND effector_name=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,$effector_name,PDO::PARAM_STR);
+    $req->execute();
+    $post=$req->rowCount();
+    $req->closeCursor();
+    return $post;
+}
+
+function add_effector($id_effector, $effector_type, $effector_name, $id_room){
+    $db=dbConnect();
+    $req=$db->prepare('INSERT INTO effector(id_effector,effector_type,effector_name, id_room) 
+VALUES (:id,:type,:name,:room)');
+    $req->bindValue('id',$id_effector,PDO::PARAM_INT);
+    $req->bindValue('type',$effector_type,PDO::PARAM_STR);
+    $req->bindValue('name',$effector_name,PDO::PARAM_STR);
+    $req->bindValue('room',$id_room,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function get_effector_detail($id_effector){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT * FROM `effector` WHERE id_effector=?');
+    $req->bindValue(1,$id_effector,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+}
+
+function modify_effector($id_effector, $effector_type, $effector_name, $id_room)
+{
+    $db = dbConnect();
+    $req = $db->prepare('UPDATE effector 
+SET effector_name=:name, effector_type=:type, id_room=:room 
+WHERE id_effector=:id');
+    $req->bindValue('id', $id_effector, PDO::PARAM_INT);
+    $req->bindValue('type', $effector_type, PDO::PARAM_STR);
+    $req->bindValue('name', $effector_name, PDO::PARAM_STR);
+    $req->bindValue('room', $id_room, PDO::PARAM_INT);
+    $req->execute();
+}
+
+function delete_effector($id_effector){
+    $db=dbConnect();
+    $req=$db->prepare('DELETE FROM `effector` WHERE id_effector=?');
+    $req->bindValue(1,$id_effector,PDO::PARAM_INT);
+    $req->execute();
+}
+
 
 
 
