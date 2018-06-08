@@ -14,8 +14,6 @@ function login($_mail, $_password)
         $_SESSION['name'] = $result['first_name'];
         $_SESSION['status'] = $result['status'];
         $_SESSION['mail'] = $_mail;
-        $home = get_id_home($_SESSION['id']);
-        $_SESSION['id_home'] = $home[0];
     } else {
         echo 'Mauvais identifiant ou mot de passe !';
         require 'view/frontend/login_view.php';
@@ -96,7 +94,7 @@ function UpdateInfo($categorie,$user_new,$id_session){
         echo "on ne peut mettre les meme donnees";
     } else{
         user_update($categorie,$user_new,$id_session);
-        echo 'le prenom a ete change avec succes';
+        echo "l'information a ete change avec succes";
     }
 }
 
@@ -105,7 +103,7 @@ function UpdateMail( $user_new,$id_session){
     $oldinfo=get_user_info($id_session);
    if($oldinfo['mail']==$user_new){
     echo "on ne peut mettre les meme donnees";
-  }elseif (checkMail($user_new)==false) {
+  }elseif (checkMail($user_new)==true) {
     echo "ceci n'est pas un mail";
   } else{
     user_update_mail( $user_new,$id_session);

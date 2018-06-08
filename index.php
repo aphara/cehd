@@ -337,31 +337,27 @@ try {
             break;
 
         case 'update_lastname' :
-            UpdateInfo('last_name', $_POST['_last_name'], $_SESSION['id']);
-            echo 'le nom a ete change avec succes';
-            $resultat = get_user_info($_SESSION['id']);
+            UpdateInfo('last_name',$_POST['_last_name'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
         case 'update_birthdate' :
-            UpdateInfo('date_of_birth', $_POST['_birthdate'], $_SESSION['id']);
-            echo 'la date de naissance a ete changee avec succes';
-            $resultat = get_user_info($_SESSION['id']);
+            UpdateInfo('date_of_birth',$_POST['_birthdate'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
         case 'update_phone_number' :
-            Update_Info('phone', $_POST['_phone_number'], $_SESSION['id']);
-            echo 'le numero de telephone a ete change avec succes';
-            $resultat = get_user_info($_SESSION['id']);
+            UpdateInfo('phone',$_POST['_phone_number'],$_SESSION['id']);
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
         case 'update_email' :
-            UpdateMail($_POST['_mail'], $_SESSION['id']);
-            $_SESSION['mail'] = $_POST['_mail'];
-            echo 'mail change avec succes';
-            $resultat = get_user_info($_SESSION['id']);
+            UpdateMail($_POST['_mail'],$_SESSION['id']);
+            $_SESSION['mail']=$_POST['_mail'];
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 

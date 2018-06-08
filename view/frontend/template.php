@@ -43,7 +43,7 @@
     </header>
     <script type="text/javascript">
         function dropdown_content() {
-            if (document.getElementById("dropdown-content").style.display == "none")
+            if (document.ge tElementById("dropdown-content").style.display == "none")
                 document.getElementById("dropdown-content").style.display = "block";
             else
                 document.getElementById("dropdown-content").style.display = "none";
@@ -69,8 +69,7 @@
                 <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>
-        <div id='content'>
-            <?= $content ?>
+        <div id="content"><?= $content ?>
         </div>
     </div>
 
