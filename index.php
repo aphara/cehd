@@ -4,7 +4,7 @@ require_once 'controller/backend.php';
 require_once 'controller/mail.php';
 require_once 'controller/mailforgetpassw.php';
 require_once 'controller/user.php';
-require_once 'controller/requestpasserelle.php';
+require_once 'controller/data.php';
 @session_start();
 
 try {
@@ -119,7 +119,7 @@ try {
             break;
 
         case 'test':
-            recupdonneebrut();
+            getRawData();
             break;
 
         /*Gestion des Modules*/
