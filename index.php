@@ -357,7 +357,7 @@ try {
             break;
 
         case 'update_phone_number' :
-            UpdateInfo('phone',$_POST['_phone_number'],$_SESSION['id']);
+            Update_Info('phone',$_POST['_phone_number'],$_SESSION['id']);
             echo 'le numero de telephone a ete change avec succes';
             $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
