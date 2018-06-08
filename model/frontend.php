@@ -59,6 +59,31 @@ WHERE id_home=? and effector_type=?');
     return $req2;
 }
 
+function get_sensor_temp($id_home){
+    $db = dbConnect();
+    $req = $db-> prepare ('SELECT 
+`id_sensor`, `sensor_type`, `sensor_name`,`id_room`,`name` 
+FROM room NATURAL JOIN sensor
+WHERE id_home=? and sensor_type=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,'TEMP',PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+function get_effector_temp($id_home){
+    $db =dbConnect();
+    $req2 = $db-> prepare( 'SELECT 
+    `id_effector`,`effector_type`,`effector_name`,`id_room`,`name`
+    FROM room NATURAL JOIN effector
+    WHERE id_home=? and effector_type=?');
+    $req2->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req2->bindValue(2,'TEMP_CTRL',PDO::PARAM_STR);
+    $req2->execute();
+    return $req2;
+
+}
+
 function edit_sensor( $id_sensor, $sensor_type, $sensor_name, $id_room){
     $db=dbConnect();
     $req=$db->prepare('UPDATE sensor SET sensor_name=:name, sensor_type=:type, id_room=:room WHERE id_sensor=:id');
@@ -121,23 +146,43 @@ function user_update($categorie, $user_new, $id_session)
   // return ("your ". string($categorie) . " has been changed with success!");
 }
 
-/*function get_user_info($categorie, $id_session)
+//température instantané de la maison
+function getinstant_temp($id_home){
+    $db = dbConnect();
+    $req = $db->prepare('SELECT 
+`id_sensor`,`sensor_type`,`current_state`,`current_value`,`sensor_name`,`id_room`,`name`
+FROM `room`NATURAL JOIN sensor NATURAL JOIN stat_sensor
+WHERE id_home=? AND period= ? AND sensor_type=?');
+    $req->bindValue(1, $id_home, PDO::PARAM_INT);
+    $req->bindValue(2, 'ACTUAL',PDO::PARAM_STR);
+    $req->bindValue(3,'TEMP',PDO::PARAM_STR);
+    $req->execute();
+    $donnee = $req->fetch();
+    return $donnee;
+}
+
+//Récupere le tableau de tout les sensor du user
+function getsensor_user($id_user){
+    $db = dbConnect();
+    $req = $db->prepare('SELECT * FROM sensor WHERE id_user= ?');
+    $req->execute(array($id_user));
+    $donnees = $req->fetchAll();
+    return $donnees;
+
+}
+
+//Récupere la consommation de la maison
+function consohouse($id_user)
 {
-    $db=dbConnect();
-    //$db=dbConnectA();
-    $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
-    $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
-    $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
-    $req->execute(array($res));
-    $post=$req->fetch();
-    //return $post;
-}*/
-
-
-// function phrase($str)
-// {
-//   $string=(string)$str
-//   $newstring= str_replace("_"," ",$string);
-//   return $newstring;
-// }
+    $db = dbCOnnect();
+    //modifier la requete
+    $req = $db->prepare('SELECT consommation_value FROM consommation_jour WHERE piece_name="Salon" ');
+    $req->execute();
+    $conso = $req->fetchAll();
+    $value = array();
+    for ($i = 0; $i < sizeof($conso); $i++) {
+        array_push($value, $conso[$i]["consommation_value"]);
+    }
+    return $value;
+}
 
