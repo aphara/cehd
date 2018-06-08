@@ -28,9 +28,7 @@ try {
             } else {
                 break;
             }
-        case 'test':
-            recupdonneebrut();
-            break;
+
 //Premiere connexion
         case 'firstlog':
             require('view/frontend/firstlog.php');
@@ -118,6 +116,10 @@ try {
             } else {
                 authErr();
             }
+            break;
+
+        case 'test':
+            recupdonneebrut();
             break;
 
         /*Gestion des Modules*/
@@ -400,17 +402,20 @@ try {
                 authErr();
             }
             break;
+        case 'cgu_public':
+            require 'view/frontend/cgu_public.php';
+            break;
 
         /*page d'aide*/
-        case 'aide':
+        case 'help':
             if ($_SESSION['status']=='USER' || $_SESSION['status']=='SUPER_USER'){
-
-
-                require 'view/frontend/pageAide.php';
-
+                require 'view/frontend/help.php';
             }else{
                 authErr();
             }
+            break;
+        case 'help_public':
+            require 'view/frontend/help_public.php';
             break;
 
 //backend
