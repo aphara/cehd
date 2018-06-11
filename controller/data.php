@@ -41,9 +41,13 @@ function storeData($id_stat,$id_sensor,$date_maj,$value,$stat_type){
         switch ($stat_type){
             case '1':
                 $stat_type='SHUTTER';
+                list($integer,$float)=sscanf($value, "%3s%1s");
+                $value="{$integer}.{$float}";
                 break;
             case '3':
                 $stat_type='TEMP';
+                list($integer,$float)=sscanf($value, "%3s%1s");
+                $value="{$integer}.{$float}";
                 break;
             case '5':
                 $stat_type='LIGHT';

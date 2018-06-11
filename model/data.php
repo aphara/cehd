@@ -18,7 +18,7 @@ VALUES(?,?,?,?,?)');
     $req->bindValue(1,$id_stat,PDO::PARAM_INT);
     $req->bindValue(2,$id_sensor,PDO::PARAM_INT);
     $req->bindValue(3,$date_maj,PDO::PARAM_STR);
-    $req->bindValue(4,$value,PDO::PARAM_INT);
+    $req->bindValue(4,$value,PDO::PARAM_STR);
     $req->bindValue(5,$stat_type,PDO::PARAM_STR);
     $req->execute();
 }

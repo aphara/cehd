@@ -16,7 +16,7 @@ ob_start(); ?>
         <nav id="topbar">
             <ul>
                 <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Pièces</a></li>
-                <li><a href="index.php?action=module_manage&id=<?= $_SESSION['target_id']?>">Gestion Modules</a></li>
+                <li><a href="index.php?action=module_management&id=<?= $_SESSION['target_id']?>">Gestion Modules</a></li>
             </ul>
         </nav>
     </div>

@@ -35,7 +35,8 @@ function add_superuser($mail,$first_name,$last_name,$date_of_birth,$phone){
     $req->bindValue('phone',$phone, PDO::PARAM_STR);
     $req->execute();
 
-    $req=$db->prepare('SELECT id_user FROM `user` WHERE mail=?');
+    $req=$db->prepare('SELECT id_user FROM `user` WHERE mail=? 
+ORDER BY id_user DESC');
     $req->bindValue(1,$mail,PDO::PARAM_STR);
     $req->execute();
     $post=$req->fetch();

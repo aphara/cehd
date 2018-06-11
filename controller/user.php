@@ -1,6 +1,7 @@
 <?php
 
 require_once ROOT.'/model/user.php';
+require_once ROOT.'/model/backend.php';
 
 /*récupère la liste des utilisateurs*/
 function getUsers($id){
@@ -32,26 +33,8 @@ function addClient($mail, $first_name, $last_name, $date_of_birth, $phone,
 function getUserHome(){
     $req=get_user_home();
     return $req;
-//    require ROOT.'/view/backend/home_view.php';
 }
 
-function searchUser($search,$mode){
-    if ($mode=='id'){
-        //$type='id_home';
-        $req=search_by_id($search/*,$type*/);
-        return $req;
-    }elseif ($mode=='mail'){
-        $req=search_by_mail($search);
-        return $req;
-    }elseif ($mode=='phone'){
-        $req=search_by_phone($search);
-        return $req;
-    }elseif ($mode=='name'){
-
-        $req=search_by_name($search);
-        return $req;
-    }else return $req='error';
-}
 
 function getSuperUserAndChild($id){
     $req=get_superuser_and_child($id);
