@@ -18,6 +18,29 @@
         font-size: 2em;
     }
 
+    .retour{
+        pading:2px;
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 20%;
+        margin: auto;
+        background-color: lightgray;
+    }
+
+    .retour a {
+        color:black;
+        text-decoration: none;
+    }
+
+    .content_public {
+        border: 2px solid black;
+        margin: 10px;
+        padding: 5px;
+        height: 80vh;
+        overflow: auto;
+    }
+
     /*------css du template--------*/
 
     /*HEADER*/
@@ -204,6 +227,16 @@
         align-content: right;
         width: 42%;
     }
+
+    #coordonnees_contact_public{
+        border: 3px solid;
+        display: flex;
+        margin-top: 0%;
+        justify-content: center;
+        align-content: right;
+        width: 80%;
+    }
+    
     #envoyer_contact {
         border: 1px solid;
         border-radius: 5px;
@@ -231,13 +264,18 @@
         font-family: courier;
         text-align: justify;
         height: 100%;
-        overflow: scroll;
+        overflow: auto;
     }
     .CGU ul, .CGU p {
         font-size: 15px;
     }
     .CGU h1, .CGU h2, .CGU ul, .CGU p {
         margin: 10px;
+    }
+
+    #CGU_public{
+        text-align: justify;
+        font-family: courier;
     }
 
     /*gestion utilisateur*/
@@ -360,6 +398,29 @@
     h1 {
         font-weight: bold;
         font-size: 2em;
+    }
+    .retour{
+        pading:2px;
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 20%;
+        margin: auto;
+        background-color: lightgray;
+    }
+    .retour a {
+        color:black;
+        text-decoration: none;
+    }
+
+    .content_public {
+        font-family: courier;
+        text-align: justify;
+        border: 2px solid black;
+        margin: 10px;
+        padding: 5px;
+        height: 80vh;
+        overflow: auto;
     }
 
     /*------css du template--------*/
@@ -590,12 +651,21 @@
         margin-left: 5%;
     }
 
+    #coordonnees_contact_public{
+        border: 3px solid;
+        display: flex;
+        margin: 15%;
+        justify-content: center;
+        align-content: right;
+        width: 80%;
+    }
+
     /*CGU*/
     .CGU {
         font-family: courier;
         text-align: justify;
         height: 100%;
-        overflow: scroll;
+        overflow: auto;
     }
 
     .CGU ul, .CGU p {
@@ -604,6 +674,11 @@
 
     .CGU h1, .CGU h2, .CGU ul, .CGU p {
         margin: 10px;
+    }
+
+    #CGU_public{
+        text-align: justify;
+        font-family: courier;
     }
 
     /*Aide*/
@@ -622,7 +697,6 @@
         font-size: 18px;
         text-align: justify;
         color: black;
-        /*overflow: scroll;*/
         word-wrap: break-word;
         padding: 10px;
         list-style-type: none;
