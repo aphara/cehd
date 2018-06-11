@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
-    <!--<link href="public/css/style.css" rel="stylesheet" />-->
-<link href="public/css/style.css" rel="stylesheet" />
-  <!-- <link href="public/css/stylesetting.css" rel="stylesheet" />-->
+    <link href="public/css/style.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -42,20 +40,23 @@
             </div>
     </header>
     <script type="text/javascript">
-        function dropdown_content() {
-            if (document.ge tElementById("dropdown-content").style.display == "none")
-                document.getElementById("dropdown-content").style.display = "block";
-            else
-                document.getElementById("dropdown-content").style.display = "none";
+        function menu(id){
+            if (document.getElementById(id).style.display == "none"){
+                document.getElementById(id).style.display = "block";
+            } else{
+                document.getElementById(id).style.display = "none";
+            }
         }
     </script>
 
-    <div id='nav_content'>
-        <nav id='sidebar'>
+<div id='nav_content'>
+    <nav id='sidebar'>
+        <img src="public/img/menu.png" onmouseover="this.src='public/img/menu_2.png'" onmouseout="this.src='public/img/menu.png'" onclick="menu('btn_menu');" alt='menu' id="img_menu">
+        <div id="btn_menu">
             <ul>
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
                 <li id='dropdown'>
-                    <a href="index.php?action=home_manage" onclick="dropdown_content();">Gestion Maison</a>
+                    <a href="index.php?action=home_manage">Gestion Maison</a>
                     <ul id="dropdown-content">
                         <li><a href="index.php?action=module_light">gestion modules</a></li>
                         <li><a href="index.php?action=link_module_light">associer modules</a></li>
@@ -68,10 +69,11 @@
                 <?php } ?>
                 <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
-        </nav>
-        <div id="content"><?= $content ?>
         </div>
+    </nav>
+    <div id="content"><?= $content ?>
     </div>
+</div>
 
 
 
@@ -82,7 +84,7 @@
             <div>|</div>
             <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
-            <div id='aide'><a href="index.php?action=help">Aide</a></div>
+            <div id='aide'><a href="index.php?action=aide">Aide</a></div>
 
         </div>
 

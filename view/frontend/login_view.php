@@ -40,19 +40,6 @@
     <a href="index.php?action=pageforgetpassw">Mot de passe oublié ?</a>
 
 </div>
-<footer>
-    <div id='footer'>
-
-        <div id='cgu'><a href="index.php?action=cgu_public">CGU</a></div>
-        <div>|</div>
-        <div id='contact'><a href="index.php?action=contact">Contact</a></div>
-        <div>|</div>
-        <div id='aide'><a href="index.php?action=help_public">Aide</a></div>
-
-    </div>
-
-    </div>
-</footer>
 
 
 </body>
