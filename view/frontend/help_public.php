@@ -95,7 +95,7 @@
           Dans l'onglet "Gestion Maison" vous pouvez avoir accès à tous vos modules en cliquant sur "associer modules".
           Dans cette page vous pouvez associer un module existant à une pièce de votre domicile mais VOUS NE POUVEZ PAS
           rajouter manuellement un nouveau module non existant lors de la configuration de votre maison.
-          Si vous souhaitez rajouter un module, <a href="http://localhost/ceHD/cehd/index.php?action=contact">contactez</a> directement le service client.
+          Si vous souhaitez rajouter un module, <a href="index.php?action=contact_public">contactez</a> directement le service client.
       </span>
     </li>
 </ul>

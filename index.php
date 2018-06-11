@@ -415,6 +415,10 @@ try {
             }
             break;
 
+        case 'cgu_public';
+                require 'view/frontend/cgu_public.php';
+                break;
+
         /*page d'aide*/
 
         case 'help':
@@ -423,6 +427,10 @@ try {
             } else {
                 authErr();
             }
+            break;
+
+        case 'help_public':
+            require 'view/frontend/help_public.php';
             break;
 
 //backend

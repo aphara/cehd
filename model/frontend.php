@@ -46,7 +46,7 @@ function dbConnectA()
     }
 }
 
-function dbConnectA()
+function dbConnect()
 {
     try
     {
@@ -57,8 +57,7 @@ function dbConnectA()
     {
         die('Erreur : '.$e->getMessage());
     }
-}   
-
+}
 
 function user_update($categorie, $user_new, $id_session)
 {

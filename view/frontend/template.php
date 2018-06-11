@@ -84,7 +84,7 @@
             <div>|</div>
             <div id='contact'><a href="index.php?action=contact">Contact</a></div>
             <div>|</div>
-            <div id='aide'><a href="index.php?action=aide">Aide</a></div>
+            <div id='aide'><a href="index.php?action=help">Aide</a></div>
 
         </div>
 
