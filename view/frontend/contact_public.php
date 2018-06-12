@@ -11,10 +11,16 @@ ob_start(); ?>
 </head>
 
 <body>
-<div id="page_contact">
-    <h1 id="title_contact">Contact</h1>
-    <div id="intro_contact"> <p>Envoyez nous un mail ! </p></div>
-    <section id="corps_contact">
+<div class="img_titlepu">
+    <img src='public/img/LOGO_login.png' alt='logo' id="img_logo"/>
+    <h1>Contact</h1>
+
+</div>
+
+
+
+    <p>Envoyez nous un mail ! </p>
+    <section id="corps_contact_public">
 
         <form method="post" id="form_contact" action="index.php?action=sendmail_public">
             <input type="text" name="mail_public" placeholder="Votre e-mail" id="mail_public">

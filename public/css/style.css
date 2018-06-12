@@ -155,10 +155,10 @@
 
     }
     #corps_contact {
-        display: flex;
-        flex-direction: row;
-        width: 140%;
-        height: 140%;
+                display: flex;
+                flex-direction: row;
+                width: 140%;
+                height: 140%;
 
     }
     #form_contact {
@@ -330,6 +330,25 @@
     }
 }
 
+/*CGU Public*/
+
+.img_titlepu{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+#intro_contact_public{
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+}
+#corps_contact_public{
+    display: flex;
+    flex-direction: row;
+    width: 140%;
+    height: 140%;
+}
 @media screen and (max-width: 800px ) {
 
     /*css du login*/

@@ -181,7 +181,11 @@ function sendmail_bienvenue($mailnewclient)
 //=====Déclaration des messages au format texte et au format HTML.
     //die(var_dump($newpassw));
     $message_txt = 'Bonjour, notre équipe vous souhaite la bienvenue ! Vous vous êtes inscrit avec le mail suivant :  '  .$mailnewclient ;
-    $message_html = "<html><head></head><body>Bonjour, notre équipe vous souhaite la bienvenue ! Vous vous êtes inscrit avec le mail suivant :  <br> <br>  $mailnewclient </body></html>";
+    $message_html = "<html><head></head><body>Bonjour, notre équipe vous souhaite la bienvenue ! <br> <br>
+                                              Vous vous êtes inscrit avec le mail suivant :  $mailnewclient <br> <br>
+                                              Vous pouvez dès à présent vous rendre sur la page de connexion ceHD Domsisep et accéder à la page Première Connexion afin de définir votre mot de passe <br> <br>
+                                              Cordialement <br> <br>
+                                              L'équipe ceHd</body></html>";
 //==========
 
 //=====Création de la boundary
