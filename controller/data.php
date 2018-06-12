@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../config.php';
 require_once ROOT.'/model/data.php';
-function getRawData()
+function getData()
 {
 
 
@@ -17,7 +17,7 @@ function getRawData()
 
 
     $data_tab = str_split($data, 33);
-    echo "Tabular Data:<br />";
+    /*echo "Tabular Data:<br />";*/
     for ($i = 0, $size = count($data_tab); $i < $size-1; $i++) {
         $trame = $data_tab[$i];
 /*// décodage avec des substring
@@ -27,17 +27,23 @@ function getRawData()
 // décodage avec sscanf
         list($t, $object, $r, $type, $sensor, $value, $trame, $checksum, $year, $month, $day, $hour, $min, $sec) =
             sscanf($trame, "%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
-        echo("<br />$t,GROUP = $object,$r,
+        /*echo("<br />$t,GROUP = $object,$r,
 TYPE = $type,CAPTEUR = $sensor,VALEUR = $value,TRAME = $trame,$checksum,$year,$month,$day,$hour,$min,$sec<br />");
+        */
         $date="{$year}-{$month}-{$day} {$hour}:{$min}:{$sec}";
-        storeData($trame,$sensor,$date,$value,$type);
+        $lastDate = get_last_date();
+        $lastDate = $lastDate[0];
+
+        $datetime1 = new DateTime($date);
+        $datetime2 = new DateTime($lastDate);
+
+        if($datetime1 > $datetime2) {
+            storeData($sensor, $date, $value, $type);
+        }
     }
-
-
 }
 
-function storeData($id_stat,$id_sensor,$date_maj,$value,$stat_type){
-    if(checkIdStat($id_stat)==true){
+function storeData($id_sensor,$date_maj,$value,$stat_type){
         switch ($stat_type){
             case '1':
                 $stat_type='SHUTTER';
@@ -53,13 +59,9 @@ function storeData($id_stat,$id_sensor,$date_maj,$value,$stat_type){
                 $stat_type='LIGHT';
                 break;
         }
-        store_data($id_stat,$id_sensor,$date_maj,$value,$stat_type);
-    }
+        store_data($id_sensor,$date_maj,$value,$stat_type);
 }
 
-function checkIdStat($id_stat){
-    $issetStat = check_id_stat($id_stat);
-    if ($issetStat == 0){
-        return true;
-    }else return false;
+function updatePeriod($id_home){
+
 }

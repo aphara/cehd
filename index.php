@@ -13,6 +13,9 @@ try {
     if (!isset($_GET['action']))
         $_GET['action'] = '';
     switch ($_GET['action']) {
+        case 'test':
+            getData();
+            break;
 //login
         case 'login':
             $isPasswordCorrect = login($_POST['_mail'], $_POST['_password']);
@@ -113,15 +116,14 @@ try {
         /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                getData();
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
             }
             break;
 
-        case 'test':
-            getRawData();
-            break;
+
 
         /*Gestion des Modules*/
 
@@ -411,6 +413,7 @@ try {
                 authErr();
             }
             break;
+
         case 'cgu_public':
             require 'view/frontend/cgu_public.php';
             break;
@@ -423,6 +426,7 @@ try {
                 authErr();
             }
             break;
+
         case 'help_public':
             require 'view/frontend/help_public.php';
             break;
@@ -461,16 +465,6 @@ try {
                     $_POST['_address'], $_POST['_city'], $_POST['_postcode']);
                 sendmail_bienvenue($_POST['_mail']);
                 require 'view/backend/add_client.php';
-            } else {
-                authErr();
-            }
-            break;
-
-        /*fonction de recherche*/
-        case 'search':
-            if ($_SESSION['status'] == 'ADMIN') {
-                $req = searchUser($_POST['_searchbar_field'], $_POST['_searchbar_mode']);
-                require 'view/backend/home_view.php';
             } else {
                 authErr();
             }
