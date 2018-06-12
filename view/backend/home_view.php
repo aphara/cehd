@@ -21,10 +21,10 @@ ob_start(); ?>
 
 
         <div class="add_button">
-            <h3>Ajouter un utilisateur</h3>
-            <form action="index.php?action=add_client_form" method="post">
-                <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+            <form class="ajouter" action="index.php?action=add_client_form" method="post">
+                <input class="ajouter" type="image" name="add_user_btn" src="public/img/rounded-add-button.png" >
             </form>
+            <h3>Ajouter un utilisateur</h3>
         </div>
     <!--</div>-->
     <hr/>

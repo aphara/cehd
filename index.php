@@ -44,12 +44,13 @@ try {
             $test = checkMail($_POST['_mail']);
             if ($test == true) {
                 $_SESSION['mail'] = $_POST['_mail'];
-                require 'view/frontend/firstlog_cgu.php';
+                require 'view/frontend/firstlog_password.php';
             } else {
                 echo 'Ce compte utilisateur est déjà existant ou n\'existe pas';
                 require 'view/frontend/firstlog.php';
             }
             break;
+
         case 'firstlog_cgu':
             if (isset($_SESSION['mail'])) {
                 if (isset($_POST['acceptcgu'])) {
@@ -116,7 +117,7 @@ try {
         /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                getData();
+                //getData();
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
@@ -325,19 +326,19 @@ try {
 
         /*Paramètres utilisateur*/
         case 'setting':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                $resultat = get_user_info($_SESSION['id']);
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER' ){
+                $resultat=get_user_info($_SESSION['id']);
                 require 'view/frontend/setting.php';
-            } else {
-                authErr();
             }
+            else {
+                authErr();}
             break;
 
 //update pour setting
         case 'update_firstname' :
-            UpdateInfo('first_name', $_POST['_first_name'], $_SESSION['id']);
-            $_SESSION['name'] = $_POST['_first_name'];
-            $resultat = get_user_info($_SESSION['id']);
+            UpdateInfo('first_name',$_POST['_first_name'],$_SESSION['id']);
+            $_SESSION['name']=$_POST['_first_name'];
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
 
@@ -367,11 +368,10 @@ try {
             break;
 
         case 'update_password' :
-            UpdatePassword($_SESSION['id'], $_SESSION['mail'], $_POST['_old_password'], $_POST['_password'], $_POST['_verifpassword']);
-            $resultat = get_user_info($_SESSION['id']);
+            UpdatePassword($_SESSION['id'],$_SESSION['mail'], $_POST['_old_password'],$_POST['_password'],$_POST['_verifpassword']);
+            $resultat=get_user_info($_SESSION['id']);
             require 'view/frontend/setting.php';
             break;
-
 
 //Liens footer
         case 'contact':
@@ -414,11 +414,14 @@ try {
             }
             break;
 
+
         case 'cgu_public':
             require 'view/frontend/cgu_public.php';
             break;
 
+
         /*page d'aide*/
+
         case 'help':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 require 'view/frontend/help.php';

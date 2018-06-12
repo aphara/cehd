@@ -1,43 +1,91 @@
 /*css du template*/
 /* for styling tables :  https://datatables.net/manual/styling/classes  */
+@media screen and (min-width: 915px ){
+    header{
+        display: flex;
 
-header{
-    display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #logo {
+        align-self: flex-start;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    #setting_wheel {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+    }
 
-    justify-content: space-between;
-    align-items: center;
+    /*CSS de l'accueil */
+
+    .home_searchbar_add {
+        display: flex;
+        flex-direction: row;
+
+    }
+    .add_button{
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+    }
+    .add_button h3 {
+        margin: 5px;
+    }
+    .ref_table table {
+        border-collapse: collapse;
+    }
+    .ref_table td,th {
+        border: 1px solid black;
+        padding: 10px;
+    }
 }
-#logo {
-    align-self: flex-start;
-}
-h1 {
-    font-size: 2.5em;
-}
-#setting_wheel {
-    display: flex;
-    align-items: center;
-    font-size: 1em;
+@media screen and (max-width: 915px ){
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #logo {
+        align-self: flex-start;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    #setting_wheel {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+    }
+
+    .ajouter {
+        height: 32px;
+        width:32px;
+    }
+
+    /*CSS de l'accueil */
+
+    .home_searchbar_add {
+        display: flex;
+        flex-direction: row;
+
+    }
+    .add_button{
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+    }
+    .add_button h3 {
+        margin: 5px;
+    }
+    .ref_table table {
+        border-collapse: collapse;
+    }
+    .ref_table td,th {
+        border: 1px solid black;
+        padding: 10px;
+    }
 }
 
-/*CSS de l'accueil */
-
-.home_searchbar_add {
-    display: flex;
-    flex-direction: row;
-
-}
-.add_button{
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-}
-.add_button h3 {
-    margin: 5px;
-}
-.ref_table table {
-    border-collapse: collapse;
-}
-.ref_table td,th {
-    border: 1px solid black;
-    padding: 10px;
-}

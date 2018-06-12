@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>CEHD - CGU</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
 </head>
 <body>
-<div class="CGU">
+<div id='logo'>
+    <a href="index.php?action=login_view"><img src='public/img/LOGO_small.png' alt='logo'/></a>
+</div>
+<div class="content_public" id="CGU_public">
     <h1>Conditions générales d'utilisation du site CEHD</h1>
     <h2>ARTICLE 1 : Objet</h2>
     <p>Les présentes « conditions générales d'utilisation » ont pour objet l'encadrement juridique des modalités de mise à disposition des services du site CEHD et leur utilisation par « l'Utilisateur ».<br/>
@@ -82,6 +85,8 @@
         Le membre reste titulaire de l’intégralité de ses droits de propriété intellectuelle. Mais en publiant une publication sur le site, il cède à la société éditrice le droit non exclusif et gratuit de représenter, reproduire, adapter, modifier, diffuser et distribuer sa publication, directement ou par un tiers autorisé, dans le monde entier, sur tout support (numérique ou physique), pour la durée de la propriété intellectuelle. Le Membre cède notamment le droit d'utiliser sa publication sur internet et sur les réseaux de téléphonie mobile.<br/>
         La société éditrice s'engage à faire figurer le nom du membre à proximité de chaque utilisation de sa publication.</p>
 </div>
+
+<a class="retour" href="index.php?action=login_view">RETOUR</a>
 
 </body>
 </html>

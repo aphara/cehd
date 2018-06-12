@@ -61,157 +61,79 @@ function dbConnect()
 
 // fonction update
 function user_update($categorie, $user_new, $id_session)
-      {
-      //  var_dump($user_new);
-      //  var_dump($id_session);
-         $db=dbConnect();
-       //$db=dbConnectA();
-
-        $req=$db->prepare('UPDATE user SET ' . $categorie . ' =? WHERE id_user=?');
-        //var_dump($categorie);
-        //$req->bindValue(1,$categorie,PDO::PARAM_STR);
-        //$req->bindValue(2,$user_new,PDO::PARAM_STR);
-        //$req->bindValue(3,$id_session,PDO::PARAM_STR);
-        //$req->execute(array('categorie'=>$categorie,'user_new'=>$user_new,'id'=>$id_session));
-          $req->execute(array($user_new,$id_session));
-          //var_dump($req);
-        }
-function user_update_mail( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET mail=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-/*
-function user_update_first_name( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET first_name=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-
-function user_update_last_name( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET last_name=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-
-function user_update_date_of_birth( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET date_of_birth=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-
-function user_update_phone_number( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET phone=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-
-function user_update_mail( $user_new,$id_session)
-      {
-         $db=dbConnect();
-       //$db=dbConnectA();
-        $req=$db->prepare('UPDATE user SET mail=? WHERE id_user=?');
-        $test=$req->execute(array($user_new, $id_session));
-        }
-
-function user_update_password($user_new,$id_session)
-      {
-        $db=dbConnect();
-      //$db=dbConnectA();
-       $req=$db->prepare('UPDATE user SET password=? WHERE id_user=?');
-       $test=$req->execute(array($user_new, $id_session));
-      }
-*/
-//function check_all_mail($mail)
-//      {
-//        $db=dbConnect();
-//        //$db=dbConnectA();
-//        $req= $db->prepare('SELECT mail FROM user ');
-//        $req->execute();
-//        while ($donnees = $reponse->fetch()){
-//        $post=$req->fetch();
-//        if()
-//      }
-//        return $post;
-//      }
-
-function get_user_info($id_session)
 {
-  $db=dbConnect();
-  //$db=dbConnectA();
-  $req= $db->prepare('SELECT * FROM user WHERE id_user= ?');
-  $req->execute(array($id_session));
-  $post=$req->fetch();
-  return $post;
+    //  var_dump($user_new);
+    //  var_dump($id_session);
+    $db=dbConnect();
+    //$db=dbConnectA();
+
+    $req=$db->prepare('UPDATE user SET ' . $categorie . ' =? WHERE id_user=?');
+    //var_dump($categorie);
+    //$req->bindValue(1,$categorie,PDO::PARAM_STR);
+    //$req->bindValue(2,$user_new,PDO::PARAM_STR);
+    //$req->bindValue(3,$id_session,PDO::PARAM_STR);
+    //$req->execute(array('categorie'=>$categorie,'user_new'=>$user_new,'id'=>$id_session));
+    $req->execute(array($user_new,$id_session));
+    //var_dump($req);
 }
-
-
-/*function get_user_info($categorie, $id_session)
+function user_update_mail( $user_new,$id_session)
 {
     $db=dbConnect();
     //$db=dbConnectA();
-    $req=$db->prepare('SELECT :catergorie from user where id= :id_session')
-    $req->bindValue('id_session',$id_session, PDO::PARAM_INT);
-    $req->bindValue('categorie',$id_session, PDO::PARAM_STR);
-    $req->execute(array($res));
+    $req=$db->prepare('UPDATE user SET mail=? WHERE id_user=?');
+    $test=$req->execute(array($user_new, $id_session));
+}
+
+function get_user_info($id_session)
+{
+    $db=dbConnect();
+    //$db=dbConnectA();
+    $req= $db->prepare('SELECT * FROM user WHERE id_user= ?');
+    $req->execute(array($id_session));
     $post=$req->fetch();
-    //return $post;
-}*/
+    return $post;
+}
+
 //température instantané de la maison
-function getinstant_temp($id_home){
+function get_instant_temp($id_home){
     $db = dbConnect();
-    $req = $db->prepare('SELECT
-`id_sensor`,`sensor_type`,`current_state`,`current_value`,`sensor_name`,`id_room`,`name`
-FROM `room`NATURAL JOIN sensor NATURAL JOIN stat_sensor
-WHERE id_home=? AND period= ? AND sensor_type=?');
+    $req = $db->prepare('SELECT `current_value`
+    FROM `room`
+    NATURAL JOIN `sensor`
+    WHERE id_home=?  AND sensor_type=?');
     $req->bindValue(1, $id_home, PDO::PARAM_INT);
-    $req->bindValue(2, 'ACTUAL',PDO::PARAM_STR);
-    $req->bindValue(3,'TEMP',PDO::PARAM_STR);
+    $req->bindValue(2,'TEMP',PDO::PARAM_STR);
     $req->execute();
     $donnee = $req->fetch();
     return $donnee;
 }
 
-//Récupere le tableau de tout les sensor du user
-function getsensor_user($id_user)
-{
+function get_instant_conso($id_home){
     $db = dbConnect();
-    $req = $db->prepare('SELECT * FROM sensor WHERE id_user= ?');
-    $req->execute(array($id_user));
-    $donnees = $req->fetchAll();
-    return $donnees;
-
-
-// function phrase($str)
-// {
-//   $string=(string)$str
-//   $newstring= str_replace("_"," ",$string);
-//   return $newstring;
-// }
-
-//Récupere la consommation de la maison
-    function consohouse($id_user)
-    {
-        $db = dbCOnnect();
-        //modifier la requete
-        $req = $db->prepare('SELECT consommation_value FROM consommation_jour WHERE piece_name="Salon" ');
-        $req->execute();
-        $conso = $req->fetchAll();
-        $value = array();
-        for ($i = 0; $i < sizeof($conso); $i++) {
-            array_push($value, $conso[$i]["consommation_value"]);
-        }
-        return $value;
-    }
+    $req = $db->prepare('SELECT `current_value`
+    FROM `room`
+    NATURAL JOIN `sensor`
+    WHERE id_home=?  AND sensor_type=?');
+    $req->bindValue(1, $id_home, PDO::PARAM_INT);
+    $req->bindValue(2,'CONSO',PDO::PARAM_STR);
+    $req->execute();
+    $donnee = $req->fetch();
+    return $donnee;
 }
 
+//Récupere la consommation éléctrique d'une maison
+function get_conso_house($id_home){
+    $db = dbCOnnect();
+    //modifier la requete
+    $req = $db->prepare('SELECT `date_maj`,`value`
+    FROM `room`
+    NATURAL JOIN sensor NATURAL JOIN stat_sensor
+    WHERE id_home=? AND period= ? AND stat_type=?
+    ORDER BY date_maj 
+    LIMIT 30');
+    $req->bindValue(1, $id_home, PDO::PARAM_INT);
+    $req->bindValue(2, 'DAY',PDO::PARAM_STR);
+    $req->bindValue(3,'CONSO',PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
