@@ -483,6 +483,11 @@
     #nav_home_management{
         display: flex;
     }
+    #bare_vertical{
+        height: 50vh;
+        width: 0.5px;
+
+    }
 }
 
 @media screen and (max-width: 915px ) {
@@ -852,14 +857,6 @@
     }
 
     /*gestion utilisateur*/
-    .add_user {
-        display: flex;
-    }
-
-    #bouton_ajouter {
-        position: absolute;
-        left: 1%;
-    }
 
     .ref_table table {
         border-collapse: collapse;
@@ -868,6 +865,24 @@
     .ref_table td, th {
         border: 1px solid black;
         padding: 10px;
+    }
+    .mini_header{
+        display: flex;
+        flex-direction: column;
+    }
+    .add_user {
+        display: flex;
+        font-size: 20px;
+    }
+    .ajouter {
+        height: 32px;
+        width:32px;
+        margin: 20px;
+    }
+
+    #titre_header{
+        font-size: 40px;
+        text-align: center;
     }
 
     /*onglet gestion des modules*/
@@ -905,5 +920,17 @@
         border: 1px solid black;
         border-collapse: collapse;
         margin-left: 10px;
+    }
+
+    /*Gestion Maison*/
+
+    #nav_home_management{
+        display: flex;
+    }
+
+    #bare_vertical{
+        height: 50vh;
+        width: 0.5px;
+
     }
 }

@@ -12,7 +12,7 @@ ob_start(); ?>
             <h2>Alarme</h2>
         </div>
 
-        <hr style="width: 0.5px; height: 100px; "/>
+        <hr id="bare_vertical"/>
 
         <div>
             <h2>Volet</h2>
