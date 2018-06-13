@@ -18,3 +18,25 @@ ORDER BY date_maj DESC');
     $req=$req->fetchAll();
     return $req[0];
 }
+
+function get_date($id_sensor,$id_home){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT id_stat,date_maj,period 
+FROM `stat_sensor` NATURAL JOIN sensor NATURAL JOIN room 
+WHERE id_sensor=? AND id_home=?');
+    $req->bindValue(1,$id_sensor,PDO::PARAM_INT);
+    $req->bindValue(2,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    return $req;
+    /*$post=$req->fetch();
+    return $post[0];*/
+}
+
+function update_period($id_stat,$period){
+    $db=dbConnect();
+    $req=$db->prepare('UPDATE stat_sensor SET period=?
+WHERE id_stat=?');
+    $req->bindValue(1,$period,PDO::PARAM_STR);
+    $req->bindValue(2,$id_stat,PDO::PARAM_INT);
+    $req->execute();
+}

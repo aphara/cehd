@@ -20,16 +20,17 @@ function getData()
     /*echo "Tabular Data:<br />";*/
     for ($i = 0, $size = count($data_tab); $i < $size-1; $i++) {
         $trame = $data_tab[$i];
-/*// décodage avec des substring
-        $t = substr($trame, 0, 1);
-        $o = substr($trame, 1, 4);
-// …*/
+        /*// décodage avec des substring
+                $t = substr($trame, 0, 1);
+                $o = substr($trame, 1, 4);
+        // …*/
 // décodage avec sscanf
         list($t, $object, $r, $type, $sensor, $value, $trame, $checksum, $year, $month, $day, $hour, $min, $sec) =
             sscanf($trame, "%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
         /*echo("<br />$t,GROUP = $object,$r,
-TYPE = $type,CAPTEUR = $sensor,VALEUR = $value,TRAME = $trame,$checksum,$year,$month,$day,$hour,$min,$sec<br />");
-        */
+TYPE = $type,CAPTEUR = $sensor,VALEUR = $value,
+        TRAME = $trame,$checksum,$year,$month,$day,$hour,$min,$sec<br />");*/
+
         $date="{$year}-{$month}-{$day} {$hour}:{$min}:{$sec}";
         $lastDate = get_last_date();
         $lastDate = $lastDate[0];
@@ -44,24 +45,67 @@ TYPE = $type,CAPTEUR = $sensor,VALEUR = $value,TRAME = $trame,$checksum,$year,$m
 }
 
 function storeData($id_sensor,$date_maj,$value,$stat_type){
-        switch ($stat_type){
-            case '1':
-                $stat_type='SHUTTER';
-                list($integer,$float)=sscanf($value, "%3s%1s");
-                $value="{$integer}.{$float}";
-                break;
-            case '3':
-                $stat_type='TEMP';
-                list($integer,$float)=sscanf($value, "%3s%1s");
-                $value="{$integer}.{$float}";
-                break;
-            case '5':
-                $stat_type='LIGHT';
-                break;
-        }
-        store_data($id_sensor,$date_maj,$value,$stat_type);
+    switch ($stat_type){
+        case '1':
+            $stat_type='SHUTTER';
+            list($integer,$float)=sscanf($value, "%3s%1s");
+            $value="{$integer}.{$float}";
+            break;
+        case '3':
+            $stat_type='TEMP';
+            list($integer,$float)=sscanf($value, "%3s%1s");
+            $value="{$integer}.{$float}";
+            break;
+        case '5':
+            $stat_type='LIGHT';
+            break;
+        case 'D':
+            $stat_type='CONSO';
+            //ajout du calcul des W
+            break;
+    }
+    store_data($id_sensor,$date_maj,$value,$stat_type);
 }
 
 function updatePeriod($id_home){
+    for ($i=1;$i<100;$i++) {
+        try{
+            $req=get_date($i,$id_home);
+            while($getdate=$req->fetch()) {
+                $strStart = $getdate['date_maj'];
+                $strEnd = date('Y-m-d H:i:s');
 
+                $dteStart = new DateTime($strStart);
+                $dteEnd = new DateTime($strEnd);
+                /*var_dump($strEnd);
+                var_dump($strStart);*/
+                $dteDiff = $dteStart->diff($dteEnd);
+
+                $dteDiff=$dteDiff->format('%Y%M%D%H%I%S');
+
+                list($year, $month, $day, $hour, $min, $sec) =
+                    sscanf($dteDiff, "%2s%2s%2s%2s%2s%2s");
+                $dteDiff="{$year}-{$month}-{$day} {$hour}:{$min}:{$sec} ";
+                if($getdate['period']==NULL){
+                    if ($year==0 && $month==0 && $day==0 && $hour>=0){
+                        $period = 'HOUR';
+                        update_period($getdate['id_stat'], $period);
+                    }elseif ($year==0 && $month==0 && $day>=0){
+                        $period='DAY';
+                        update_period($getdate['id_stat'],$period);
+                    }elseif ($year==0 && $month>=0){
+                        $period='MONTH';
+                        update_period($getdate['id_stat'],$period);
+                    }elseif ($year>=0){
+                        $period='YEAR';
+                        update_period($getdate['id_stat'],$period);
+                    }
+                }
+
+            }
+        } catch (Exception $e) {
+
+        }
+
+    }
 }

@@ -15,6 +15,7 @@ try {
     switch ($_GET['action']) {
         case 'test':
             getData();
+            updatePeriod($_SESSION['id_home']);
             break;
 //login
         case 'login':
@@ -25,6 +26,8 @@ try {
                     break;
                 } elseif ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                     header("Location:index.php?action=home");
+                    getData();
+                    updatePeriod($_SESSION['id_home']);
                     break;
                 } else {
                     authErr();
@@ -117,14 +120,24 @@ try {
         /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                //getData();
+                getData();
+                updatePeriod($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
             }
             break;
 
-
+        /*Page de statistiques*/
+        case 'global_stats':
+            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                getData();
+                updatePeriod($_SESSION['id_home']);
+                require 'view/frontend/global_stats.php';
+            } else {
+                authErr();
+            }
+            break;
 
         /*Gestion des Modules*/
 
@@ -310,15 +323,6 @@ try {
                     $_POST['_date_of_birth'], $_POST['_phone'], $_SESSION['id']);
                 echo 'Utilisateur ajouté';
                 require 'view/frontend/add_user';
-            } else {
-                authErr();
-            }
-            break;
-
-        /*Page de statistiques*/
-        case 'global_stats':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                require 'view/frontend/global_stats.php';
             } else {
                 authErr();
             }
