@@ -364,27 +364,7 @@
         font-size: 25px;
     }
 
-    #question_1 {
-        display: none;
-        color: black;
-    }
-
-    #question_2 {
-        display: none;
-        color: black;
-    }
-
-    #question_3 {
-        display: none;
-        color: black;
-    }
-
-    #question_4 {
-        display: none;
-        color: black;
-    }
-
-    #question_5 {
+    .hidden_content {
         display: none;
         color: black;
     }
@@ -831,30 +811,11 @@
         font-size: 25px;
     }
 
-    #question_1 {
+    .hidden_content {
         display: none;
         color: black;
     }
 
-    #question_2 {
-        display: none;
-        color: black;
-    }
-
-    #question_3 {
-        display: none;
-        color: black;
-    }
-
-    #question_4 {
-        display: none;
-        color: black;
-    }
-
-    #question_5 {
-        display: none;
-        color: black;
-    }
 
     /*gestion utilisateur*/
 

@@ -2,33 +2,12 @@
 $title = 'CeHD - setting';
 ob_start(); ?>
 
-    <script type="text/javascript">
-        function OnOff_1() {
-            if (document.getElementById("identity").style.display == "none")
-                document.getElementById("identity").style.display = "block";
-            else
-                document.getElementById("identity").style.display = "none";
-        }
-        function OnOff_2() {
-            if (document.getElementById("changemail").style.display == "none")
-                document.getElementById("changemail").style.display = "block";
-            else
-                document.getElementById("changemail").style.display = "none";
-        }
-        function OnOff_3() {
-            if (document.getElementById("changepassword").style.display == "none")
-                document.getElementById("changepassword").style.display = "block";
-            else
-                document.getElementById("changepassword").style.display = "none";
-        }
-    </script>
-
     <ul class="allset">
         <!--first name-->
         <li class="testli">
             <!--<button class="buttonset" onclick="OnOff_1();" ><span class="buttontext">Changer les informations</span></button>-->
-            <input type="button" value="Changer les informations" class="bouton" onclick="OnOff_1();">
-            <div id="identity">
+            <input type="button" value="Changer les informations" class="bouton" onclick="OnOff(0);">
+            <div id="identity" class="hidden_content">
 
                 prenom :    <?php echo $resultat['first_name'];?>
                 <form action="index.php?action=update_firstname" method="post">
@@ -67,8 +46,8 @@ ob_start(); ?>
 
         <li class="changemailet">
             <!-- mail-->
-            <input type="button" value="Changer mail" class="bouton" onclick="OnOff_2();">
-            <div id="changemail">
+            <input type="button" value="Changer mail" class="bouton" onclick="OnOff(1);">
+            <div id="changemail" class="hidden_content">
 
                 e-mail :      <?php echo $resultat['mail'];?>
                 <form action="index.php?action=update_email" method="post">
@@ -82,9 +61,9 @@ ob_start(); ?>
         <hr>
 
         <li class="changepasswordset">
-            <input type="button" value="Changer mot de passe" class="bouton" onclick="OnOff_3();">
+            <input type="button" value="Changer mot de passe" class="bouton" onclick="OnOff(2);">
             <!--password -->
-            <div id="changepassword">
+            <div id="changepassword" class="hidden_content">
                 <form action="index.php?action=update_password" method="post">
                     <!--verification-->
                     verification <br>

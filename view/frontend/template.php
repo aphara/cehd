@@ -9,9 +9,11 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script type="text/javascript" src="public/script/main.js">
+    </script>
 </head>
 
-<body onload="OnOff_1(); OnOff_2(); OnOff_3(); OnOff_4(); OnOff_5();">
+<body>
 <script type="text/javascript">
     $(document).ready( function () {
         $('#table_id').DataTable();
