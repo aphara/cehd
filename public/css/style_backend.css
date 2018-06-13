@@ -1,48 +1,5 @@
 /*css du template*/
 /* for styling tables :  https://datatables.net/manual/styling/classes  */
-@media screen and (min-width: 915px ){
-    header{
-        display: flex;
-
-        justify-content: space-between;
-        align-items: center;
-    }
-    #logo {
-        align-self: flex-start;
-    }
-    h1 {
-        font-size: 2.5em;
-    }
-    #setting_wheel {
-        display: flex;
-        align-items: center;
-        font-size: 1em;
-    }
-
-    /*CSS de l'accueil */
-
-    .home_searchbar_add {
-        display: flex;
-        flex-direction: row;
-
-    }
-    .add_button{
-        display: flex;
-        flex-direction: row;
-        align-self: center;
-    }
-    .add_button h3 {
-        margin: 5px;
-    }
-    .ref_table table {
-        border-collapse: collapse;
-    }
-    .ref_table td,th {
-        border: 1px solid black;
-        padding: 10px;
-    }
-}
-@media screen and (max-width: 915px ){
     header{
         display: flex;
         justify-content: space-between;
@@ -87,5 +44,60 @@
         border: 1px solid black;
         padding: 10px;
     }
-}
+
+    /*CSS home management*/
+
+    #dropdown{
+        display:none;
+        list-style-type: none;
+    }
+    #sidebar{
+        display: flex;
+        padding: 0;
+    }
+    #sidebar ul {
+        list-style-type: none;
+
+    }
+
+    #sidebar a {
+        background-color: rgb(200, 200, 200);
+        color: black;
+        text-decoration: none;
+        font-size: 1.3em;
+        display: block;
+        line-height: 189%;
+        padding: 0 9%;
+        border: 3px groove black;
+        border-radius: 10px;
+    }
+    #sidebar a:hover {
+        color: white;
+        border-color: black;
+        background-color: #ff6c06;
+    }
+
+    #topbar {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+
+    }
+    #sidebar span {
+        background-color: rgb(200, 200, 200);
+        color: black;
+        text-decoration: none;
+        font-size: 1.3em;
+        display: block;
+        line-height: 189%;
+        padding: 0 9%;
+        border: 3px groove black;
+        border-radius: 10px;
+    }
+    #sidebar span:hover {
+        color: white;
+        border-color: black;
+        background-color: #ff6c06;
+    }
+
 

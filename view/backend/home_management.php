@@ -2,35 +2,39 @@
 @session_start();
 ob_start(); ?>
 
-
+<script type="text/javascript">
+        function menu(id){
+            if (document.getElementById(id).style.display == "none"){
+                document.getElementById(id).style.display = "block";
+            } else{
+                document.getElementById(id).style.display = "none";
+            }
+        }
+</script>
 <div id='nav_sidebar'>
-    <nav id='sidebar'>
-        <ul>
+    <nav >
+        <ul id='sidebar'>
             <li><a href="index.php?action=user_management&id=<?= $_SESSION['target_id']?>">Gestion Utilisateurs</a></li>
-            <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Maison</a></li>
+            <li id="topbar"> <span onclick="menu('dropdown')">Gestion Maison</span>
+                <ul id="dropdown">
+                    <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Pièces</a></li>
+                    <li><a href="index.php?action=module_management&id=<?= $_SESSION['target_id']?>">Gestion Modules</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>
 <div id='nav_content'>
-    <div>
-    <nav id="topbar">
-        <ul>
-            <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Pièces</a></li>
-            <li><a href="index.php?action=module_management&id=<?= $_SESSION['target_id']?>">Gestion Modules</a></li>
-        </ul>
-    </nav>
-    </div>
-
     <div class="content_content">
         <div class="add_button">
-            <h3>Ajouter une pièce</h3>
             <form action="index.php?action=add_room_form" method="post">
-                <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+                <input class="ajouter" type="image" name="add_user_btn" src="public/img/rounded-add-button.png"/>
             </form>
+            <h3>Ajouter une pièce</h3>
         </div>
 
         <div class="ref_table">
-            <table id="table_id">
+            <table id="table_id" class="display">
                 <thead>
                 <tr>
                     <th>Pièce</th>

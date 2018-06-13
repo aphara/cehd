@@ -3,13 +3,27 @@
 ob_start(); ?>
 
 
-<div id='nav_content'>
-<nav id='sidebar'>
-    <ul>
-        <li><a href="index.php?action=user_management&id=<?= $_SESSION['target_id']?>">Gestion Utilisateurs</a></li>
-        <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Maison</a></li>
-    </ul>
-</nav>
+<script type="text/javascript">
+        function menu(id){
+            if (document.getElementById(id).style.display == "none"){
+                document.getElementById(id).style.display = "block";
+            } else{
+                document.getElementById(id).style.display = "none";
+            }
+        }
+</script>
+<div id='nav_sidebar'>
+    <nav >
+        <ul id='sidebar'>
+            <li><a href="index.php?action=user_management&id=<?= $_SESSION['target_id']?>">Gestion Utilisateurs</a></li>
+            <li id="topbar"> <span onclick="menu('dropdown')">Gestion Maison</span>
+                <ul id="dropdown">
+                    <li><a href="index.php?action=home_management&id=<?= $_SESSION['target_id']?>">Gestion Pièces</a></li>
+                    <li><a href="index.php?action=module_management&id=<?= $_SESSION['target_id']?>">Gestion Modules</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <div>
@@ -17,13 +31,13 @@ ob_start(); ?>
         <h1>Domicile de <?= $user[0]['first_name'];?> <?= $user[0]['last_name'];?></h1>
     </div>
     <div class="add_button">
-        <h3>Ajouter un utilisateur</h3>
         <form action="index.php?action=add_user_form" method="post">
-            <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
+            <input class="ajouter" type="image" name="add_user_btn" src="public/img/rounded-add-button.png">
         </form>
+        <h3>Ajouter un utilisateur</h3>
     </div>
     <div class="ref_table">
-        <table id="table_id">
+        <table id="table_id" class="display">
             <thead>
             <tr>
                 <th>Référence</th>
