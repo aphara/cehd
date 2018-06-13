@@ -476,12 +476,12 @@
         padding: 0 5px;
     }
     #volet{
-        width: 100vh;
+        width: 72vh;
         border-left: 2px solid black;
         padding: 10px;
     }
     #light{
-        width: 100vh;
+        width: 72vh;
     }
 }
 
@@ -916,11 +916,11 @@
         padding: 0 5px;
     }
     #volet{
-        width: 100vh;
+        width: 72vh;
         border-left: 2px solid black;
         padding: 10px;
     }
     #light{
-        width: 100vh;
+        width: 72vh;
     }
 }
