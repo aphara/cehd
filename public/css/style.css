@@ -19,6 +19,7 @@
         font-size: 2em;
     }
 
+
     .retour {
         pading: 2px;
         text-align: center;
@@ -231,7 +232,7 @@
         margin-right: 5%;
         margin-bottom: 8%;
         border: 3px solid;
-        overflow: scroll;
+        overflow: auto;
         height: 140%;
         width: 120%;
 
@@ -301,6 +302,7 @@
     }
 
     /*gestion utilisateur*/
+
     .ref_table table {
         border-collapse: collapse;
     }
@@ -309,6 +311,31 @@
         border: 1px solid black;
         padding: 10px;
     }
+    .mini_header{
+        display: flex;
+    }
+    .add_user {
+        display: flex;
+        position: absolute;
+        right: 5%;
+        font-size: 20px;
+    }
+    .ajouter {
+        height: 32px;
+        width:32px;
+        margin: 20px;
+    }
+
+    #titre_header{
+        font-size: 40px;
+        text-align: center;
+    }
+
+    /*#bouton_ajouter {*/
+        /*position: absolute;*/
+        /*right: 1%;*/
+        /*margin: 20px;*/
+    /*}*/
 
     /*Aide*/
     h3 {
@@ -398,6 +425,58 @@
         border-collapse: collapse;
         margin-left: 10px;
     }
+
+    /*SETTING*/
+
+    .allset{
+        color: red;
+    }
+    #identity
+    {
+        display: none;
+        margin: auto;
+        color: black;
+        max-width: 100%;
+    }
+    #changemail
+    {
+        display: none;
+        margin: auto;
+        color: black;
+        max-width: 100%;
+    }
+    #changepassword
+    {
+        display: none;
+        margin: auto;
+        color: black;
+    }
+    .formtext{
+
+        display: flex;
+        margin: 1%;
+        max-width: 60%;
+        flex-direction: column;
+
+    }
+    .nomsetting{
+        border: 3px solid;
+        max-width: 20%;
+        margin-bottom: 2%;
+    }
+    .submitnom{
+        border: 1px solid;
+        border-radius: 5px;
+        box-shadow: 6px 6px 6px black;
+        margin-top: 2%;
+        margin-right: 15%;
+
+        margin-bottom: 15%;
+        width: 16%;
+
+        justify-content: left;
+        right: 20%;
+    }
 }
 
 @media screen and (max-width: 915px ) {
@@ -420,6 +499,11 @@
     h1 {
         font-weight: bold;
         font-size: 2em;
+    }
+
+    .ajouter {
+        height: 32px;
+        width:32px;
     }
 
     .retour {
@@ -641,7 +725,7 @@
         margin-right: 5%;
         margin-bottom: 8%;
         border: 3px solid;
-        overflow: scroll;
+        overflow: auto;
         height: 140%;
         width: 100%;
 
@@ -768,7 +852,7 @@
 
     #bouton_ajouter {
         position: absolute;
-        right: 1%;
+        left: 1%;
     }
 
     .ref_table table {

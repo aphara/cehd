@@ -3,15 +3,19 @@ $title = 'CeHD - Gestion utilisateurs';
 ob_start(); ?>
 
 
-<div class="add_user">
-    <h3>Ajouter un utilisateur</h3>
-    <form action="index.php?action=add_user_front" method="post" id="bouton_ajouter">
-        <input type="image" name="add_user_btn" src="public/img/rounded-add-button.png"/>
-    </form>
+<div class="mini_header">
+    <h2 id="titre_header">Gestion Utilisateur</h2>
+    <div class="add_user">
+        <h4>Ajouter un utilisateur</h4>
+        <form action="index.php?action=add_user_front" method="post" id="bouton_ajouter">
+            <input class="ajouter" type="image" name="add_user_btn" src="public/img/rounded-add-button.png"/>
+        </form>
+    </div>
+
 </div>
 
 <div class="ref_table">
-    <table id="table_id" class="tab_user">
+    <table id="table_id" class="display">
         <thead>
         <tr>
             <th>Référence</th>

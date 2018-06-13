@@ -9,11 +9,11 @@ ob_start(); ?>
     </script>
 
 <h1>Associer de la lumière maison de <?= htmlspecialchars($_SESSION['name']) ?></h1>
-<table class="associer_lumiere" id="table_id">
+<table class="display" id="table_id">
     <thead>
     <tr>
         <th>Nom Capteur</th>
-        <th>Pièce Asocciée</th>
+        <th>Pièce Associée</th>
         <th>Modifier</th>
     </tr>
     </thead>
@@ -33,11 +33,11 @@ ob_start(); ?>
 
 <br>
 
-<table class="associer_lumiere" id="table_id2">
+<table class="display" id="table_id2">
     <thead>
     <tr>
         <th>Nom Actionneur</th>
-        <th>Pièce Asocciée</th>
+        <th>Pièce Associée</th>
         <th>Modifier</th>
     </tr>
     </thead>

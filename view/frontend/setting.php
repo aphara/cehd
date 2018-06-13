@@ -2,7 +2,6 @@
 $title = 'CeHD - setting';
 ob_start(); ?>
 
-
     <script type="text/javascript">
         function OnOff_1() {
             if (document.getElementById("identity").style.display == "none")
@@ -22,7 +21,6 @@ ob_start(); ?>
             else
                 document.getElementById("changepassword").style.display = "none";
         }
-
     </script>
 
     <ul class="allset">

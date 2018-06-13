@@ -9,7 +9,7 @@ ob_start(); ?>
     </script>
 
 <h1>Associer les capteur de température de la maison de <?= htmlspecialchars($_SESSION['name']) ?></h1>
-<table class="associer_lumiere" id="table_id">
+<table class="display" id="table_id">
     <thead>
     <tr>
         <th>Nom Capteur</th>
@@ -32,7 +32,7 @@ ob_start(); ?>
 </table>
 <br>
 
-<table class="associer_lumiere" id="table_id2">
+<table class="display" id="table_id2">
     <thead>
     <tr>
         <th>Nom Actionneur</th>
