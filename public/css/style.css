@@ -477,6 +477,12 @@
         justify-content: left;
         right: 20%;
     }
+
+    /*Gestion Maison*/
+
+    #nav_home_management{
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 915px ) {
