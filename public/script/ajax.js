@@ -4,30 +4,29 @@ dbSync();
 
 function dbSync(){
     $.ajax({
-        url: './controller/data.php?command=getData',
+        url: './controller/data.php',
         type: 'post',
-
-        success: function(data){
+        data: 'command=test',
+        success: function(data,status){
             console.log(data);
         },
-        complete:function(){
+        complete:function(resultat,status){
             setTimeout(dbSync,10000);
         }
     });
 }
 
-function sendEffectorValue(value){
-    console.log(value);
-/*    $.ajax({
-        url: './controller/data.php?command=sendData',
-        type: 'get',
-
-        success: function(data){
-            console.log(data);
-            console.log('test');
+function sendAllEffectorValue(id,value){
+    console.log(id,value);
+    $.ajax({
+        url: './controller/data.php?command=sendAllEffectorData&',
+        type: 'post',
+        data: 'command=sendAllEffectorData&id='+id+'&value='+value,
+        success: function(data,status){
+            console.log(data,status);
         },
-        complete:function(){
-           console.log('done')
+        complete:function(result,status){
+            console.log(status);
         }
-    });*/
+    });
 }

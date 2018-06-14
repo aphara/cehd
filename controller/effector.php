@@ -62,7 +62,7 @@ function editEffector($id_effector, $effector_type, $effector_name, $id_room){
 
 function getAllEffectorLight($id_home){
     $type='LIGHT_CTRL';
-    $req=get_effector_type($id_home,$type);
+    $req=get_effector_by_type($id_home,$type);
     $req=$req->fetchAll();
     $length=count($req);
     for($i=0;$i<count($req);$i++){
@@ -76,5 +76,17 @@ function getAllEffectorLight($id_home){
     }
     elseif ($length==0){
         return 'OFF';
+    }
+}
+
+function changeEffectorValue($id,$value,$id_home){
+    if ($id == 'allLight') {
+        $type='LIGHT_CTRL';
+        if ($value == 'true') {
+            $request_value = 1111;
+        } else {
+            $request_value = 0;
+        }
+        change_effector_value($type,$request_value,$id_home);
     }
 }

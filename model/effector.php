@@ -111,7 +111,7 @@ WHERE id_effector=:id');
     $req2->execute();
 }
 
-function get_effector_type($id_home,$type){
+function get_effector_by_type($id_home, $type){
     $db=dbConnect();
     $req=$db->prepare('SELECT 
 `id_effector`,`effector_type`,`request_value`
@@ -121,4 +121,15 @@ WHERE id_home=? AND effector_type=?');
     $req->bindValue(2,$type,PDO::PARAM_STR);
     $req->execute();
     return $req;
+}
+
+function change_effector_value($type,$request_value,$id_home){
+    $db=dbConnect();
+    $req=$db->prepare('UPDATE effector NATURAL JOIN room 
+    SET request_value=? 
+    WHERE effector_type=? AND id_home=?');
+    $req->bindValue(1,$request_value,PDO::PARAM_INT);
+    $req->bindValue(2,$type,PDO::PARAM_STR);
+    $req->bindValue(3,$id_home,PDO::PARAM_INT);
+    $req->execute();
 }

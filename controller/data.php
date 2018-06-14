@@ -1,28 +1,30 @@
 <?php
 require_once __DIR__.'/../config.php';
 require_once ROOT.'/model/data.php';
-require_once ROOT.'/model/frontend.php';
+require_once ROOT.'/controller/frontend.php';
+require_once ROOT.'/controller/effector.php';
 @session_start();
 
-try{
-    if (!isset($_GET['command']))
-        $_GET['command'] = '';
-    switch ($_GET['command']){
-        case 'getData':
-            getData();
-            updatePeriod($_SESSION['id_home']);
-            break;
-        case 'sendData':
-            $id=1;
-            $value=1111;
-            //sendTestframe();
-            sendFrameOneEffector();
-            break;
-        case 'test':
-            echo 'aaaaaaaaaa';
-            break;
-    }
-}catch (Exception $e){
+try {
+    if (isset($_POST['command'])) {
+
+        switch ($_POST['command']) {
+            case 'getData':
+                getData();
+                updatePeriod($_SESSION['id_home']);
+                break;
+            case 'sendAllEffectorData':
+                changeEffectorValue($_POST['id'],$_POST['value'],$_SESSION['id_home']);
+                sendTestframe();
+                //sendFrameOneEffector();
+                break;
+            case 'test':
+                echo 'aaaaaaaaaa';
+                break;
+        }
+    }}
+catch
+(Exception $e){
     echo 'Erreur : ' . $e->getMessage();
 }
 
@@ -163,5 +165,6 @@ function sendTestframe(){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
     curl_close($ch);
+    echo "b";
 
 }

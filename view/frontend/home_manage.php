@@ -13,7 +13,7 @@ ob_start(); ?>
             <h2>Lumière</h2>
             <label class="switch">
                 <?php
-                echo '<input onchange="sendEffectorValue(this.value)" '.($light=="ON"?"checked":"").' type="checkbox">'
+                echo '<input onchange="sendAllEffectorValue(this.id,this.checked)" '.($light=="ON"?"checked":"").' type="checkbox" id="allLight">'
                 ;?>
                 <span class="slider round"></span>
             </label>
