@@ -9,6 +9,8 @@ ob_start(); ?>
         <div id="light">
             <h2>Température</h2>
             <h2>Lumière</h2>
+            <!--<img src="public/img/.png"-->
+
             <h2>Alarme</h2>
         </div>
         <div id="volet">

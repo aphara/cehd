@@ -6,39 +6,8 @@
     <link rel="stylesheet" href="public/css/style.css" />
 </head>
 
-<body onload="OnOff_1(); OnOff_2(); OnOff_3(); OnOff_4(); OnOff_5();">
-<script type="text/javascript">
-    function OnOff_1() {
-        if (document.getElementById("question_1").style.display == "none")
-            document.getElementById("question_1").style.display = "block";
-        else
-            document.getElementById("question_1").style.display = "none";
-    }
-    function OnOff_2() {
-        if (document.getElementById("question_2").style.display == "none")
-            document.getElementById("question_2").style.display = "block";
-        else
-            document.getElementById("question_2").style.display = "none";
-    }
-    function OnOff_3() {
-        if (document.getElementById("question_3").style.display == "none")
-            document.getElementById("question_3").style.display = "block";
-        else
-            document.getElementById("question_3").style.display = "none";
-    }
-    function OnOff_4() {
-        if (document.getElementById("question_4").style.display == "none")
-            document.getElementById("question_4").style.display = "block";
-        else
-            document.getElementById("question_4").style.display = "none";
-    }
-    function OnOff_5() {
-        if (document.getElementById("question_5").style.display == "none")
-            document.getElementById("question_5").style.display = "block";
-        else
-            document.getElementById("question_5").style.display = "none";
-    }
-</script>
+<body>
+
 <div id='logo'>
     <a href="index.php?action=login_view"><img src='public/img/LOGO_small.png' alt='logo'/></a>
 </div>
@@ -46,8 +15,8 @@
     <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pictogram_voting_question.svg/220px-Pictogram_voting_question.svg.png" class="LogoAide" alt="LogoAide" />Aide</h3>
     <ul>
         <li>
-            <input type="button" value="Comment se connecter pour la première fois ?" class="bouton" onclick="OnOff_1();">
-            <span id="question_1">
+            <input type="button" value="Comment se connecter pour la première fois ?" class="bouton" onclick="OnOff(0);">
+            <span class="hidden_content">
         Lors de votre première connexion, cliquez sur "Première connexion" sur la page d'accueil puis renseignez dans le champ proposé l'adresse mail que vous avez choisi lors de la configuration de votre maison.
         Puis rentrez de la même façon le mot de passe que nous vous avons communiqué par mail.
         Vous serez alors redirigé sur la page d'accueil et vous pourrez alors vous connecter en remplissant les champs de connexion.
@@ -58,8 +27,8 @@
         </li>
         <hr/>
         <li>
-            <input type="button" value="Comment gérer ses modules ?" class="bouton" onclick="OnOff_2();">
-            <span id="question_2">
+            <input type="button" value="Comment gérer ses modules ?" class="bouton" onclick="OnOff(1);">
+            <span class="hidden_content">
           Pour gérer vos modules, survolez l'onglet "Gestion Maison" dans le menu déroulant puis cliquez sur "gestion modules".
           Choissisez les modules que vous voulez gérer en sélectionnant un onglet parmi "Lumière", "Température" et "Volet".
           Dans chaque onglet un menu déroulant vous permet de choisir la salle dans laquelle vous voulez gérer votre module.
@@ -71,8 +40,8 @@
         </li>
         <hr/>
         <li>
-            <input type="button" value="Comment ajouter/supprimer un utilisateur ?" class="bouton" onclick="OnOff_3();">
-            <span id="question_3">
+            <input type="button" value="Comment ajouter/supprimer un utilisateur ?" class="bouton" onclick="OnOff(2);">
+            <span class="hidden_content">
           Cette action est réservée uniquement aux utilisateurs possédant le statut de "Super User".
           Dans l'onglet "Gestion Utilisateurs" du menu déroulant, vous avez accès aux informations tous les utilisateurs de votre domicile.
           Vous pouvez à tout moment supprimer un utilisateur (en cliquant sur la petite poubelle à droite de celui-ci),
@@ -82,8 +51,8 @@
         </li>
         <hr/>
         <li>
-            <input type="button" value="Je veux parametrer un programme, comment faire ?" class="bouton" onclick="OnOff_4();">
-            <span id="question_4">
+            <input type="button" value="Je veux parametrer un programme, comment faire ?" class="bouton" onclick="OnOff(3);">
+            <span class="hidden_content">
           Dans l'onglet "Gestion Maison" du menu déroulant, cliquez sur "programmes".
           Cliquez sur l'onglet "+" situé en dessous du nom de votre domicile pour ajouter un programme.
           Choissisez la pièce dans laquelle vous voulez que votre programme prenne effet en la sélectionnant grâce au menu déroulant.
@@ -93,18 +62,21 @@
         </li>
         <hr/>
         <li>
-            <input type="button" value="Je veux rajouter un module manuellement, est-ce possible ?" class="bouton" onclick="OnOff_5();">
-            <span id="question_5">
+            <input type="button" value="Je veux rajouter un module manuellement, est-ce possible ?" class="bouton" onclick="OnOff(4);">
+            <span class="hidden_content">
           Dans l'onglet "Gestion Maison" vous pouvez avoir accès à tous vos modules en cliquant sur "associer modules".
           Dans cette page vous pouvez associer un module existant à une pièce de votre domicile mais VOUS NE POUVEZ PAS
           rajouter manuellement un nouveau module non existant lors de la configuration de votre maison.
-          Si vous souhaitez rajouter un module, <a href="index.php?action=contact_public">contactez</a> directement le service client.
+          Si vous souhaitez rajouter un module, <a href="index.php?action=contact">contactez</a> directement le service client.
       </span>
         </li>
     </ul>
 </div>
 <a class="retour" href="index.php?action=login_view">RETOUR</a>
+
 </body>
+<script type="text/javascript" src="public/script/main.js">
+</script>
 </html>
 
 

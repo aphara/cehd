@@ -40,3 +40,25 @@ WHERE id_stat=?');
     $req->bindValue(2,$id_stat,PDO::PARAM_INT);
     $req->execute();
 }
+
+function get_last($id_sensor,$id_home){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT id_sensor, value, id_stat
+FROM `stat_sensor` NATURAL JOIN sensor NATURAL JOIN room
+WHERE id_sensor=? AND id_home=? 
+ORDER BY id_stat DESC LIMIT 1');
+    $req->bindValue(1,$id_sensor,PDO::PARAM_INT);
+    $req->bindValue(2,$id_home,PDO::PARAM_INT);
+    $req->execute();
+    $req=$req->fetchAll();
+    return $req;
+}
+
+function update_sensor_value($id_sensor,$value){
+    $db=dbConnect();
+    $req=$db->prepare('UPDATE sensor SET current_value=?
+WHERE id_sensor=?');
+    $req->bindValue(1,$value,PDO::PARAM_STR);
+    $req->bindValue(2,$id_sensor,PDO::PARAM_INT);
+    $req->execute();
+}
