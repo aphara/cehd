@@ -2,7 +2,7 @@
 require_once __DIR__.'/../config.php';
 require_once ROOT.'/model/effector.php';
 
-function getEffector($id_user){
+function getEffectorBack($id_user){
     $target_home=get_id_home($id_user);
     $_SESSION['target_home']=$target_home[0];
     $req=get_effector($_SESSION['target_home']);
@@ -58,4 +58,23 @@ function getEffectorTemp($id_user){
 
 function editEffector($id_effector, $effector_type, $effector_name, $id_room){
     edit_effector($id_effector, $effector_type, $effector_name, $id_room);
+}
+
+function getAllEffectorLight($id_home){
+    $type='LIGHT_CTRL';
+    $req=get_effector_type($id_home,$type);
+    $req=$req->fetchAll();
+    $length=count($req);
+    for($i=0;$i<count($req);$i++){
+        if ($req[$i]['request_value']==1111){
+            $on=1;
+            break;
+        }else $length--;
+    }
+    if (isset($on)){
+        return 'ON';
+    }
+    elseif ($length==0){
+        return 'OFF';
+    }
 }

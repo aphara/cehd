@@ -1,6 +1,31 @@
 <?php
 require_once __DIR__.'/../config.php';
 require_once ROOT.'/model/data.php';
+require_once ROOT.'/model/frontend.php';
+@session_start();
+
+try{
+    if (!isset($_GET['command']))
+        $_GET['command'] = '';
+    switch ($_GET['command']){
+        case 'getData':
+            getData();
+            updatePeriod($_SESSION['id_home']);
+            break;
+        case 'sendData':
+            $id=1;
+            $value=1111;
+            //sendTestframe();
+            sendFrameOneEffector();
+            break;
+        case 'test':
+            echo 'aaaaaaaaaa';
+            break;
+    }
+}catch (Exception $e){
+    echo 'Erreur : ' . $e->getMessage();
+}
+
 function getData()
 {
 
@@ -110,12 +135,33 @@ function updatePeriod($id_home){
                 update_sensor_value($req[0]['id_sensor'],$req[0]['value']);
             }
         } catch (Exception $e) {}
-    }
+    }echo 'Synchronisation effectuée';
 }
 
-function updateSensorValue($id_home){
-    for ($i=1;$i<100;$i++) {
 
+function sendFrameOneEffector(){
 
-    }
+    $ch = curl_init();
+    curl_setopt(
+        $ch,
+        CURLOPT_URL,
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D123456789");
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    echo 'a';
+}
+
+function sendTestframe(){
+    $ch = curl_init();
+    curl_setopt(
+        $ch,
+        CURLOPT_URL,
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D123456789");
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $data = curl_exec($ch);
+    curl_close($ch);
+
 }

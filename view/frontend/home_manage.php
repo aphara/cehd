@@ -8,11 +8,20 @@ ob_start(); ?>
     <div id="nav_home_management">
         <div id="light">
             <h2>Température</h2>
+
+
             <h2>Lumière</h2>
-            <!--<img src="public/img/.png"-->
+            <label class="switch">
+                <?php
+                echo '<input onchange="sendEffectorValue(this.value)" '.($light=="ON"?"checked":"").' type="checkbox">'
+                ;?>
+                <span class="slider round"></span>
+            </label>
 
             <h2>Alarme</h2>
         </div>
+
+
         <div id="volet">
             <h2>Volet</h2>
             <form method="post" action="#" onchange="AfficheRange()" onkeyup="AfficheRange()">

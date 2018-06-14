@@ -26,9 +26,8 @@ try {
                     header("Location:index.php?action=homeb");
                     break;
                 } elseif ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+
                     header("Location:index.php?action=home");
-                    getData();
-                    updatePeriod($_SESSION['id_home']);
                     break;
                 } else {
                     authErr();
@@ -121,8 +120,7 @@ try {
         /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                getData();
-                updatePeriod($_SESSION['id_home']);
+                $light=getAllEffectorLight($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
@@ -132,8 +130,6 @@ try {
         /*Page de statistiques*/
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                getData();
-                updatePeriod($_SESSION['id_home']);
                 require 'view/frontend/global_stats.php';
             } else {
                 authErr();
@@ -649,7 +645,7 @@ try {
                 if (isset($_GET['id'])) {
                     $_SESSION['target_id'] = $_GET['id'];
                     $req = getSensor(htmlspecialchars($_SESSION['target_id']));
-                    $req2 = getEffector(htmlspecialchars($_SESSION['target_id']));
+                    $req2 = getEffectorBack(htmlspecialchars($_SESSION['target_id']));
                     require 'view/backend/module_management.php';
                 } elseif (isset($_SESSION['target_id'])) {
                     $req = getSensor(htmlspecialchars($_SESSION['target_id']));

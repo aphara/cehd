@@ -110,3 +110,15 @@ WHERE id_effector=:id');
     $req2->bindValue('room', $id_room, PDO::PARAM_INT);
     $req2->execute();
 }
+
+function get_effector_type($id_home,$type){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT 
+`id_effector`,`effector_type`,`request_value`
+FROM `room`NATURAL JOIN effector
+WHERE id_home=? AND effector_type=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,$type,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
