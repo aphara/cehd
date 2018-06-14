@@ -101,11 +101,21 @@ function updatePeriod($id_home){
                         update_period($getdate['id_stat'],$period);
                     }
                 }
-
             }
-        } catch (Exception $e) {
+        } catch (Exception $e) {}
 
-        }
+        try{
+            $req=get_last($i,$id_home);
+            if (isset($req[0])){
+                update_sensor_value($req[0]['id_sensor'],$req[0]['value']);
+            }
+        } catch (Exception $e) {}
+    }
+}
+
+function updateSensorValue($id_home){
+    for ($i=1;$i<100;$i++) {
+
 
     }
 }

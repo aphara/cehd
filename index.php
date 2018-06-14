@@ -14,12 +14,13 @@ try {
         $_GET['action'] = '';
     switch ($_GET['action']) {
         case 'test':
-            getData();
+            //getData();
             updatePeriod($_SESSION['id_home']);
+            //updateSensorValue($_SESSION['id_home']);
             break;
 //login
         case 'login':
-            $isPasswordCorrect = login($_POST['_mail'], $_POST['_password']);
+            login($_POST['_mail'], $_POST['_password']);
             if (isset($_SESSION['status'])) {
                 if ($_SESSION['status'] == 'ADMIN') {
                     header("Location:index.php?action=homeb");
