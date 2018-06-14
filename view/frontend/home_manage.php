@@ -13,20 +13,54 @@ ob_start(); ?>
         </div>
         <div id="volet">
             <h2>Volet</h2>
-            <input type="range" orient="vertical" id="range_volet" list="tickmarks">
-            <datalist id="tickmarks">
-                <option value="0">
-                <option value="10">
-                <option value="20">
-                <option value="30">
-                <option value="40">
-                <option value="50">
-                <option value="60">
-                <option value="70">
-                <option value="80">
-                <option value="90">
-                <option value="100">
-            </datalist>
+            <form method="post" action="#" onchange="AfficheRange()" onkeyup="AfficheRange()">
+                <fieldset>
+                    <input id="Range" type="range" orient="vertical" id="range_volet" step="10" value="0" min="0" max="100">
+                    <img id="AfficheValue" src="public/img/volet0.PNG" alt="niveau_volet"/>
+                    <span id="value_range">Value=0</span>
+                </fieldset>
+            </form>
+            <script type="text/javascript">
+                function AfficheRange() {
+                    var R=document.getElementById("Range").value;
+                    document.getElementById("value_range").innerHTML="Valeur="+R;
+                    if (R==0){
+                        document.getElementById("AfficheValue").src="public/img/volet0.PNG";
+                    }
+                    if (R==10){
+                        document.getElementById("AfficheValue").src="public/img/voley10.PNG";
+                    }
+                    if (R==20){
+                        document.getElementById("AfficheValue").src="public/img/voley20.PNG";
+                    }
+                    if (R==30){
+                        document.getElementById("AfficheValue").src="public/img/voley30.PNG";
+                    }
+                    if (R==40){
+                        document.getElementById("AfficheValue").src="public/img/voley40.PNG";
+                    }
+                    if (R==50){
+                        document.getElementById("AfficheValue").src="public/img/voley50.PNG";
+                    }
+                    if (R==60){
+                        document.getElementById("AfficheValue").src="public/img/voley60.PNG";
+                    }
+                    if (R==70){
+                        document.getElementById("AfficheValue").src="public/img/voley70.PNG";
+                    }
+                    if (R==80){
+                        document.getElementById("AfficheValue").src="public/img/voley80.PNG";
+                    }
+                    if (R==90){
+                        document.getElementById("AfficheValue").src="public/img/voley90.PNG";
+                    }
+                    if (R==100){
+                        document.getElementById("AfficheValue").src="public/img/voley100.PNG";
+                    }
+
+
+                }
+            </script>
         </div>
     </div>
 
