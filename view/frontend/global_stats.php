@@ -5,7 +5,7 @@ ob_start();?>
 
 
 
-    <div id="consommation">
+    <div id="global_stat">
         <div id="consommation">
             <div id="global_chart">
                 <h1>Statistiques</h1>
@@ -37,8 +37,6 @@ ob_start();?>
             <div id="consommation_instantanee">
                 <p><?php echo get_instant_conso($_SESSION['id_home'])[0]; ?> C°</p>
                 <p>Consommation instantanée</p>
-
-
             </div>
         </div>
         <div id="temperature">
@@ -48,7 +46,10 @@ ob_start();?>
 
         </div>
         <div id="etat_modules">
-
+            <p>Etat des capteurs : </p>
+            <?php $state = getStateSensor($_SESSION['id_home']);
+            $url = $state?"public/img/checked.PNG":"public/img/unchecked.PNG";?>
+            <img id="prompt_state_sensor" <?php echo ("src=".$url); ?>>
         </div>
     </div>
 

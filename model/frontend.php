@@ -124,7 +124,6 @@ function get_instant_conso($id_home){
 //Récupere la consommation éléctrique d'une maison
 function get_conso_house($id_home,$periode){
     $db = dbCOnnect();
-    //modifier la requete
     $req = $db->prepare('SELECT `date_maj`,`value`
     FROM `room`
     NATURAL JOIN sensor NATURAL JOIN stat_sensor
@@ -134,6 +133,18 @@ function get_conso_house($id_home,$periode){
     $req->bindValue(1, $id_home, PDO::PARAM_INT);
     $req->bindValue(2, $periode,PDO::PARAM_STR);
     $req->bindValue(3,'CONSO',PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+//récupere l'état de tout les capteurs d'une habitation
+function get_state_sensor($id_home){
+    $db = dbCOnnect();
+    $req = $db->prepare('SELECT `current_state` 
+    FROM `room`
+    NATURAL JOIN sensor
+    WHERE id_home=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
     $req->execute();
     return $req;
 }

@@ -115,3 +115,13 @@ function getConsoHouse($id_home,$periode){
     }
     return $rep;
 }
+
+function getStateSensor($id_home){
+    $donnees = get_state_sensor($id_home);
+    while ($values = $donnees->fetch()){
+        if ($values['current_state'] == 0){
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
