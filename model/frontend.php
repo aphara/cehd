@@ -122,7 +122,7 @@ function get_instant_conso($id_home){
 }
 
 //Récupere la consommation éléctrique d'une maison
-function get_conso_house($id_home){
+function get_conso_house($id_home,$periode){
     $db = dbCOnnect();
     //modifier la requete
     $req = $db->prepare('SELECT `date_maj`,`value`
@@ -132,7 +132,7 @@ function get_conso_house($id_home){
     ORDER BY date_maj 
     LIMIT 30');
     $req->bindValue(1, $id_home, PDO::PARAM_INT);
-    $req->bindValue(2, 'DAY',PDO::PARAM_STR);
+    $req->bindValue(2, $periode,PDO::PARAM_STR);
     $req->bindValue(3,'CONSO',PDO::PARAM_STR);
     $req->execute();
     return $req;
