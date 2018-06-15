@@ -6,7 +6,7 @@ function dbSync(){
     $.ajax({
         url: './controller/data.php',
         type: 'post',
-        data: 'command=test',
+        data: 'command=getData',
         success: function(data,status){
             console.log(data);
         },

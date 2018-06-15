@@ -14,8 +14,26 @@ try {
                 updatePeriod($_SESSION['id_home']);
                 break;
             case 'sendAllEffectorData':
-                changeEffectorValue($_POST['id'],$_POST['value'],$_SESSION['id_home']);
-                sendTestframe();
+                if ($_POST['id'] == 'allLight') {
+                    $type='LIGHT_CTRL';
+                    $frame_type=5;
+                    if ($_POST['value'] == 'true') {
+                        $request_value = 1111;
+                    } else {
+                        $request_value = 0;
+                    }
+                }
+                changeEffectorValue($type,$request_value,$_SESSION['id_home']);
+                $req=getAllEffectorByType($_SESSION['id_home'],$type);
+                $req=$req->fetchAll();
+                for($i=0;$i<count($req);$i++){
+                    $id=$req[$i]['id_effector'];
+                    $timestamp=date('YmdHis');
+                    //sendTestframe($frame_type,$id,$request_value,$timestamp);
+
+                }
+                sendFrameAllEffector();
+
                 //sendFrameOneEffector();
                 break;
             case 'test':
@@ -155,12 +173,30 @@ function sendFrameOneEffector(){
     echo 'a';
 }
 
-function sendTestframe(){
+function sendFrameAllEffector(){
+
     $ch = curl_init();
     curl_setopt(
         $ch,
         CURLOPT_URL,
         "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D123456789");
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+
+    echo 'a';
+}
+
+function sendTestframe($type,$id,$value,$timestamp){
+    $frame="1G10D2".$type.$id.$value."aa"/*.$timestamp*/;
+    var_dump($frame);
+    $ch = curl_init();
+    curl_setopt(
+        $ch,
+        CURLOPT_URL,
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D2".$frame);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
