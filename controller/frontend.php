@@ -95,12 +95,33 @@ function UpdatePassword($id_session,$_mail,$_old_password,$_new_password,$_new_p
     }
 }
 
-function getConsoHouse($id_home){
-    $donnees = get_conso_house($id_home);
+function getConsoHouse($id_home,$periode){
+    $donnees = get_conso_house($id_home,$periode);
     $rep = [['date','value']];
-    while ($values = $donnees->fetch()){
-        array_push($rep,array(substr($values['date_maj'],8,-8   ),(int)$values['value']));
+    if ($periode == "DAY"){
+        while ($values = $donnees->fetch()){
+            array_push($rep,array(substr($values['date_maj'],8,-8   ),(int)$values['value']));
+        }
     }
-    //die(var_dump($rep));
+    if ($periode == "HOUR"){
+        while ($values = $donnees->fetch()){
+            array_push($rep,array(substr($values['date_maj'],14,-3   ),(int)$values['value']));
+        }
+    }
+    if ($periode == "MONTH"){
+        while ($values = $donnees->fetch()){
+            array_push($rep,array(substr($values['date_maj'],5,-12   ),(int)$values['value']));
+        }
+    }
     return $rep;
+}
+
+function getStateSensor($id_home){
+    $donnees = get_state_sensor($id_home);
+    while ($values = $donnees->fetch()){
+        if ($values['current_state'] == 0){
+            return FALSE;
+        }
+    }
+    return TRUE;
 }

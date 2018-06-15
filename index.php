@@ -130,6 +130,20 @@ try {
         /*Page de statistiques*/
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (!isset($_POST['type_graph'])) {
+                    $periode = "HOUR";
+                }
+                else{
+                    if ($_POST['type_graph'] == 'DAY') {
+                        $periode = "DAY";
+                    }
+                    if ($_POST['type_graph'] == 'HOUR') {
+                        $periode = "HOUR";
+                    }
+                    if ($_POST['type_graph'] == 'MONTH') {
+                        $periode = "MONTH";
+                    }
+                }
                 require 'view/frontend/global_stats.php';
             } else {
                 authErr();
