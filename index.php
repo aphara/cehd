@@ -120,7 +120,7 @@ try {
         /*Gestion de la maison, accueil*/
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                $light=getAllEffectorLight($_SESSION['id_home']);
+                $light=getAllEffectorLightState($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
