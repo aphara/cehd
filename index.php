@@ -164,6 +164,7 @@ try {
 
         case 'module_shutter':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $req = getEffectorValue($_SESSION['id_home'],$_SESSION['effector_name'], $_SESSION['id_room']);
                 require 'view/frontend/module_shutter.php';
             } else {
                 authErr();

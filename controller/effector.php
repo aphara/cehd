@@ -111,3 +111,7 @@ function getAllEffectorByType($id_home,$type){
 function changeEffectorValue($type,$request_value,$id_home){
     change_effector_value($type,$request_value,$id_home);
 }
+
+function getEffectorValue($id_home, $type, $id_room){
+    get_effector_value($id_home, $type, $id_room);
+}
