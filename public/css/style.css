@@ -1058,4 +1058,41 @@
         border-radius: 50%;
     }
 
+
+    /*Plus Minus input*/
+
+    .plus-minus-input {
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .plus-minus-input .input-group-field {
+        text-align: center;
+        /*margin-left: 0.5rem;
+        margin-right: 0.5rem;*/
+        /*padding: 1rem;*/
+    }
+
+    .plus-minus-input .input-group-field::-webkit-inner-spin-button,
+    .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .plus-minus-input .input-group-field{
+        height:26px;
+        width:40px;
+        text-align:center;
+    }
+    .plus-minus-input  button {
+        background-color: Transparent;
+        border: transparent;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+        position: relative;
+        top: 5px;
+
+    }
 }

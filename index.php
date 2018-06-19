@@ -121,6 +121,8 @@ try {
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 $light=getAllEffectorLightState($_SESSION['id_home']);
+                /*$temp_actual=getAllSensorTemp($_SESSION['id_home']);*/
+                $temp_request=getAllEffectorTemp($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
