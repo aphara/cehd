@@ -8,7 +8,7 @@ function drawBasic() {
         title: 'Consommation Electrique de l\'Habitation',
         chartArea: {width: '50%'},
         hAxis: {
-            title: periode,
+            title: 'Jours',
             minValue: 0,
             textStyle: {
                 bold: true,
@@ -26,16 +26,14 @@ function drawBasic() {
             textStyle: {
                 fontSize: 14,
                 bold: true,
-                color: '#484848'
+                color: '#848484'
             },
             titleTextStyle: {
                 fontSize: 14,
                 bold: true,
                 color: '#848484'
             }
-        },
-        backgroundColor: '#f0f5ef',
-        colors: ['#ac0002'],
+        }
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(data, options);

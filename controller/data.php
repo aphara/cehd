@@ -17,8 +17,11 @@ try {
                 if ($_POST['id'] == 'allLight') {
                     $type='LIGHT_CTRL';
                     $frame_type=5;
-                    $request_value = $_POST['value'] =='true'?1111:0;
-                    $value = $_POST['value'] =='true'?"1111":"0000";
+                    if ($_POST['value'] == 'true') {
+                        $request_value = 1111;
+                    } else {
+                        $request_value = 0;
+                    }
                 }
                 changeEffectorValue($type,$request_value,$_SESSION['id_home']);
                 $req=getAllEffectorByType($_SESSION['id_home'],$type);
@@ -26,9 +29,12 @@ try {
                 for($i=0;$i<count($req);$i++){
                     $id=$req[$i]['id_effector'];
                     $timestamp=date('YmdHis');
-                    sendTestframe($frame_type,$id,$value,$timestamp);
-                    //sendFrameAllEffector();
+                    //sendTestframe($frame_type,$id,$request_value,$timestamp);
+
                 }
+                sendFrameAllEffector();
+
+                //sendFrameOneEffector();
                 break;
             case 'test':
                 echo 'aaaaaaaaaa';
@@ -42,6 +48,8 @@ catch
 
 function getData()
 {
+
+
     $ch = curl_init();
     curl_setopt(
         $ch,
@@ -57,7 +65,10 @@ function getData()
     /*echo "Tabular Data:<br />";*/
     for ($i = 0, $size = count($data_tab); $i < $size-1; $i++) {
         $trame = $data_tab[$i];
-
+        /*// décodage avec des substring
+                $t = substr($trame, 0, 1);
+                $o = substr($trame, 1, 4);
+        // …*/
 // décodage avec sscanf
         list($t, $object, $r, $type, $sensor, $value, $trame, $checksum, $year, $month, $day, $hour, $min, $sec) =
             sscanf($trame, "%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
@@ -136,23 +147,20 @@ function updatePeriod($id_home){
                     }
                 }
             }
-        } catch (Exception $e) {
-            echo 'erreur update period';
-        }
+        } catch (Exception $e) {}
 
         try{
             $req=get_last($i,$id_home);
             if (isset($req[0])){
                 update_sensor_value($req[0]['id_sensor'],$req[0]['value']);
             }
-        } catch (Exception $e) {
-            echo 'erreur update sensor value';
-        }
+        } catch (Exception $e) {}
     }echo 'Synchronisation effectuée';
 }
 
 
-function sendFrameEffector(){
+function sendFrameOneEffector(){
+
     $ch = curl_init();
     curl_setopt(
         $ch,
@@ -165,17 +173,34 @@ function sendFrameEffector(){
     echo 'a';
 }
 
+function sendFrameAllEffector(){
+
+    $ch = curl_init();
+    curl_setopt(
+        $ch,
+        CURLOPT_URL,
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D123456789");
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+
+    echo 'a';
+}
+
 function sendTestframe($type,$id,$value,$timestamp){
-    $frame="1G10D1".$type.$id.$value."aa"/*.$timestamp*/;
+    $frame="1G10D2".$type.$id.$value."aa"/*.$timestamp*/;
     var_dump($frame);
     $ch = curl_init();
     curl_setopt(
         $ch,
         CURLOPT_URL,
-        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=".$frame);
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D2".$frame);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
     curl_close($ch);
     echo "b";
+
 }

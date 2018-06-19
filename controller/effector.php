@@ -79,30 +79,6 @@ function getAllEffectorLightState($id_home){
     }
 }
 
-function getAllEffectorTemp($id_home){
-    $type='TEMP_CTRL';
-    $req=get_effector_by_type($id_home,$type);
-    $req=$req->fetchAll();
-    $length=count($req);
-    for($i=0;$i<count($req);$i++){
-        if (isset($temp_moy) && isset($divider)){
-            if ($req[$i]['request_value']!=NULL){
-                $temp_moy=$temp_moy+$req[$i]['request_value'];
-                $divider++;
-            }
-        }else{
-            $temp_moy=$req[$i]['request_value'];
-            $divider=1;
-        }
-    }
-    if (isset($temp_moy) && isset($divider)){
-        $val=round(($temp_moy/$divider),1);
-        return $val;
-    }else{
-        return 'NONE';
-    }
-}
-
 function getAllEffectorByType($id_home,$type){
     $req=get_effector_by_type($id_home,$type);
     return $req;
@@ -110,4 +86,7 @@ function getAllEffectorByType($id_home,$type){
 
 function changeEffectorValue($type,$request_value,$id_home){
     change_effector_value($type,$request_value,$id_home);
+}
+function getEffectorValue($id_home, $type, $id_room){
+    get_effector_value($id_home, $type, $id_room);
 }

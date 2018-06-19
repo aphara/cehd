@@ -11,7 +11,7 @@ function dbSync(){
             console.log(data);
         },
         complete:function(resultat,status){
-            setTimeout(dbSync,30000);
+            setTimeout(dbSync,10000);
         }
     });
 }

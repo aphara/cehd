@@ -121,8 +121,6 @@ try {
         case 'home_manage':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 $light=getAllEffectorLightState($_SESSION['id_home']);
-                /*$temp_actual=getAllSensorTemp($_SESSION['id_home']);*/
-                $temp_request=getAllEffectorTemp($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();
@@ -132,20 +130,6 @@ try {
         /*Page de statistiques*/
         case 'global_stats':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                if (!isset($_POST['type_graph'])) {
-                    $periode = "HOUR";
-                }
-                else{
-                    if ($_POST['type_graph'] == 'DAY') {
-                        $periode = "DAY";
-                    }
-                    if ($_POST['type_graph'] == 'HOUR') {
-                        $periode = "HOUR";
-                    }
-                    if ($_POST['type_graph'] == 'MONTH') {
-                        $periode = "MONTH";
-                    }
-                }
                 require 'view/frontend/global_stats.php';
             } else {
                 authErr();
@@ -164,6 +148,7 @@ try {
 
         case 'module_shutter':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $req = getEffectorValue(htmlspecialchars($_SESSION['id_home']),htmlspecialchars($_SESSION['effector_name']), htmlspecialchars($_SESSION['id_room']));
                 require 'view/frontend/module_shutter.php';
             } else {
                 authErr();
