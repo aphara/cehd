@@ -13,12 +13,16 @@ function OnOff(i) {
 
 try{
     jQuery(document).ready(function(){
+        var timeout;
         // This button will increment the value
         $('[data-quantity="plus"]').click(function(e){
+            //Reset timer
+            clearTimeout(timeout);
             // Stop acting like a button
             e.preventDefault();
             // Get the field name
             fieldName = $(this).attr('data-field');
+            id = $(this).attr('id');
             // Get its current value
             var currentVal = parseFloat($('input[name='+fieldName+']').val());
             // If is not undefined
@@ -31,13 +35,18 @@ try{
                 // Otherwise put a 0 there
                 $('input[name='+fieldName+']').val(30);
             }
+            timeout = setTimeout(function(){sendAllEffectorValue(id,currentVal);}
+            , 3000);
         });
         // This button will decrement the value till 0
         $('[data-quantity="minus"]').click(function(e) {
+            //Reset timer
+            clearTimeout(timeout);
             // Stop acting like a button
             e.preventDefault();
             // Get the field name
             fieldName = $(this).attr('data-field');
+            id = $(this).attr('id');
             // Get its current value
             var currentVal = parseFloat($('input[name='+fieldName+']').val());
             // If it isn't undefined or its greater than 0
@@ -50,9 +59,16 @@ try{
                 // Otherwise put a 0 there
                 $('input[name='+fieldName+']').val(15);
             }
+            timeout = setTimeout(function(){sendAllEffectorValue(id,currentVal);}
+                , 3000);
         });
+
+
     });
-    /*$(".plus").click(function(e) {
+
+}catch (e){}
+
+/*$(".plus").click(function(e) {
         e.preventDefault();
         var $this = $(this);
         var $input = $this.siblings('input');
@@ -117,4 +133,3 @@ try{
     $('.input-number').focusin(function(){
         $(this).data('oldValue', $(this).val());
     });*/
-}catch (e){}

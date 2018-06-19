@@ -59,3 +59,27 @@ function getSensorTemp ($id_user){
 function editSensor ( $id_sensor, $sensor_type, $sensor_name, $id_room){
     edit_sensor($id_sensor, $sensor_type, $sensor_name, $id_room);
 }
+
+function getAllSensorTemp($id_home){
+    $type='TEMP';
+    $req=get_sensor_by_type($id_home,$type);
+    $req=$req->fetchAll();
+    $length=count($req);
+    for($i=0;$i<count($req);$i++){
+        if (isset($temp_moy) && isset($divider)){
+            if ($req[$i]['current_value']!=NULL && $req[$i]['current_value']!=0){
+                $temp_moy=$temp_moy+$req[$i]['current_value'];
+                $divider++;
+            }
+        }elseif($req[$i]['current_value']!=0){
+            $temp_moy=$req[$i]['current_value'];
+            $divider=1;
+        }
+    }
+    if (isset($temp_moy) && isset($divider)){
+        $val=round(($temp_moy/$divider),1);
+        return $val;
+    }else{
+        return 'NONE';
+    }
+}

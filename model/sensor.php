@@ -106,3 +106,15 @@ function edit_sensor( $id_sensor, $sensor_type, $sensor_name, $id_room){
     $req->bindValue('room', $id_room, PDO::PARAM_INT);
     $req->execute();
 }
+
+function get_sensor_by_type($id_home, $type){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT 
+`id_sensor`,`sensor_type`,`current_value`
+FROM `room`NATURAL JOIN sensor
+WHERE id_home=? AND sensor_type=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,$type,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}

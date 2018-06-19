@@ -9,6 +9,7 @@ try {
     if (isset($_POST['command'])) {
 
         switch ($_POST['command']) {
+
             case 'getData':
                 getData();
                 updatePeriod($_SESSION['id_home']);
@@ -20,13 +21,21 @@ try {
                     $request_value = $_POST['value'] =='true'?1111:0;
                     $value = $_POST['value'] =='true'?"1111":"0000";
                 }
+                if ($_POST['id'] == 'allTemp'){
+                    $type='TEMP_CTRL';
+                    $frame_type=3;
+                    $request_value = $_POST['value'];
+                    $value = substr_replace(filter_var($_POST['value'], FILTER_SANITIZE_NUMBER_INT),'0',0,0);
+                    if (strlen($value)==3){
+                        $value= substr_replace($value,'0',3,0);
+                    }
+                }
                 changeEffectorValue($type,$request_value,$_SESSION['id_home']);
                 $req=getAllEffectorByType($_SESSION['id_home'],$type);
                 $req=$req->fetchAll();
                 for($i=0;$i<count($req);$i++){
                     $id=$req[$i]['id_effector'];
-                    $timestamp=date('YmdHis');
-                    sendTestframe($frame_type,$id,$value,$timestamp);
+                    sendTestframe($frame_type,$id,$value);
                     //sendFrameAllEffector();
                 }
                 break;
@@ -165,8 +174,8 @@ function sendFrameEffector(){
     echo 'a';
 }
 
-function sendTestframe($type,$id,$value,$timestamp){
-    $frame="1G10D1".$type.$id.$value."aa"/*.$timestamp*/;
+function sendTestframe($type,$id,$value){
+    $frame="1G10D1".$type.$id.$value."aa";
     var_dump($frame);
     $ch = curl_init();
     curl_setopt(

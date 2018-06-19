@@ -128,7 +128,7 @@ function change_effector_value($type,$request_value,$id_home){
     $req=$db->prepare('UPDATE effector NATURAL JOIN room 
     SET request_value=? 
     WHERE effector_type=? AND id_home=?');
-    $req->bindValue(1,$request_value,PDO::PARAM_INT);
+    $req->bindValue(1,$request_value,PDO::PARAM_STR);
     $req->bindValue(2,$type,PDO::PARAM_STR);
     $req->bindValue(3,$id_home,PDO::PARAM_INT);
     $req->execute();
