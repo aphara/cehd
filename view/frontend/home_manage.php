@@ -38,11 +38,10 @@ ob_start(); ?>
 
         <div id="volet">
             <h2>Volet</h2>
-            <script>
-                var value = <?= $shutter_request; ?>;
-            </script>
             <div>
-                <div id="slider"></div>
+                <div id="slider"><script>
+                        var value = <?= $shutter_request; ?>;
+                    </script></div>
                 <div class="text">valeur = <span class="textcontent"></span> </div>
                 <div id="slider_image"></div>
             </div>
@@ -50,7 +49,7 @@ ob_start(); ?>
     </div>
 
 
-
+<script src="public/script/slider.js" type="text/javascript"></script>
 
 <?php $content = ob_get_clean(); ?>
 
