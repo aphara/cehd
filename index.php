@@ -123,6 +123,7 @@ try {
                 $light=getAllEffectorLightState($_SESSION['id_home']);
                 $temp_actual=getAllSensorTemp($_SESSION['id_home']);
                 $temp_request=getAllEffectorTemp($_SESSION['id_home']);
+                $shutter_request=getAllEffectorShutter($_SESSION['id_home']);
                 require 'view/frontend/home_manage.php';
             } else {
                 authErr();

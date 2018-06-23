@@ -19,7 +19,7 @@ function dbSync(){
 function sendAllEffectorValue(id,value){
     console.log(id,value);
     $.ajax({
-        url: './controller/data.php?command=sendAllEffectorData&',
+        url: './controller/data.php',
         type: 'post',
         data: 'command=sendAllEffectorData&id='+id+'&value='+value,
         success: function(data,status){
@@ -30,3 +30,4 @@ function sendAllEffectorValue(id,value){
         }
     });
 }
+

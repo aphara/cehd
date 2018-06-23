@@ -3,15 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <title><?= $title ?></title>
+    <script>var id_home = "<?= $_SESSION['id_home']; ?>"</script>
     <link href="public/css/style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script  type="text/javascript" src="public/script/menu.js"></script>
     <script type="text/javascript" src="public/script/ajax.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous">"></script>
+    <script src="public/script/slider.js" type="text/javascript"></script>
 
 </head>
 

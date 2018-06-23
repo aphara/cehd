@@ -30,6 +30,21 @@ try {
                         $value= substr_replace($value,'0',3,0);
                     }
                 }
+                if ($_POST['id'] == 'allShutter') {
+                    $type='SHUTTER_CTRL';
+                    $frame_type=1;
+                    $request_value = $_POST['value'];
+                    $value = filter_var($_POST['value'], FILTER_SANITIZE_NUMBER_INT);
+                    if (strlen($value)==1){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                    if (strlen($value)==2){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                    if (strlen($value)==3){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                }
                 changeEffectorValue($type,$request_value,$_SESSION['id_home']);
                 $req=getAllEffectorByType($_SESSION['id_home'],$type);
                 $req=$req->fetchAll();

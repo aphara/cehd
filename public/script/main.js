@@ -62,74 +62,76 @@ try{
             timeout = setTimeout(function(){sendAllEffectorValue(id,currentVal);}
                 , 3000);
         });
-
-
     });
-
 }catch (e){}
 
-/*$(".plus").click(function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.siblings('input');
-        var value = parseFloat($input.val());
-        if (value < 30) {
-            value = value + 0.1;
-        }
-        else {
-            value =30;
-        }
-        $input.val(value);
-        $(".minus").prop("disabled",false);
-    });
 
-    $(".minus").click(function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.siblings('input')
-        var value = parseFloat($input.val());
-        if (value > 15) {
-            value = value - 0.1;
-            $(this).removeAttr('disabled');
-        }
-        else {
-            value = 15;
-            $(this).attr('disabled', true);
-        }
-        $input.val(value);
-    });
-    $('.btn-number').click(function(e){
-        e.preventDefault();
+$("#slider").ready(function(){
+    getShutterValue(value);
+    $(".text .textcontent").html(value);
+    setImageShutter(value);
+});
 
-        fieldName = $(this).attr('data-field');
-        // type      = $(this).attr('data-type');
-        var input = $("input[name='"+fieldName+"']");
-        var currentVal = parseFloat(input.val());
-        if (!isNaN(currentVal)) {
-            if($(this).attr('data-type') == 'minus') {
 
-                if(currentVal > input.attr('min')) {
-                    input.val(currentVal - 0.1).change();
-                }
-                if(parseInt(input.val()) == input.attr('min')) {
-                    $(this).attr('disabled', true);
-                    console.log(this);
-                }
 
-            } else if($(this).attr('data-type') == 'plus') {
 
-                if(currentVal < input.attr('max')) {
-                    input.val(currentVal + 0.1).change();
-                }
-                if(parseInt(input.val()) == input.attr('max')) {
-                    $(this).attr('disabled', true);
-                }
 
-            }
-        } else {
-            input.val(15);
+function getShutterValue(value){
+
+    var timeout;
+        $("#slider").slider({
+        orientation: "vertical",
+        step: 5,
+        value: value,
+        change: function(change,ui){
+            clearTimeout(timeout);
+            var request = $( "#slider" ).slider( "value" );
+            $(".text .textcontent").html(request);
+            setImageShutter(request);
+            var id = 'allShutter';
+            timeout = setTimeout(function(){sendAllEffectorValue(id,request);}
+                , 5000);
+
         }
     });
-    $('.input-number').focusin(function(){
-        $(this).data('oldValue', $(this).val());
-    });*/
+    console.log(value);
+}
+
+function setImageShutter(value){
+
+    if (value==0) {
+        $("#slider_image").html('<img src="public/img/volet0.PNG">');
+    }
+    if (value>=5 && value<20) {
+        $("#slider_image").html('<img src="public/img/volet10.PNG">');
+    }
+    if (value>=20 && value<30) {
+        $("#slider_image").html('<img src="public/img/volet20.PNG">');
+    }
+    if (value>=30 && value<40) {
+        $("#slider_image").html('<img src="public/img/volet30.PNG">');
+    }
+    if (value>=40 && value<50) {
+        $("#slider_image").html('<img src="public/img/volet40.PNG">');
+    }
+    if (value>=50 && value<60) {
+        $("#slider_image").html('<img src="public/img/volet50.PNG">');
+    }
+    if (value>=60 && value<70) {
+        $("#slider_image").html('<img src="public/img/volet60.PNG">');
+    }
+    if (value>=70 && value<80) {
+        $("#slider_image").html('<img src="public/img/volet70.PNG">');
+    }
+    if (value>=80 && value<90) {
+        $("#slider_image").html('<img src="public/img/volet80.PNG">');
+    }
+    if (value>=90 && value<100) {
+        $("#slider_image").html('<img src="public/img/volet90.PNG">');
+    }
+    if (value==100) {
+        $("#slider_image").html('<img src="public/img/volet100.PNG">');
+    }
+}
+
+//set value

@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__.'/../config.php';
 require_once ROOT.'/model/effector.php';
+require_once ROOT.'/model/frontend.php';
 
 function getEffectorBack($id_user){
     $target_home=get_id_home($id_user);
@@ -103,6 +104,30 @@ function getAllEffectorTemp($id_home){
     }
 }
 
+function getAllEffectorShutter($id_home){
+    $type='SHUTTER_CTRL';
+    $req=get_effector_by_type($id_home,$type);
+    $req=$req->fetchAll();
+    $length=count($req);
+    for($i=0;$i<count($req);$i++){
+        if (isset($shutter_moy) && isset($divider)){
+            if ($req[$i]['request_value']!=NULL){
+                $shutter_moy=$shutter_moy+$req[$i]['request_value'];
+                $divider++;
+            }
+        }else{
+            $shutter_moy=$req[$i]['request_value'];
+            $divider=1;
+        }
+    }
+    if (isset($shutter_moy) && isset($divider)){
+        $val=round(($shutter_moy/$divider),1);
+        return $val;
+    }else{
+        return 'NONE';
+    }
+}
+
 function getAllEffectorByType($id_home,$type){
     $req=get_effector_by_type($id_home,$type);
     return $req;
@@ -114,4 +139,12 @@ function changeEffectorValue($type,$request_value,$id_home){
 
 function getEffectorValue($id_home, $type, $id_room){
     get_effector_value($id_home, $type, $id_room);
+}
+
+if (isset($_POST['command'])){
+    switch ($_POST['command']){
+        case 'getShutterValue':
+            $a=getAllEffectorShutter($_POST['id']);
+            echo $a;
+    }
 }

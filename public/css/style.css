@@ -599,7 +599,7 @@
 
     /*css du login*/
     body {
-        height: 100vh;
+        /*height: 100vh;*/
         margin: 0;
         padding: 0;
         display: flex;
@@ -1014,27 +1014,17 @@
     #nav_home_management{
         display: flex;
     }
-    #bare_vertical{
-        height: 50vh;
-        width: 0.5px;
 
-    }
-    input[type="range"] {
-        -webkit-appearance: slider-vertical;
-    }
-
-    #range_volet{
-        writing-mode: bt-lr; /* IE */
-        -webkit-appearance: slider-vertical; /* WebKit */
-        width: 8px;
-        height: 175px;
-        padding: 0 5px;
-    }
     #volet{
         width: 72vh;
         border-left: 2px solid black;
         padding: 10px;
     }
+
+    /*#slider_image{
+        width: 180px;
+        height: 180px;
+    }*/
     #light{
         width: 72vh;
     }
@@ -1061,6 +1051,7 @@
         background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
+        border: 1px solid black;
     }
 
     .slider:before {
@@ -1076,11 +1067,11 @@
     }
 
     input:checked + .slider {
-        background-color: #2196F3;
+        background-color: #f3f30b;
     }
 
     input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px #f3f30b;
     }
 
     input:checked + .slider:before {

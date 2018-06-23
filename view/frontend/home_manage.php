@@ -15,7 +15,7 @@ ob_start(); ?>
                            <i class="material-icons">remove_circle_outline</i>
                         </button>
 
-                    <input class="input-group-field" type="number" name="quantity" value="<?= $temp_request; ?>" max="30" min="15" step="0.1" readonly>
+                    <input class="input-group-field" type="text" name="quantity" value="<?= $temp_request; ?>" max="30" min="15" step="0.1" readonly>
 
                         <button type="button" class="button hollow circle change_qty plus cursor_hover" data-quantity="plus" data-field="quantity" id="allTemp">
                             <i class="material-icons">add_circle_outline</i>
@@ -38,54 +38,14 @@ ob_start(); ?>
 
         <div id="volet">
             <h2>Volet</h2>
-            <form method="post" action="#" onchange="AfficheRange()" onkeyup="AfficheRange()">
-                <fieldset>
-                    <input id="Range" type="range" orient="vertical" id="range_volet" step="10" value="0" min="0" max="100">
-                    <img id="AfficheValue" src="public/img/volet0.PNG" alt="niveau_volet"/>
-                    <span id="value_range">Value=0</span>
-                </fieldset>
-            </form>
-            <script type="text/javascript">
-                function AfficheRange() {
-                    var R=document.getElementById("Range").value;
-                    document.getElementById("value_range").innerHTML="Valeur="+R;
-                    if (R==0){
-                        document.getElementById("AfficheValue").src="public/img/volet0.PNG";
-                    }
-                    if (R==10){
-                        document.getElementById("AfficheValue").src="public/img/voley10.PNG";
-                    }
-                    if (R==20){
-                        document.getElementById("AfficheValue").src="public/img/voley20.PNG";
-                    }
-                    if (R==30){
-                        document.getElementById("AfficheValue").src="public/img/voley30.PNG";
-                    }
-                    if (R==40){
-                        document.getElementById("AfficheValue").src="public/img/voley40.PNG";
-                    }
-                    if (R==50){
-                        document.getElementById("AfficheValue").src="public/img/voley50.PNG";
-                    }
-                    if (R==60){
-                        document.getElementById("AfficheValue").src="public/img/voley60.PNG";
-                    }
-                    if (R==70){
-                        document.getElementById("AfficheValue").src="public/img/voley70.PNG";
-                    }
-                    if (R==80){
-                        document.getElementById("AfficheValue").src="public/img/voley80.PNG";
-                    }
-                    if (R==90){
-                        document.getElementById("AfficheValue").src="public/img/voley90.PNG";
-                    }
-                    if (R==100){
-                        document.getElementById("AfficheValue").src="public/img/voley100.PNG";
-                    }
-
-
-                }
+            <script>
+                var value = <?= $shutter_request; ?>;
             </script>
+            <div>
+                <div id="slider"></div>
+                <div class="text">valeur = <span class="textcontent"></span> </div>
+                <div id="slider_image"></div>
+            </div>
         </div>
     </div>
 
