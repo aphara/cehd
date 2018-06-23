@@ -9,6 +9,7 @@ try {
     if (isset($_POST['command'])) {
 
         switch ($_POST['command']) {
+
             case 'getData':
                 getData();
                 updatePeriod($_SESSION['id_home']);
@@ -17,10 +18,16 @@ try {
                 if ($_POST['id'] == 'allLight') {
                     $type='LIGHT_CTRL';
                     $frame_type=5;
-                    if ($_POST['value'] == 'true') {
-                        $request_value = 1111;
-                    } else {
-                        $request_value = 0;
+                    $request_value = $_POST['value'] =='true'?1111:0;
+                    $value = $_POST['value'] =='true'?"1111":"0000";
+                }
+                if ($_POST['id'] == 'allTemp'){
+                    $type='TEMP_CTRL';
+                    $frame_type=3;
+                    $request_value = $_POST['value'];
+                    $value = substr_replace(filter_var($_POST['value'], FILTER_SANITIZE_NUMBER_INT),'0',0,0);
+                    if (strlen($value)==3){
+                        $value= substr_replace($value,'0',3,0);
                     }
                 }
                 changeEffectorValue($type,$request_value,$_SESSION['id_home']);
@@ -28,13 +35,9 @@ try {
                 $req=$req->fetchAll();
                 for($i=0;$i<count($req);$i++){
                     $id=$req[$i]['id_effector'];
-                    $timestamp=date('YmdHis');
-                    //sendTestframe($frame_type,$id,$request_value,$timestamp);
-
+                    sendTestframe($frame_type,$id,$value);
+                    //sendFrameAllEffector();
                 }
-                sendFrameAllEffector();
-
-                //sendFrameOneEffector();
                 break;
             case 'test':
                 echo 'aaaaaaaaaa';
@@ -48,8 +51,6 @@ catch
 
 function getData()
 {
-
-
     $ch = curl_init();
     curl_setopt(
         $ch,
@@ -65,10 +66,7 @@ function getData()
     /*echo "Tabular Data:<br />";*/
     for ($i = 0, $size = count($data_tab); $i < $size-1; $i++) {
         $trame = $data_tab[$i];
-        /*// décodage avec des substring
-                $t = substr($trame, 0, 1);
-                $o = substr($trame, 1, 4);
-        // …*/
+
 // décodage avec sscanf
         list($t, $object, $r, $type, $sensor, $value, $trame, $checksum, $year, $month, $day, $hour, $min, $sec) =
             sscanf($trame, "%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
@@ -147,20 +145,23 @@ function updatePeriod($id_home){
                     }
                 }
             }
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+            echo 'erreur update period';
+        }
 
         try{
             $req=get_last($i,$id_home);
             if (isset($req[0])){
                 update_sensor_value($req[0]['id_sensor'],$req[0]['value']);
             }
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+            echo 'erreur update sensor value';
+        }
     }echo 'Synchronisation effectuée';
 }
 
 
-function sendFrameOneEffector(){
-
+function sendFrameEffector(){
     $ch = curl_init();
     curl_setopt(
         $ch,
@@ -173,34 +174,17 @@ function sendFrameOneEffector(){
     echo 'a';
 }
 
-function sendFrameAllEffector(){
-
-    $ch = curl_init();
-    curl_setopt(
-        $ch,
-        CURLOPT_URL,
-        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D123456789");
-    curl_setopt($ch, CURLOPT_HEADER, FALSE);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-
-    echo 'a';
-}
-
-function sendTestframe($type,$id,$value,$timestamp){
-    $frame="1G10D2".$type.$id.$value."aa"/*.$timestamp*/;
+function sendTestframe($type,$id,$value){
+    $frame="1G10D1".$type.$id.$value."aa";
     var_dump($frame);
     $ch = curl_init();
     curl_setopt(
         $ch,
         CURLOPT_URL,
-        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=1G10D2".$frame);
+        "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=G10D&TRAME=".$frame);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
     curl_close($ch);
     echo "b";
-
 }

@@ -56,6 +56,37 @@ function getSensorTemp ($id_user){
     return $req;
 }
 
+function getSensorShutter($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_sensor_shutter($_SESSION['target_home']);
+    return $req;
+}
+
 function editSensor ( $id_sensor, $sensor_type, $sensor_name, $id_room){
     edit_sensor($id_sensor, $sensor_type, $sensor_name, $id_room);
+}
+
+function getAllSensorTemp($id_home){
+    $type='TEMP';
+    $req=get_sensor_by_type($id_home,$type);
+    $req=$req->fetchAll();
+    $length=count($req);
+    for($i=0;$i<count($req);$i++){
+        if (isset($temp_moy) && isset($divider)){
+            if ($req[$i]['current_value']!=NULL && $req[$i]['current_value']!=0){
+                $temp_moy=$temp_moy+$req[$i]['current_value'];
+                $divider++;
+            }
+        }elseif($req[$i]['current_value']!=0){
+            $temp_moy=$req[$i]['current_value'];
+            $divider=1;
+        }
+    }
+    if (isset($temp_moy) && isset($divider)){
+        $val=round(($temp_moy/$divider),1);
+        return $val;
+    }else{
+        return 'NONE';
+    }
 }

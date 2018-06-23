@@ -8,6 +8,20 @@ ob_start(); ?>
     <div id="nav_home_management">
         <div id="light">
             <h2>Température</h2>
+                <p>Température actuelle du logement (moyenne) : <?= $temp_actual; ?></p>
+                <!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
+                <div class="input-group plus-minus-input">
+                       <button type="button" class="button hollow circle change_qty minus cursor_hover" data-quantity="minus" data-field="quantity" id="allTemp">
+                           <i class="material-icons">remove_circle_outline</i>
+                        </button>
+
+                    <input class="input-group-field" type="number" name="quantity" value="<?= $temp_request; ?>" max="30" min="15" step="0.1" readonly>
+
+                        <button type="button" class="button hollow circle change_qty plus cursor_hover" data-quantity="plus" data-field="quantity" id="allTemp">
+                            <i class="material-icons">add_circle_outline</i>
+                        </button>
+
+                </div>
 
 
             <h2>Lumière</h2>

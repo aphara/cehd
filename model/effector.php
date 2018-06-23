@@ -128,20 +128,21 @@ function change_effector_value($type,$request_value,$id_home){
     $req=$db->prepare('UPDATE effector NATURAL JOIN room 
     SET request_value=? 
     WHERE effector_type=? AND id_home=?');
-    $req->bindValue(1,$request_value,PDO::PARAM_INT);
+    $req->bindValue(1,$request_value,PDO::PARAM_STR);
     $req->bindValue(2,$type,PDO::PARAM_STR);
     $req->bindValue(3,$id_home,PDO::PARAM_INT);
     $req->execute();
 }
+
 function get_effector_value($id_home, $type, $id_room){
-    $db=dbConnect();
-    $req=$db->prepare( 'SELECT
-`id_effector`,`effector_name`,`request_value`
-FROM sensor NATURAL JOIN room
+    $db = dbConnect();
+    $req = $db->prepare('SELECT
+`id_effector`,`effector_name`,`request_value`,`name`
+FROM effector NATURAL JOIN room
 WHERE id_home=? AND id_room=? AND effector_type=?');
     $req->bindValue(1, $id_home, PDO::PARAM_INT);
-    $req->bindValue(2, $id_room,PDO::PARAM_INT);
-    $req->bindValue(3,$type,PDO::PARAM_STR);
+    $req->bindValue(2, $id_room, PDO::PARAM_INT);
+    $req->bindValue(3, $type, PDO::PARAM_STR);
     $req->execute();
     return $req;
 }
