@@ -608,7 +608,6 @@
         background-image: url('../img/fond.jpg');
     }
 
-
     .all {
         margin: auto;
         text-align: center;
@@ -649,6 +648,7 @@
         overflow: auto;
         background-color: white;
     }
+
     /*------css du template--------*/
     /*HEADER*/
     header {

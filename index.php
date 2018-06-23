@@ -169,6 +169,11 @@ try {
                     $_SESSION['target_room']=$_POST['_room'];
                     $room=getRoomDetail($_SESSION['target_room']);
                     $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
+                }else{
+                    $req2=getRoom($_SESSION['id']);
+                    $_SESSION['target_room']=$_POST['_room'];
+                    $room=getRoomDetail($_SESSION['target_room']);
+                    $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
                 }
                 require 'view/frontend/module_shutter.php';
             } else {
