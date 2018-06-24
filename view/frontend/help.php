@@ -5,7 +5,7 @@ ob_start(); ?>
 <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pictogram_voting_question.svg/220px-Pictogram_voting_question.svg.png" class="LogoAide" alt="LogoAide" />Aide</h3>
 <ul>
     <li>
-        <input type="button" value="Comment se connecter pour la première fois ?" class="bouton" onclick="OnOff(0);">
+        <input type="button" value="Comment se connecter pour la première fois ?" class="bouton" onclick="OnOff(1);">
         <span class="hidden_content">
         Lors de votre première connexion, cliquez sur "Première connexion" sur la page d'accueil puis renseignez dans le champ proposé l'adresse mail que vous avez choisi lors de la configuration de votre maison.
         Puis rentrez de la même façon le mot de passe que nous vous avons communiqué par mail.
@@ -17,7 +17,7 @@ ob_start(); ?>
     </li>
     <hr/>
     <li>
-      <input type="button" value="Comment gérer ses modules ?" class="bouton" onclick="OnOff(1);">
+      <input type="button" value="Comment gérer ses modules ?" class="bouton" onclick="OnOff(2);">
         <span class="hidden_content">
           Pour gérer vos modules, survolez l'onglet "Gestion Maison" dans le menu déroulant puis cliquez sur "gestion modules".
           Choissisez les modules que vous voulez gérer en sélectionnant un onglet parmi "Lumière", "Température" et "Volet".
@@ -30,7 +30,7 @@ ob_start(); ?>
     </li>
     <hr/>
     <li>
-      <input type="button" value="Comment ajouter/supprimer un utilisateur ?" class="bouton" onclick="OnOff(2);">
+      <input type="button" value="Comment ajouter/supprimer un utilisateur ?" class="bouton" onclick="OnOff(3);">
         <span class="hidden_content">
           Cette action est réservée uniquement aux utilisateurs possédant le statut de "Super User".
           Dans l'onglet "Gestion Utilisateurs" du menu déroulant, vous avez accès aux informations tous les utilisateurs de votre domicile.
@@ -41,7 +41,7 @@ ob_start(); ?>
     </li>
     <hr/>
     <li>
-      <input type="button" value="Je veux parametrer un programme, comment faire ?" class="bouton" onclick="OnOff(3);">
+      <input type="button" value="Je veux parametrer un programme, comment faire ?" class="bouton" onclick="OnOff(4);">
         <span class="hidden_content">
           Dans l'onglet "Gestion Maison" du menu déroulant, cliquez sur "programmes".
           Cliquez sur l'onglet "+" situé en dessous du nom de votre domicile pour ajouter un programme.
@@ -52,7 +52,7 @@ ob_start(); ?>
     </li>
     <hr/>
     <li>
-      <input type="button" value="Je veux rajouter un module manuellement, est-ce possible ?" class="bouton" onclick="OnOff(4);">
+      <input type="button" value="Je veux rajouter un module manuellement, est-ce possible ?" class="bouton" onclick="OnOff(5);">
         <span class="hidden_content">
           Dans l'onglet "Gestion Maison" vous pouvez avoir accès à tous vos modules en cliquant sur "associer modules".
           Dans cette page vous pouvez associer un module existant à une pièce de votre domicile mais VOUS NE POUVEZ PAS

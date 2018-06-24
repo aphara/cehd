@@ -1,11 +1,12 @@
 var value;
 try {
     $("#slider").ready(function () {
-        if ( value  && typeof value !== 'undefined' ) {
-            getShutterValue(value);
-            $(".text .textcontent").html(value);
-            setImageShutter(value);
-        }
+            if ( value  && typeof value !== 'undefined' ) {
+                getShutterValue(value);
+                $(".text .textcontent").html(value);
+                setImageShutter(value);
+            }
+        });
     });
 }catch (e){
     alert("Erreur de chargement du javascript");

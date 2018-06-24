@@ -1,5 +1,5 @@
 try{
-    for (var i=0;i<5;i++){
+    for (var i=0;i<6;i++){
         var a = document.getElementsByClassName("hidden_content")[i];
         a.style.display = "none";
     }
