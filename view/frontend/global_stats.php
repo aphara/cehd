@@ -38,11 +38,11 @@ ob_start();?>
         <div id="stat">
             <div id="consommation_instantanee">
                 <p>Consommation instantanée</p>
-                <p><?php echo get_instant_conso($_SESSION['id_home'])[0]; ?> C°</p>
+                <p><?php echo get_instant_conso($_SESSION['id_home'])[0]; ?> kWh</p>
             </div>
             <div id="temperature">
                 <p>Température instantanée</p>
-                <p><?php echo get_instant_temp($_SESSION['id_home'])[0]; ?> C°</p>
+                <p><?php echo get_instant_temp($_SESSION['id_home'])[0]; ?> °C</p>
             </div>
             <div id="etat_modules">
                 <p>Etat des capteurs : </p>
