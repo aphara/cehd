@@ -32,8 +32,10 @@
     </div>
 </header>
 
+<div id="content">
+    <?= $content ?>
+</div>
 
-<?= $content ?>
 
 
 </body>

@@ -40,6 +40,8 @@ ob_start(); ?>
             <p>
                 <input type="submit" value="Modifier capteur"/>
             </p>
+            <a href="index.php?action=link_module_light" class="retour">Retour</a>
+
         </fieldset>
     </form>
 

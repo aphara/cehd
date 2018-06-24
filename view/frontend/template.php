@@ -59,7 +59,6 @@
         </div>
 
         <div id='right_header'>
-            <h2> <?= $_SESSION['name'] ?> </h2>
             <div id='setting_wheel'>
 
 
@@ -83,7 +82,6 @@
                     <ul id="dropdown-content">
                         <li><a href="index.php?action=module_light">gestion modules</a></li>
                         <li><a href="index.php?action=link_module_light">associer modules</a></li>
-                        <li><a href="index.php?action=programs">programmes</a></li>
                     </ul>
                 </li>
                 <li><a href="index.php?action=global_stats">Stats Générales</a></li>
