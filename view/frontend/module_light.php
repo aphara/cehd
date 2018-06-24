@@ -17,12 +17,12 @@ ob_start(); ?>
 
 <div>
     <?php $piece = $room ->fetch()?>
-    <h2>Volet de la <?=$piece['name']?></h2>
+    <h2>Lumière de la <?=$piece['name']?></h2>
     <table class="display" id="table_id">
         <thead>
         <tr>
-            <th>Volet</th>
-            <th>Value</th>
+            <th>Nom de la lumière</th>
+            <th>Etat</th>
         </tr>
         </thead>
         <tbody>

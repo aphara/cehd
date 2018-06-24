@@ -2,6 +2,7 @@
 $title = 'CeHD - Gestion modules - Volets';
 ob_start(); ?>
 
+
 <h1>Gestion des volets</h1>
 
 <form method="post" action="index.php?action=module_shutter">
@@ -29,20 +30,28 @@ ob_start(); ?>
         <?php
 
         foreach ($req as $row => $donnees){
+            $shutter_request=$donnees['request_value'];
+            $id=$donnees['id_effector'];
             ?>
             <tr>
                 <td><?= $donnees['effector_name'];?></td>
-                <td><div>
-                        <?php $shutter_request=$donnees['request_value'];?>
-                        <div id="slider" datafld="<?= $donnees['id_effector'];?>"><script>
-                                var value = <?= $shutter_request; ?>;
-                            </script></div>
-                        <div class="text">valeur = <span class="textcontent"></span> </div>
-                        <div id="slider_image"></div>
+                <?php ?>
+                <td><div class="input-group plus-minus-input">
+                        <button type="button" class="button hollow circle change_qty minus cursor_hover" data-quantity="minus" data-field="quantity<?= $donnees['id_effector'];?>" datafld="<?= $donnees['id_effector'];?>"  id="shutter">
+                            <i class="material-icons">remove_circle_outline</i>
+                        </button>
+
+                        <input class="input-group-field" type="text" name="quantity<?= $donnees['id_effector'];?>" value="<?= $donnees['request_value']; ?>" max="100" min="0" step="5" readonly>
+
+                        <button type="button" class="button hollow circle change_qty plus cursor_hover" data-quantity="plus" data-field="quantity<?= $donnees['id_effector'];?>" datafld="<?= $donnees['id_effector'];?>" id="shutter">
+                            <i class="material-icons">add_circle_outline</i>
+                        </button>
+
                     </div>
                 </td>
             </tr>
         <?php } ?>
+
         </tbody>
     </table>
 </div>

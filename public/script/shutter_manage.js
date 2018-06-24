@@ -1,40 +1,97 @@
-var value;
+try{
+    jQuery(document).ready(function(){
+        var timeout;
+        // This button will increment the value
+        $('[data-quantity="plus"]').click(function(e){
+            //Reset timer
+            clearTimeout(timeout);
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('data-field');
+            id = $(this).attr('id');
+            effector= $(this).attr('datafld');
+            // Get its current value
+            var currentVal = parseInt($('input[name='+fieldName+']').val());
+            // If is not undefined
+            if (!isNaN(currentVal) && currentVal< 100 ) {
+                // Increment
+                currentVal= currentVal + 5;
+                $('input[name='+fieldName+']').val(currentVal);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name='+fieldName+']').val(100);
+            }
+            timeout = setTimeout(function(){sendEffectorValue(id,effector,currentVal);}
+                , 3000);
+        });
+        // This button will decrement the value till 0
+        $('[data-quantity="minus"]').click(function(e) {
+            //Reset timer
+            clearTimeout(timeout);
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('data-field');
+            id = $(this).attr('id');
+            effector= $(this).attr('datafld');
+            // Get its current value
+            var currentVal = parseInt($('input[name='+fieldName+']').val());
+            // If it isn't undefined or its greater than 0
+            if (!isNaN(currentVal) && currentVal > 0) {
+                // Decrement one
+                currentVal= currentVal - 5;
+                $('input[name='+fieldName+']').val(currentVal);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name='+fieldName+']').val(0);
+            }
+            timeout = setTimeout(function(){sendEffectorValue(id,effector,currentVal);}
+                , 3000);
+        });
+    });
+}catch (e){}
+
+
+/*var value;
 try {
-    $("#slider").ready(function () {
-            if ( value  && typeof value !== 'undefined' ) {
-                getShutterValue(value);
+    $(".shutter_slider").ready(function () {
+        for (var i=0;i<100;i++) {
+            if (value && typeof value !== 'undefined') {
+                var timeout;
+                $('[id=16]').slider({
+                    orientation: "vertical",
+                    step: 5,
+                    value: value,
+                    change: function (change, ui) {
+                        clearTimeout(timeout);
+                        var request = $(this).slider("value");
+                        $(".text .textcontent").html(request);
+                        setImageShutter(request);
+                        var id = 'shutter';
+                        var effector = $(this).attr('datafld');
+                        timeout = setTimeout(function () {
+                                sendEffectorValue(id, effector, request);
+                            }
+                            , 5000);
+                    }
+                });
                 $(".text .textcontent").html(value);
                 setImageShutter(value);
             }
-        });
+        }
     });
-}catch (e){
+    }catch (e){
     alert("Erreur de chargement du javascript");
-}
+}*/
 
-function getShutterValue(value){
+/*function getShutterValue(value){
     try {
-        var timeout;
-        $("#slider").slider({
-            orientation: "vertical",
-            step: 5,
-            value: value,
-            change: function (change, ui) {
-                clearTimeout(timeout);
-                var request = $("#slider").slider("value");
-                $(".text .textcontent").html(request);
-                setImageShutter(request);
-                var id = 'shutter';
-                var effector = $("#slider").attr('datafld');
-                timeout = setTimeout(function () {
-                        sendEffectorValue(id, effector, request);
-                    }
-                    , 5000);
-            }
-        });
-    }catch (e){}
-}
 
+    }catch (e){}
+}*/
+
+/*
 function setImageShutter(value){
 
     if (value==0) {
@@ -71,4 +128,5 @@ function setImageShutter(value){
         $("#slider_image").html('<img src="public/img/volet100.PNG">');
     }
 }
+*/
 

@@ -91,3 +91,49 @@ function getAllSensorTemp($id_home){
     }
 }
 
+function updateDataConso($id_home,$period){
+    $rep = get_conso_house($id_home,$period);
+    $rep = $rep->fetchAll();
+
+    //die(var_dump($donnee));
+    $stack=0;
+    $stack_day= '';
+    $it=0;
+    $date_maj=0;
+    foreach ($rep as $donnee){
+        // calcul l'ecart de la donnee avec la date actuel
+        $strStart = $donnee['date_maj'];
+        $strEnd = date( 'Y-m-d H:i:s');
+        $dteStart = new DateTime($strStart);
+        $dteEnd = new DateTime($strEnd);
+        $dteDiff = $dteStart->diff($dteEnd);
+        $dteDiff=$dteDiff->format('%Y%M%D%H%I%S');
+
+        list($year, $month, $day, $hour, $min, $sec) =
+            sscanf($dteDiff, "%2s%2s%2s%2s%2s%2s");
+        //$dteDiff="{$year}-{$month}-{$day} {$hour}:{$min}:{$sec} ";
+        if ($period =='HOUR'){
+            $test = $day;
+            $add_period = 'DAY';
+        }
+        elseif ($period =='DAY') {
+            $test = $month;
+            $add_period = 'MONTH';
+        }
+        if ($test >=1){
+            if ($stack == 0){
+                $start_date = $donnee['date_maj'];
+            }
+            if ($stack_day != $test && $stack !=0) {
+                $moyenne = $stack / $it;
+                add_conso($moyenne, $date_maj, $donnee['id_sensor'], $add_period);
+                del_conso_day($donnee['id_sensor'],$date_maj,$start_date,$period);
+                $stack = 0;
+            }
+            $stack = $stack + $donnee['value'];
+            $it += 1;
+            $date_maj = $donnee['date_maj'];
+            $stack_day = $test;
+        }
+    }
+}

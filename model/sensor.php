@@ -131,3 +131,30 @@ WHERE id_home=? AND sensor_type=?');
     $req->execute();
     return $req;
 }
+
+
+function add_conso($value,$date,$id_sensor,$add_period)
+{
+    $db = dbConnect();
+    $req = $db->prepare('INSERT INTO 
+    stat_sensor(id_sensor, date_maj, period, value, stat_type )
+    VALUES(:id_sensor, :date_maj, :period, :value, :stat_type )
+    ');
+    $req->bindValue('id_sensor', $id_sensor, PDO::PARAM_INT);
+    $req->bindValue('date_maj', $date, PDO::PARAM_STR);
+    $req->bindValue('period', $add_period, PDO::PARAM_STR);
+    $req->bindValue('value', $value, PDO::PARAM_STR);
+    $req->bindValue('stat_type', 'CONSO', PDO::PARAM_STR);
+    $req->execute();
+
+}
+
+function del_conso_day($id_sensor,$end_date,$start_date,$period){
+    $db = dbConnect();
+    $req = $db->prepare('DELETE FROM stat_sensor 
+    WHERE id_sensor=? AND date_maj >=? AND date_maj<=? AND period = ?');
+    $req->bindValue(1,$id_sensor, PDO::PARAM_INT);
+    $req->bindValue(2,$start_date,PDO::PARAM_STR);
+    $req->bindValue(3,$end_date,PDO::PARAM_STR);
+    $req->bindValue(4,$period,PDO::PARAM_STR);
+}

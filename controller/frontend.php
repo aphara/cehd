@@ -58,10 +58,10 @@ function passwordHash($password,$mail){
 function UpdateInfo($categorie,$user_new,$id_session){
     $oldinfo=get_user_info($id_session);
     if($oldinfo[$categorie]==$user_new){
-        echo "on ne peut mettre les meme donnees";
+        echo "On ne peut mettre les mêmes données";
     } else{
         user_update($categorie,$user_new,$id_session);
-        echo "l'information a ete change avec succes";
+        echo "L'information a été changée avec succès";
     }
 }
 
@@ -69,12 +69,12 @@ function UpdateInfo($categorie,$user_new,$id_session){
 function UpdateMail( $user_new,$id_session){
     $oldinfo=get_user_info($id_session);
     if($oldinfo['mail']==$user_new){
-        echo "on ne peut mettre les meme donnees";
+        echo "On ne peut mettre les mêmes données";
     }elseif (checkMail($user_new)==true) {
-        echo "ceci n'est pas un mail";
+        echo "Ceci n'est pas un mail";
     } else{
         user_update_mail( $user_new,$id_session);
-        echo 'le mail a ete change avec succes';
+        echo 'Le mail a été changé avec succès';
     }
 }
 
@@ -85,12 +85,12 @@ function UpdatePassword($id_session,$_mail,$_old_password,$_new_password,$_new_p
     if ($isPasswordCorrect) {
         if ($_new_password===$_new_password_2){
             passwordHash($_new_password,$_mail);
-            echo 'mot de passe change avec succes';
+            echo 'Mot de passe changé avec succès';
         }else{
-            echo 'les mots de passe ne sont pas identiques';
+            echo 'Les mots de passe ne sont pas identiques';
         }
     }else {
-        echo 'mot de passe incorrect!';
+        echo 'Mot de passe incorrect!';
 
     }
 }
@@ -105,7 +105,7 @@ function getConsoHouse($id_home,$periode){
     }
     if ($periode == "HOUR"){
         while ($values = $donnees->fetch()){
-            array_push($rep,array(substr($values['date_maj'],14,-3   ),(int)$values['value']));
+            array_push($rep,array(substr($values['date_maj'],11,-6   ),(int)$values['value']));
         }
     }
     if ($periode == "MONTH"){

@@ -50,7 +50,7 @@ function dbConnect()
 {
     try
     {
-        $db = new PDO('mysql:host=localhost;dbname=cehd;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=cehd_clean;charset=utf8', 'root', '');
         return $db;
     }
     catch(Exception $e)
