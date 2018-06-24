@@ -27,7 +27,7 @@ try {
                     break;
                 } elseif ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
 
-                    header("Location:index.php?action=home");
+                    header("Location:index.php?action=home_manage");
                     break;
                 } else {
                     authErr();
@@ -157,6 +157,18 @@ try {
 
         case 'module_light':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                if (isset($_POST['_room'])){
+                    $req2=getRoom($_SESSION['id']);
+                    $target_room=$_POST['_room'];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorLightState($target_room);
+                }else{
+                    $req2=getRoom($_SESSION['id']);
+                    $req2=$req2->fetchAll();
+                    $target_room=$req2[0];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorLightState($target_room);
+                }
                 require 'view/frontend/module_light.php';
             } else {
                 authErr();
@@ -167,14 +179,15 @@ try {
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_POST['_room'])){
                     $req2=getRoom($_SESSION['id']);
-                    $_SESSION['target_room']=$_POST['_room'];
-                    $room=getRoomDetail($_SESSION['target_room']);
-                    $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
+                    $target_room=$_POST['_room'];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorShutterState($target_room);
                 }else{
                     $req2=getRoom($_SESSION['id']);
-                    $_SESSION['target_room']=$_POST['_room'];
-                    $room=getRoomDetail($_SESSION['target_room']);
-                    $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
+                    $req2=$req2->fetchAll();
+                    $target_room=$req2[0];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorShutterState($target_room);
                 }
                 require 'view/frontend/module_shutter.php';
             } else {
@@ -184,6 +197,7 @@ try {
 
         case 'module_temp':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $req=getTempControl($_SESSION['id_home']);
                 require 'view/frontend/module_temp.php';
             } else {
                 authErr();

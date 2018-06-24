@@ -3,12 +3,12 @@ $title = 'CeHD - Gestion Maison';
 ob_start(); ?>
 
 
-
-    <h1>gestion de la maison de <?= htmlspecialchars($_SESSION['name']) ?></h1>
+    <h1>gestion de la maison</h1>
     <div id="nav_home_management">
         <div id="light">
+
             <h2>Température</h2>
-                <p>Température actuelle du logement (moyenne) : <?= $temp_actual; ?></p>
+                <p>Température actuelle du logement (moyenne) : <?= $temp_actual; ?> °C</p>
                 <!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
                 <div class="input-group plus-minus-input">
                        <button type="button" class="button hollow circle change_qty minus cursor_hover" data-quantity="minus" data-field="quantity" id="allTemp">
@@ -49,7 +49,7 @@ ob_start(); ?>
     </div>
 
 
-<script src="public/script/slider.js" type="text/javascript"></script>
+<script src="public/script/home_manage.js" type="text/javascript"></script>
 
 <?php $content = ob_get_clean(); ?>
 

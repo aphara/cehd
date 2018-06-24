@@ -6,7 +6,7 @@ menu(x);
 x.addListener(menu);*/
 /*
 console.log('start');
-function sendEffectorValue(){
+function sendAllEffectorValue(){
     console.log('b');
     $.ajax({
         url: './controller/data.php?command=sendData',

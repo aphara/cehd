@@ -28,7 +28,7 @@
 </script>
     <header>
         <div id='logo'>
-            <a href="index.php?action=home"><img src='public/img/LOGO_small.png' alt='logo'/></a>
+            <a href="index.php?action=home_manage"><img src='public/img/LOGO_small.png' alt='logo'/></a>
         </div>
 
         <div id='domicile'>
@@ -48,22 +48,13 @@
                 <a href="index.php?action=logout"><img src='public/img/sign_out.png' onmouseover="this.src='public/img/sign_out_2.png'" onmouseout="this.src='public/img/sign_out.png'" alt='signout' /></a>
             </div>
     </header>
-    <script type="text/javascript">
-        function menu(id){
-            if (document.getElementById(id).style.display == "none"){
-                document.getElementById(id).style.display = "block";
-            } else{
-                document.getElementById(id).style.display = "none";
-            }
-        }
-    </script>
+
 
 <div id='nav_content'>
     <nav id='sidebar'>
-        <img src="public/img/menu.png" onmouseover="this.src='public/img/menu_2.png'" onmouseout="this.src='public/img/menu.png'" onclick="menu('btn_menu');" alt='menu' id="img_menu">
-        <div id="btn_menu">
+        <img src="public/img/menu.png" onmouseover="this.src='public/img/menu_2.png'" onmouseout="this.src='public/img/menu.png'" onclick="OnOff(0);" alt='menu' id="img_menu">
+        <div id="side_menu" class="hidden_content">
             <ul>
-                <li><a href="index.php?action=global_stats">Stats Générales</a></li>
                 <li id='dropdown'>
                     <a href="index.php?action=home_manage">Gestion Maison</a>
                     <ul id="dropdown-content">
@@ -72,7 +63,7 @@
                         <li><a href="index.php?action=programs">programmes</a></li>
                     </ul>
                 </li>
-
+                <li><a href="index.php?action=global_stats">Stats Générales</a></li>
                 <?php if ($_SESSION['status']=='SUPER_USER'){ ?>
                     <li><a href="index.php?action=user_manage">Gestion Utilisateurs</a></li>
                 <?php } ?>

@@ -110,6 +110,9 @@
 
     }
 
+    #side_menu{
+        display: block !important;
+    }
     #sidebar a {
         background-color: rgb(200, 200, 200);
         color: black;
@@ -504,6 +507,7 @@
     .switch input {display:none;}
 
     /* The slider */
+    /* The slider */
     .slider {
         position: absolute;
         cursor: pointer;
@@ -514,6 +518,7 @@
         background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
+        border: 1px solid black;
     }
 
     .slider:before {
@@ -529,11 +534,11 @@
     }
 
     input:checked + .slider {
-        background-color: #2196F3;
+        background-color: #f3f30b;
     }
 
     input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px #f3f30b;
     }
 
     input:checked + .slider:before {

@@ -28,16 +28,25 @@ ob_start(); ?>
         <tbody>
         <?php
 
-        while ($donnees = $req->fetch()){
+        foreach ($req as $row => $donnees){
             ?>
             <tr>
                 <td><?= $donnees['effector_name'];?></td>
-                <td><?= $donnees['request_value'];?></td>
+                <td><div>
+                        <?php $shutter_request=$donnees['request_value'];?>
+                        <div id="slider" datafld="<?= $donnees['id_effector'];?>"><script>
+                                var value = <?= $shutter_request; ?>;
+                            </script></div>
+                        <div class="text">valeur = <span class="textcontent"></span> </div>
+                        <div id="slider_image"></div>
+                    </div></td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
+
+<script src="public/script/shutter_manage.js" type="text/javascript"></script>
 <?php $content_menu = ob_get_clean(); ?>
 
 <?php require('tab_template.php'); ?>

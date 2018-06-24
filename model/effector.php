@@ -95,7 +95,6 @@ function get_effector_temp($id_home){
     $req2->bindValue(2,'TEMP_CTRL',PDO::PARAM_STR);
     $req2->execute();
     return $req2;
-
 }
 
 function get_effector_shutter($id_home){
@@ -136,7 +135,20 @@ WHERE id_home=? AND effector_type=?');
     return $req;
 }
 
-function change_effector_value($type,$request_value,$id_home){
+function get_effector_by_type_room($id_room, $type)
+{
+    $db = dbConnect();
+    $req = $db->prepare('SELECT 
+`id_effector`,`effector_type`,`request_value`,`effector_name`
+FROM `room`NATURAL JOIN effector
+WHERE id_room=? AND effector_type=?');
+    $req->bindValue(1, $id_room, PDO::PARAM_INT);
+    $req->bindValue(2, $type, PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+function change_all_effector_value($type, $request_value, $id_home){
     $db=dbConnect();
     $req=$db->prepare('UPDATE effector NATURAL JOIN room 
     SET request_value=? 
@@ -144,6 +156,16 @@ function change_effector_value($type,$request_value,$id_home){
     $req->bindValue(1,$request_value,PDO::PARAM_STR);
     $req->bindValue(2,$type,PDO::PARAM_STR);
     $req->bindValue(3,$id_home,PDO::PARAM_INT);
+    $req->execute();
+}
+
+function change_effector_value($id_effector,$request_value){
+    $db=dbConnect();
+    $req=$db->prepare('UPDATE effector NATURAL JOIN room 
+    SET request_value=? 
+    WHERE id_effector=?');
+    $req->bindValue(1,$request_value,PDO::PARAM_STR);
+    $req->bindValue(2,$id_effector,PDO::PARAM_INT);
     $req->execute();
 }
 
@@ -158,4 +180,16 @@ WHERE id_home=? AND id_room=? AND effector_type=?');
     $req->bindValue(3, $type, PDO::PARAM_STR);
     $req->execute();
     return $req;
+}
+
+function get_temp_control($id_home){
+    $db=dbConnect();
+    $req= $db->prepare('SELECT * FROM effector NATURAL JOIN room NATURAL JOIN sensor
+WHERE id_home=? AND effector_type=? AND sensor_type=?');
+    $req->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req->bindValue(2,'TEMP_CTRL',PDO::PARAM_STR);
+    $req->bindValue(3,'TEMP',PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+
 }

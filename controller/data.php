@@ -45,7 +45,7 @@ try {
                         $value= substr_replace($value,'0',0,0);
                     }
                 }
-                changeEffectorValue($type,$request_value,$_SESSION['id_home']);
+                changeAllEffectorValue($type,$request_value,$_SESSION['id_home']);
                 $req=getAllEffectorByType($_SESSION['id_home'],$type);
                 $req=$req->fetchAll();
                 for($i=0;$i<count($req);$i++){
@@ -53,6 +53,41 @@ try {
                     sendTestframe($frame_type,$id,$value);
                     //sendFrameAllEffector();
                 }
+                break;
+
+            case 'sendEffectorData':
+                if ($_POST['id'] == 'light') {
+                    $type='LIGHT_CTRL';
+                    $frame_type=5;
+                    $request_value = $_POST['value'] =='true'?1111:0;
+                    $value = $_POST['value'] =='true'?"1111":"0000";
+                }
+                if ($_POST['id'] == 'temp'){
+                    $type='TEMP_CTRL';
+                    $frame_type=3;
+                    $request_value = $_POST['value'];
+                    $value = substr_replace(filter_var($_POST['value'], FILTER_SANITIZE_NUMBER_INT),'0',0,0);
+                    if (strlen($value)==3){
+                        $value= substr_replace($value,'0',3,0);
+                    }
+                }
+                if ($_POST['id'] == 'shutter') {
+                    $type='SHUTTER_CTRL';
+                    $frame_type=1;
+                    $request_value = $_POST['value'];
+                    $value = filter_var($_POST['value'], FILTER_SANITIZE_NUMBER_INT);
+                    if (strlen($value)==1){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                    if (strlen($value)==2){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                    if (strlen($value)==3){
+                        $value= substr_replace($value,'0',0,0);
+                    }
+                }
+                changeEffectorValue($_POST['effector'],$request_value);
+                sendTestframe($frame_type,$_POST['effector'],$value);
                 break;
             case 'test':
                 echo 'aaaaaaaaaa';

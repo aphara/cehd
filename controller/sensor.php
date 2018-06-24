@@ -90,3 +90,4 @@ function getAllSensorTemp($id_home){
         return 'NONE';
     }
 }
+

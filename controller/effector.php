@@ -95,6 +95,20 @@ function getAllEffectorLightState($id_home){
     }
 }
 
+function getEffectorLightState($id_room){
+    $type='LIGHT_CTRL';
+    $req=get_effector_by_type_room($id_room,$type);
+    $req=$req->fetchAll();
+    for($i=0;$i<count($req);$i++){
+        if ($req[$i]['request_value']==1111){
+            $req[$i]['request_value']="ON";
+        }elseif ($req[$i]['request_value']==0){
+            $req[$i]['request_value']="OFF";
+        }
+    }
+    return $req;
+}
+
 function getAllEffectorTemp($id_home){
     $type='TEMP_CTRL';
     $req=get_effector_by_type($id_home,$type);
@@ -143,16 +157,32 @@ function getAllEffectorShutter($id_home){
     }
 }
 
+function getEffectorShutterState($id_room){
+    $type='SHUTTER_CTRL';
+    $req=get_effector_by_type_room($id_room,$type);
+    $req=$req->fetchAll();
+    return $req;
+}
+
 function getAllEffectorByType($id_home,$type){
     $req=get_effector_by_type($id_home,$type);
     return $req;
 }
 
-function changeEffectorValue($type,$request_value,$id_home){
-    change_effector_value($type,$request_value,$id_home);
+function changeAllEffectorValue($type, $request_value, $id_home){
+    change_all_effector_value($type,$request_value,$id_home);
+}
+
+function changeEffectorValue($id_effector, $request_value){
+    change_effector_value($id_effector,$request_value);
 }
 
 function getEffectorValue($id_home, $type, $id_room){
     $req=get_effector_value($id_home, $type, $id_room);
+    return $req;
+}
+
+function getTempControl($id_home){
+    $req=get_temp_control($id_home);
     return $req;
 }
