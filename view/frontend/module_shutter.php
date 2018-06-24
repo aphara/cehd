@@ -39,7 +39,8 @@ ob_start(); ?>
                             </script></div>
                         <div class="text">valeur = <span class="textcontent"></span> </div>
                         <div id="slider_image"></div>
-                    </div></td>
+                    </div>
+                </td>
             </tr>
         <?php } ?>
         </tbody>

@@ -6,7 +6,7 @@ ob_start(); ?>
         <!--first name-->
         <li class="testli">
             <!--<button class="buttonset" onclick="OnOff_1();" ><span class="buttontext">Changer les informations</span></button>-->
-            <input type="button" value="Changer les informations" class="bouton" onclick="OnOff(0);">
+            <input type="button" value="Changer les informations" class="bouton" onclick="OnOff(1);">
             <div id="identity" class="hidden_content">
 
                 prenom :    <?php echo $resultat['first_name'];?>
@@ -46,7 +46,7 @@ ob_start(); ?>
 
         <li class="changemailet">
             <!-- mail-->
-            <input type="button" value="Changer mail" class="bouton" onclick="OnOff(1);">
+            <input type="button" value="Changer mail" class="bouton" onclick="OnOff(2);">
             <div id="changemail" class="hidden_content">
 
                 e-mail :      <?php echo $resultat['mail'];?>
@@ -61,7 +61,7 @@ ob_start(); ?>
         <hr>
 
         <li class="changepasswordset">
-            <input type="button" value="Changer mot de passe" class="bouton" onclick="OnOff(2);">
+            <input type="button" value="Changer mot de passe" class="bouton" onclick="OnOff(3);">
             <!--password -->
             <div id="changepassword" class="hidden_content">
                 <form action="index.php?action=update_password" method="post">
