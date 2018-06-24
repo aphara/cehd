@@ -51,6 +51,15 @@ function get_superuser_and_child($id){
     return $req;
 }
 
+function get_id_superuser($id){
+    $db=dbConnect();
+    $req=$db->prepare('SELECT id_superuser FROM `user` WHERE id_user=?');
+    $req->bindValue(1,$id,PDO::PARAM_INT);
+    $req->execute();
+    $req=$req->fetchAll();
+    return $req;
+}
+
 function get_user_detail($id_user){
     $db=dbConnect();
     $req=$db->prepare('SELECT * FROM `user` WHERE id_user=?');

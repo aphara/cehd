@@ -20,7 +20,7 @@
         <form action="index.php?action=firstlog_mail" method="post">
 
             <div>
-                <input type="email" placeholder="Adresse email" id="mail" name="mail_forgetpassw" value="" autofocus required>
+                <input type="email" placeholder="Adresse email" id="mail" name="_mail" value="" autofocus required>
             </div>
 
             <hr>

@@ -42,7 +42,7 @@ ob_start();?>
             </div>
             <div id="temperature">
                 <p>Température instantanée</p>
-                <p><?php echo get_instant_temp($_SESSION['id_home'])[0]; ?> °C</p>
+                <p><?php echo GetAllSensorTemp($_SESSION['id_home']); ?> °C</p>
             </div>
             <div id="etat_modules">
                 <p>Etat des capteurs : </p>

@@ -1,12 +1,10 @@
-<?php @session_start();
-$title = 'CeHD - CGU';
-?>
+<?php @session_start(); ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>CEHD CGU</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
   </head>
   <body>
   <div class="CGU">

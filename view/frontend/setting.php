@@ -159,7 +159,7 @@ ob_start(); ?>
             <div id="changepassword" class="hidden_content">
                 <form action="index.php?action=update_password" method="post">
                     <!--verification-->
-                    vérification <br>
+                    Vérification <br>
                     <input type="password" name="_old_password" required> <br>
                     <!--changement -->
                     Nouveau mot de passe<br>

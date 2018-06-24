@@ -14,8 +14,16 @@ function login($_mail, $_password)
         $_SESSION['name'] = $result['first_name'];
         $_SESSION['status'] = $result['status'];
         $_SESSION['mail'] = $_mail;
-        $id_home = get_id_home($_SESSION['id']);
-        $_SESSION['id_home'] = $id_home[0];
+        if($_SESSION['status']== 'USER'){
+            $id_superuser=get_id_superuser($_SESSION['id']);
+            $_SESSION['id_superuser']=$id_superuser[0];
+            $id_home=get_id_home($_SESSION['id_superuser']);
+            $_SESSION['id_home'] = $id_home[0];
+        }else{
+            $id_home = get_id_home($_SESSION['id']);
+            $_SESSION['id_home'] = $id_home[0];
+        }
+
     } else {
         echo 'Mauvais identifiant ou mot de passe !';
         require 'view/frontend/login_view.php';

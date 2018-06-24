@@ -71,7 +71,6 @@ function getAllSensorTemp($id_home){
     $type='TEMP';
     $req=get_sensor_by_type($id_home,$type);
     $req=$req->fetchAll();
-    $length=count($req);
     for($i=0;$i<count($req);$i++){
         if (isset($temp_moy) && isset($divider)){
             if ($req[$i]['current_value']!=NULL && $req[$i]['current_value']!=0){

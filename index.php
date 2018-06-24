@@ -13,11 +13,6 @@ try {
     if (!isset($_GET['action']))
         $_GET['action'] = '';
     switch ($_GET['action']) {
-        case 'test':
-            //getData();
-            updatePeriod($_SESSION['id_home']);
-            //updateSensorValue($_SESSION['id_home']);
-            break;
 //login
         case 'login':
             login($_POST['_mail'], $_POST['_password']);
@@ -47,7 +42,7 @@ try {
             $test = checkMail($_POST['_mail']);
             if ($test == true) {
                 $_SESSION['mail'] = $_POST['_mail'];
-                require 'view/frontend/firstlog_password.php';
+                require 'view/frontend/firstlog_cgu.php';
             } else {
                 echo 'Ce compte utilisateur est déjà existant ou n\'existe pas';
                 require 'view/frontend/firstlog.php';
@@ -156,7 +151,21 @@ try {
         /*Gestion des Modules*/
 
         case 'module_light':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+            if ($_SESSION['status'] == 'USER'){
+                if (isset($_POST['_room'])){
+                    $req2=getRoom($_SESSION['id_superuser']);
+                    $target_room=$_POST['_room'];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorLightState($target_room);
+                }else{
+                    $req2=getRoom($_SESSION['id_superuser']);
+                    $req2=$req2->fetchAll();
+                    $target_room=$req2[0];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorLightState($target_room);
+                }
+                require 'view/frontend/module_light.php';
+            } elseif ($_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_POST['_room'])){
                     $req2=getRoom($_SESSION['id']);
                     $target_room=$_POST['_room'];
@@ -170,13 +179,27 @@ try {
                     $req = getEffectorLightState($target_room);
                 }
                 require 'view/frontend/module_light.php';
-            } else {
+            }else {
                 authErr();
             }
             break;
 
         case 'module_shutter':
-            if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+            if ($_SESSION['status'] == 'USER'){
+                if (isset($_POST['_room'])){
+                    $req2=getRoom($_SESSION['id_superuser']);
+                    $target_room=$_POST['_room'];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorShutterState($target_room);
+                }else{
+                    $req2=getRoom($_SESSION['id_superuser']);
+                    $req2=$req2->fetchAll();
+                    $target_room=$req2[0];
+                    $room=getRoomDetail($target_room);
+                    $req = getEffectorShutterState($target_room);
+                }
+                require 'view/frontend/module_shutter.php';
+            } elseif ($_SESSION['status'] == 'SUPER_USER') {
                 if (isset($_POST['_room'])){
                     $req2=getRoom($_SESSION['id']);
                     $target_room=$_POST['_room'];
