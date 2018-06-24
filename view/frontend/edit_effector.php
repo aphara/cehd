@@ -41,6 +41,8 @@ ob_start(); ?>
             <p>
                 <input type="submit" value="Modifier actionneur"/>
             </p>
+            <a href="index.php?action=link_module_light" class="retour">Retour</a>
+
         </fieldset>
     </form>
 

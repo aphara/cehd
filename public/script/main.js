@@ -13,6 +13,4 @@ function OnOff(i) {
 
 
 
-
-
 //set value

@@ -23,7 +23,7 @@
     .retour {
         pading: 2px;
         text-align: center;
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         width: 20%;
         margin: auto;
@@ -114,7 +114,7 @@
         display: block !important;
     }
     #sidebar a {
-        background-color: rgb(200, 200, 200);
+        background-color: silver;
         color: black;
         text-decoration: none;
         font-size: 1.3em;
@@ -126,13 +126,14 @@
     }
 
     #sidebar a:hover {
-        color: white;
+        color: #ac0002;
         border-color: black;
-        background-color: #ff6c06;
+        background-color: white;
     }
 
     #dropdown-content {
         display: none;
+        margin-left: 5%;
     }
 
     #sidebar {
@@ -142,6 +143,7 @@
     #dropdown:hover #dropdown-content {
         display: block;
     }
+
 
     dropdown-content a {
         font-size: 1.1em;
@@ -269,7 +271,7 @@
         box-shadow: 6px 6px 6px black;
         margin-top: 2%;
         margin-right: 15%;
-
+        height: 7%;
         margin-bottom: 15%;
         width: 20%;
 
@@ -370,7 +372,6 @@
     }
 
     .hidden_content {
-        display: none;
         color: black;
     }
 
@@ -378,30 +379,37 @@
     #onglets {
         list-style-type: none;
         padding-bottom: 1.7em; /* à modifier suivant la taille de la police ET de la hauteur de l'onglet dans #onglets li */
-        border-bottom: 1px solid #9EA0A1;
-        margin-left: 0;
-        margin-top: 0;
+        border-bottom: 1px solid black;
         padding-left: 1em;
+        margin-top: 0;
+        background-color: dimgrey;
 
     }
 
     #onglets li {
         float: left;
         height: 1.5em; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
-        background-color: #F4F9FD;
-        margin: 2px 2px 0 2px;
-        border: 1px solid #9EA0A1;
+        background-color: silver;
+        margin: 0px 2px;
+        border: 1px solid black;
+        border-radius: 10px;
+
+
     }
 
     #onglets a {
         display: block;
-        color: #ac0002;
+        color: black;
         text-decoration: none;
         padding: 2px;
+        border-radius: 10px;
+
     }
 
     #onglets a:hover {
+        color: #ac0002;
         background: #fff;
+        border-radius: 10px;
     }
 
     /*Associer lumière*/
@@ -462,16 +470,38 @@
         justify-content: left;
         right: 20%;
     }
+    /*Global Stat*/
+    #stat{
+        display: flex;
+        margin: auto;
+    }
+    #consommation_instantanee{
+        margin: auto;
+    }
+    #temperature{
+        margin: auto;
+        border-left: 1px solid black;
+        padding-left: 10px;
+    }
+    #etat_modules{
+        margin: auto;
+        border-left: 1px solid black;
+        padding-left: 10px;
+    }
 
     /*Gestion Maison*/
 
     #nav_home_management{
         display: flex;
+        padding: 10px;
     }
     #bare_vertical{
         height: 50vh;
         width: 0.5px;
 
+    }
+    #home_mana{
+        text-align: center;
     }
 
     input[type="range"] {
@@ -479,20 +509,20 @@
     }
 
     #range_volet{
-
-        writing-mode: bt-lr; /* IE */
-        -webkit-appearance: slider-vertical; /* WebKit */
-        width: 8px;
-        height: 175px;
-        padding: 0 5px;
+        display: flex;
+    }
+    #range_volet_int{
+        width: 30%;
     }
     #volet{
         width: 72vh;
         border-left: 2px solid black;
-        padding: 10px;
+        padding-left: 10px;
+
     }
     #light{
         width: 72vh;
+        padding-right: 10px;
     }
 
     /* The switch - the box around the slider */
@@ -631,7 +661,7 @@
     .retour {
         pading: 2px;
         text-align: center;
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         width: 20%;
         margin: auto;
@@ -727,21 +757,20 @@
     }
 
     #sidebar a {
-        background-color: rgb(200, 200, 200);
+        background-color: silver;
         color: black;
         text-decoration: none;
         font-size: 1.3em;
         display: block;
-        line-height: 189%;
         padding: 0 9%;
         border: 3px groove black;
         border-radius: 10px;
     }
 
     #sidebar a:hover {
-        color: white;
+        color: #ac0002;
         border-color: black;
-        background-color: #ff6c06;
+        background-color: white;
     }
 
     #dropdown-content {
@@ -983,30 +1012,37 @@
     #onglets {
         list-style-type: none;
         padding-bottom: 1.7em; /* à modifier suivant la taille de la police ET de la hauteur de l'onglet dans #onglets li */
-        border-bottom: 1px solid #9EA0A1;
-        margin-left: 0;
-        margin-top: 0;
+        border-bottom: 1px solid black;
         padding-left: 1em;
+        margin-top: 0;
+        background-color: dimgrey;
 
     }
 
     #onglets li {
         float: left;
         height: 1.5em; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
-        background-color: #F4F9FD;
-        margin: 2px 2px 0 2px;
-        border: 1px solid #9EA0A1;
+        background-color: silver;
+        margin: 0px 2px;
+        border: 1px solid black;
+        border-radius: 10px;
+
+
     }
 
     #onglets a {
         display: block;
-        color: #ac0002;
+        color: black;
         text-decoration: none;
         padding: 2px;
+        border-radius: 10px;
+
     }
 
     #onglets a:hover {
+        color: #ac0002;
         background: #fff;
+        border-radius: 10px;
     }
 
     /*Associer lumière*/
@@ -1020,20 +1056,36 @@
 
     #nav_home_management{
         display: flex;
+        padding: 10px;
+    }
+    #bare_vertical{
+        height: 50vh;
+        width: 0.5px;
+
+    }
+    #home_mana{
+        text-align: center;
     }
 
+    input[type="range"] {
+        -webkit-appearance: slider-vertical;
+    }
+
+    #range_volet{
+        display: flex;
+    }
+    #range_volet_int{
+        width: 30%;
+    }
     #volet{
         width: 72vh;
         border-left: 2px solid black;
-        padding: 10px;
-    }
+        padding-left: 10px;
 
-    /*#slider_image{
-        width: 180px;
-        height: 180px;
-    }*/
+    }
     #light{
         width: 72vh;
+        padding-right: 10px;
     }
 
     /* The switch - the box around the slider */

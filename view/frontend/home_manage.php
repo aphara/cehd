@@ -3,7 +3,7 @@ $title = 'CeHD - Gestion Maison';
 ob_start(); ?>
 
 
-    <h1>gestion de la maison</h1>
+    <h1 id="home_mana">Gestion de la maison</h1>
     <div id="nav_home_management">
         <div id="light">
 
@@ -38,11 +38,15 @@ ob_start(); ?>
 
         <div id="volet">
             <h2>Volet</h2>
-            <div>
-                <div id="slider"><script>
-                        var value = <?= $shutter_request; ?>;
-                    </script></div>
-                <div class="text">valeur = <span class="textcontent"></span> </div>
+            <div id="range_volet">
+                <div id="range_volet_int">
+                    <div id="slider">
+                        <script>
+                            var value = <?= $shutter_request; ?>;
+                        </script>
+                    </div>
+                    <div class="text">valeur = <span class="textcontent"></span> </div>
+                </div>
                 <div id="slider_image"></div>
             </div>
         </div>

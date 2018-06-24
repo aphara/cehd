@@ -27,6 +27,7 @@
 
             <input type="submit" placeholder="Envoyer" id="envoyer_forgetpassw" name="envoyer_forgetpassw">
         </form>
+        <a href="index.php" class="retour">Retour</a>
 
     </div>
 

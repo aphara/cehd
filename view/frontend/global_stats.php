@@ -34,23 +34,24 @@ ob_start();?>
                     <input type="submit" value="Valider" />
                 </form>
             </div>
+        </div>
+        <div id="stat">
             <div id="consommation_instantanee">
-                <p><?php echo get_instant_conso($_SESSION['id_home'])[0]; ?> C°</p>
                 <p>Consommation instantanée</p>
+                <p><?php echo get_instant_conso($_SESSION['id_home'])[0]; ?> C°</p>
+            </div>
+            <div id="temperature">
+                <p>Température instantanée</p>
+                <p><?php echo get_instant_temp($_SESSION['id_home'])[0]; ?> C°</p>
+            </div>
+            <div id="etat_modules">
+                <p>Etat des capteurs : </p>
+                <?php $state = getStateSensor($_SESSION['id_home']);
+                $url = $state?"public/img/checked.PNG":"public/img/unchecked.PNG";?>
+                <img id="prompt_state_sensor" <?php echo ("src=".$url); ?>>
             </div>
         </div>
-        <div id="temperature">
 
-            <p><?php echo get_instant_temp($_SESSION['id_home'])[0]; ?> C°</p>
-            <p>Température instantanée</p>
-
-        </div>
-        <div id="etat_modules">
-            <p>Etat des capteurs : </p>
-            <?php $state = getStateSensor($_SESSION['id_home']);
-            $url = $state?"public/img/checked.PNG":"public/img/unchecked.PNG";?>
-            <img id="prompt_state_sensor" <?php echo ("src=".$url); ?>>
-        </div>
     </div>
 
 <?php $content = ob_get_clean(); ?>
