@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2018 at 12:13 AM
+-- Generation Time: Jun 25, 2018 at 12:41 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -43,24 +43,24 @@ CREATE TABLE `effector` (
 INSERT INTO `effector` (`id_effector`, `effector_type`, `request_value`, `effector_name`, `id_room`) VALUES
 (01, 'LIGHT_CTRL', 1111, 'lumière salon', 0000000003),
 (02, 'LIGHT_CTRL', 1111, 'lumière chambre parents', 0000000005),
-(03, 'TEMP_CTRL', 24.6, 'thermostat salon', 0000000003),
-(04, 'SHUTTER_CTRL', 55, 'volet salon', 0000000003),
-(05, 'TEMP_CTRL', 23.5, 'thermostat chambre', 0000000005),
-(06, 'SHUTTER_CTRL', 55, 'volet chambre', 0000000005),
-(07, 'SHUTTER_CTRL', 55, 'Volet Toilette', 0000000004),
-(08, 'SHUTTER_CTRL', 55, 'Volet Chambre Parents', 0000000005),
-(09, 'SHUTTER_CTRL', 55, 'Volet buanderie', 0000000006),
-(10, 'SHUTTER_CTRL', 55, 'Volet Chambre Ami', 0000000008),
-(11, 'SHUTTER_CTRL', 60, 'Volet Salle à Manger 1', 0000000012),
-(12, 'SHUTTER_CTRL', 55, 'Volet Salle à Manger 2', 0000000012),
-(13, 'SHUTTER_CTRL', 55, 'Volet Salle à Manger 3', 0000000012),
-(14, 'SHUTTER_CTRL', 55, 'Volet Salle à Manger 4', 0000000012),
-(15, 'SHUTTER_CTRL', 55, 'Volet Cuisine 1', 0000000001),
-(16, 'SHUTTER_CTRL', 55, 'Volet Cuisine 2', 0000000001),
-(17, 'TEMP_CTRL', 23.5, 'thermostat cuisine', 0000000001),
-(18, 'TEMP_CTRL', 23.5, 'thermostat salle à manger', 0000000012),
+(03, 'TEMP_CTRL', 19.7, 'thermostat salon', 0000000003),
+(04, 'SHUTTER_CTRL', 0, 'volet salon', 0000000003),
+(05, 'TEMP_CTRL', 19.7, 'thermostat chambre', 0000000005),
+(06, 'SHUTTER_CTRL', 0, 'volet chambre', 0000000005),
+(07, 'SHUTTER_CTRL', 0, 'Volet Toilette', 0000000004),
+(08, 'SHUTTER_CTRL', 0, 'Volet Chambre Parents', 0000000005),
+(09, 'SHUTTER_CTRL', 0, 'Volet buanderie', 0000000006),
+(10, 'SHUTTER_CTRL', 0, 'Volet Chambre Ami', 0000000008),
+(11, 'SHUTTER_CTRL', 0, 'Volet Salle à Manger 1', 0000000012),
+(12, 'SHUTTER_CTRL', 0, 'Volet Salle à Manger 2', 0000000012),
+(13, 'SHUTTER_CTRL', 0, 'Volet Salle à Manger 3', 0000000012),
+(14, 'SHUTTER_CTRL', 0, 'Volet Salle à Manger 4', 0000000012),
+(15, 'SHUTTER_CTRL', 0, 'Volet Cuisine 1', 0000000001),
+(16, 'SHUTTER_CTRL', 0, 'Volet Cuisine 2', 0000000001),
+(17, 'TEMP_CTRL', 19.7, 'thermostat cuisine', 0000000001),
+(18, 'TEMP_CTRL', 19.7, 'thermostat salle à manger', 0000000012),
 (19, 'LIGHT_CTRL', 1111, 'lampadaire salon', 0000000003),
-(20, 'LIGHT_CTRL', 1111, 'lumière cuisine', 0000000003),
+(20, 'LIGHT_CTRL', 1111, 'lumière cuisine', 0000000001),
 (21, 'TEMP_CTRL', NULL, 'thermostat salon', 0000000013),
 (22, 'TEMP_CTRL', NULL, 'thermostat chambre', 0000000014),
 (23, 'TEMP_CTRL', NULL, 'thermostat Sdb', 0000000016);
@@ -144,7 +144,7 @@ INSERT INTO `sensor` (`id_sensor`, `sensor_type`, `current_state`, `current_valu
 (02, 'TEMP', 1, 23.5, 'temp salon', 0000000003),
 (03, 'TEMP', 1, 20.4, 'temp chambre parents', 0000000005),
 (04, 'TEMP', 1, 21.7, 'temp cuisine', 0000000001),
-(05, 'TEMP', 1, 5.5, 'temp salle à manger', 0000000012),
+(05, 'TEMP', 1, 19.75, 'temp salle à manger', 0000000012),
 (06, 'TEMP', 1, 0, 'température salon', 0000000013),
 (07, 'TEMP', 1, 0, 'temp chambre', 0000000014),
 (08, 'CONSO', 1, 69, 'conso maison', 0000000001),
@@ -174,14 +174,7 @@ INSERT INTO `stat_sensor` (`id_stat`, `id_sensor`, `date_maj`, `period`, `value`
 (0000000002, 02, '2018-06-08 16:28:13', 'DAY', 3, 'TEMP'),
 (0000000003, 02, '2018-06-08 16:28:28', 'DAY', 1, 'TEMP'),
 (0000000004, 02, '2018-06-08 16:51:39', 'DAY', 0.1, 'TEMP'),
-(0000000005, 01, '2018-06-11 15:16:36', 'DAY', 1111, 'LIGHT'),
-(0000000006, 01, '2018-06-11 15:17:07', 'DAY', 1100, 'LIGHT'),
-(0000000007, 01, '2018-06-11 15:17:14', 'DAY', 0, 'LIGHT'),
 (0000000008, 02, '2018-06-11 15:17:46', 'DAY', 21.3, 'TEMP'),
-(0000000009, 05, '2018-06-11 15:19:23', 'DAY', 150, 'SHUTTER'),
-(0000000010, 05, '2018-06-11 15:19:28', 'DAY', 0, 'SHUTTER'),
-(0000000011, 05, '2018-06-11 15:19:45', 'DAY', 300, 'SHUTTER'),
-(0000000012, 05, '2018-06-11 15:19:58', 'DAY', 5.5, 'SHUTTER'),
 (0000000016, 02, '2018-06-14 16:11:31', 'DAY', 25.6, 'TEMP'),
 (0000000017, 02, '2018-06-15 11:00:01', 'DAY', 30.1, 'TEMP'),
 (0000000019, 02, '2018-06-15 13:11:25', 'DAY', 21.6, 'TEMP'),
@@ -293,7 +286,7 @@ INSERT INTO `user` (`id_user`, `status`, `mail`, `password`, `first_name`, `last
 (1, 'SUPER_USER', 'test@test123.com', '$2y$10$39qnNM/Be03pggBS/FNXaO7821i7xZ92DD8EnV0XSmhbKdZlVW9Gy', 'Jean', 'Dupont', '1990-01-10', '+336012345678', NULL),
 (2, 'ADMIN', 'admin@admin.fr', '$2y$10$I5ECudoCdt86puFfWSgwW.DtAJWsK0caV8bbaZ4DIY/ZdDDfXzyLC', 'Admin', '', '0000-00-00', '', NULL),
 (9, 'USER', 'marie.dupont@test123.com', '$2y$10$I5hDvrl.kGdqm6JMv9KNSOtE5rVfiNgVMAMeIo9HV0NPq1XBo3CSm', 'Marie', 'Dupont', '1991-02-27', '0612345678', 1),
-(10, 'SUPER_USER', 'apharamond@isep.fr', '', 'Alex', 'Pharamond', '1997-02-06', '0606060606', NULL);
+(10, 'SUPER_USER', 'apharamond@isep.fr', '$2y$10$xM3ld/0WutO6aEdyRrbn2.Xe8XrVYVN6bhn19.w1kErh4Mdgp9yM6', 'Alex', 'Pharamond', '1997-02-06', '0606060606', NULL);
 
 -- --------------------------------------------------------
 
