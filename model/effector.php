@@ -98,6 +98,19 @@ function get_effector_temp($id_home){
 
 }
 
+function get_effector_shutter($id_home){
+    $db =dbConnect();
+    $req2 = $db-> prepare( 'SELECT
+    `id_effector`,`effector_type`,`effector_name`,`id_room`,`name`
+    FROM room NATURAL JOIN effector
+    WHERE id_home=? and effector_type=?');
+    $req2->bindValue(1,$id_home,PDO::PARAM_INT);
+    $req2->bindValue(2,'SHUTTER_CTRL',PDO::PARAM_STR);
+    $req2->execute();
+    return $req2;
+
+}
+
 function edit_effector($id_effector, $effector_type, $effector_name, $id_room)
 {
     $db = dbConnect();

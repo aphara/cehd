@@ -6,7 +6,7 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        background-color: #f0f5ef;
+        background-image: url('../img/fond.jpg');
     }
 
     .all {
@@ -41,6 +41,7 @@
         padding: 5px;
         height: 80vh;
         overflow: auto;
+        background-color: white;
     }
 
     /*------css du template--------*/
@@ -604,7 +605,7 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        background-color: #f0f5ef;
+        background-image: url('../img/fond.jpg');
     }
 
     .all {
@@ -645,6 +646,7 @@
         padding: 5px;
         height: 80vh;
         overflow: auto;
+        background-color: white;
     }
 
     /*------css du template--------*/

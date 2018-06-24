@@ -97,6 +97,19 @@ WHERE id_home=? and sensor_type=?');
     return $req;
 }
 
+function get_sensor_shutter($id_home)
+{
+    $db = dbConnect();
+    $req = $db->prepare('SELECT
+`id_sensor`, `sensor_type`, `sensor_name`,`id_room`,`name`
+FROM room NATURAL JOIN sensor
+WHERE id_home=? and sensor_type=?');
+    $req->bindValue(1, $id_home, PDO::PARAM_INT);
+    $req->bindValue(2, 'SHUTTER', PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
 function edit_sensor( $id_sensor, $sensor_type, $sensor_name, $id_room){
     $db=dbConnect();
     $req=$db->prepare('UPDATE sensor SET sensor_name=:name, sensor_type=:type, id_room=:room WHERE id_sensor=:id');

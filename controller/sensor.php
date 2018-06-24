@@ -56,6 +56,13 @@ function getSensorTemp ($id_user){
     return $req;
 }
 
+function getSensorShutter($id_user){
+    $target_home=get_id_home($id_user);
+    $_SESSION['target_home']=$target_home[0];
+    $req=get_sensor_shutter($_SESSION['target_home']);
+    return $req;
+}
+
 function editSensor ( $id_sensor, $sensor_type, $sensor_name, $id_room){
     edit_sensor($id_sensor, $sensor_type, $sensor_name, $id_room);
 }

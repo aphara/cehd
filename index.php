@@ -165,7 +165,17 @@ try {
 
         case 'module_shutter':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
-                $req = getEffectorValue($_SESSION['id_home'],$_SESSION['effector_name'], $_SESSION['id_room']);
+                if (isset($_POST['_room'])){
+                    $req2=getRoom($_SESSION['id']);
+                    $_SESSION['target_room']=$_POST['_room'];
+                    $room=getRoomDetail($_SESSION['target_room']);
+                    $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
+                }else{
+                    $req2=getRoom($_SESSION['id']);
+                    $_SESSION['target_room']=$_POST['_room'];
+                    $room=getRoomDetail($_SESSION['target_room']);
+                    $req = getEffectorValue($_SESSION['id_home'],'SHUTTER_CTRL', $_SESSION['target_room']);
+                }
                 require 'view/frontend/module_shutter.php';
             } else {
                 authErr();
@@ -218,6 +228,8 @@ try {
 
         case 'link_module_shutter':
             if ($_SESSION['status'] == 'USER' || $_SESSION['status'] == 'SUPER_USER') {
+                $req = getSensorShutter(htmlspecialchars($_SESSION['id']));
+                $req2 = getEffectorShutter(htmlspecialchars($_SESSION['id']));
                 require 'view/frontend/link_module_shutter.php';
             } else {
                 authErr();
