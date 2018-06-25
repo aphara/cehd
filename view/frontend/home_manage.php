@@ -33,6 +33,12 @@ ob_start(); ?>
             </label>
 
             <h2>Alarme</h2>
+            <label class="switch">
+
+                <input type="checkbox" id="alarm">
+
+                <span class="slider round"></span>
+            </label>
         </div>
 
 
